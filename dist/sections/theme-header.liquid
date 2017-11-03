@@ -27,9 +27,11 @@
   </div>
 </div>
   <div class="container">
-    <div class="row l-table m-table">
-      <div class="column l8 m8 s12 l-left m-left s-middle">
-
+    <div class="row">
+      <div class="column l3 m3 s12">
+        search
+      </div>
+      <div class="column l6 m8 s12 l-center m-center s-center">
         {% if template == 'index' %}
           <h1 class="logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
         {% else %}
@@ -50,9 +52,8 @@
         {% else %}
           </div>
         {% endif %}
-
       </div>
-      <div class="column l4 m4 s12 l-right m-right s-middle">
+      <div class="column l3 m3 s12">
         {% if customer %}
           <a href="/account">{{ 'account.title' | t }}</a>
         {% else %}
@@ -64,7 +65,6 @@
           <span data-cart-item-count>{{ cart.item_count }}</span>
           (<span data-cart-total>{{ cart.total_price | money_with_currency }}</span>)
         </a>
-
       </div>
     </div>
 
