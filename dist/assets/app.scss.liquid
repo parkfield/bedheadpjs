@@ -24,23 +24,31 @@ $colorBackground: {{ settings.color_background }};
 $colorHighlight: {{ settings.color_highlight }};
 $colorAlternate: {{ settings.color_alternate }};
 
+$accent-color: #A0DAE8;
+$accent-color-2: #F9FAEF;
+$font-color: #333E48;
+$bg-main: white;
+$bg-dark: #333E48;
+$bg-light: #F7F7F7;
+$border-color: #A1A4AA;
+
 // Typography
 $fontLight: 300;
 $fontRegular: 400;
 $fontBold: 700;
-$lineHeight: 1.75;
+$lineHeight: 1.5;
 
 // Space & Borders
-$gutter: 50px;
-$borderRadius: 2px;
-$borderWeight: 2px;
+$gutter: 20px;
+$borderRadius: 1px;
+$borderWeight: 1px;
 $borderStyle: solid;
 
 // Screen Sizes
 $s: 600px;
 $m: 850px;
 $l: 1280px;
-$xl: 1450px;
+$xl: 1440px;
 
 // Miscellaneous
 $logoMaxWidth: {{ settings.logo_max_width | default: '450' | remove: 'px' }}px;
@@ -73,6 +81,13 @@ $iconLinecap: sqaure;
   }
 }
 
+@mixin prefix($property, $value){
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  #{$property}: $value;
+}
+
 // Clearfix
 @mixin clearfix() {
   display: block; // TBC - is this OK? Seems to help
@@ -102,6 +117,18 @@ $iconLinecap: sqaure;
 }
 @mixin xl() {
   @media (min-width: $xl) {
+    @content;
+  }
+}
+
+@mixin min-query($resolution){
+  @media screen and (min-width: $resolution){
+    @content;
+  }
+}
+
+@mixin max-query($resolution){
+  @media screen and (max-width: $resolution){
     @content;
   }
 }
@@ -173,7 +200,7 @@ $iconLinecap: sqaure;
 
 // Overlays
 @mixin overlay() {
-  top: 0;
+  top: 0 !important;
   left: 0;
   right: 0;
   bottom: 0;
@@ -204,9 +231,93 @@ $iconLinecap: sqaure;
 }
 
 
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+// Fonts
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v14/HkF_qI1x_noxlxhrhMQYEKCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/v0SdcGFAl2aezM9Vq_aFTQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v14/DvlFBScY1r-FMtZSYIYoYw.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Playfair Display'), local('PlayfairDisplay-Regular'), url(https://fonts.gstatic.com/s/playfairdisplay/v12/2NBgzUtEeyB-Xtpr9bm1Cczai8e7xzqnKiVb1EwOy0E.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Playfair Display Bold'), local('PlayfairDisplay-Bold'), url(https://fonts.gstatic.com/s/playfairdisplay/v12/UC3ZEjagJi85gF9qFaBgIETamuWRjOQSPxoOXgdYd7c.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/zN7GBFwfMP4uA6AR0HCoLQ.ttf) format('truetype');
+}
+
+
+@mixin roboto-reg($font-size){
+  font-family: 'Roboto', sans-serif;
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: 400;
+}
+@mixin lato-reg($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 400;
+}
+
+@mixin lato-bold($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 700;
+}
+
+@mixin lato-bold-italic($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style: italic;
+  font-weight: 700;
+}
+
+@mixin play-bold($font-size){
+  font-family: 'Playfair Display', serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 700;
+}
+
 /* Global ====================================================================*/
 /* Reset =====================================================================*/
-
+#admin_bar_iframe{
+  display: none;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -302,32 +413,34 @@ img {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: $fontBold;
   line-height: $lineHeight;
   display: block;
   margin-bottom: $gutter/3;
+  color: $font-color;
 }
-h1, .h1 { font-size: 2.5rem; }
+h1, .h1 { font-size: 2.625rem; }
 h2, .h2 { font-size: 2rem; }
-h3, .h3 { font-size: 1.75rem; }
+h3, .h3 { font-size: 1.5625rem; }
 h4, .h4 { font-size: 1.25rem; }
 h5, .h5 { font-size: 1rem; }
 h6, .h6 { font-size: 0.875rem; }
 
 p {
-  font-size: 1.125rem;
-  font-weight: $fontRegular;
+  color: $font-color;
+  @include lato-reg(0.875rem);
   line-height: $lineHeight;
   margin-bottom: 1.4rem;
 }
 
 a {
-  color: $colorBrand;
+  text-decoration: none;
+  color: $font-color;
   cursor: pointer;
   @include transition();
   &:hover, &:focus {
-    color: darken($colorBrand, 5%);
+    color: $accent-color;
   }
 }
 
@@ -386,7 +499,7 @@ textarea {
   line-height: ($gutter - $borderWeight*2);
   padding: 0 $gutter/2;
   font-size: 1.125rem;
-  border: $borderWeight $borderStyle $colorAlternate;
+  border: 1px solid $border-color;
   border-radius: $borderRadius;
   -webkit-appearance: none;
   @media only screen and (max-width: $s) {
@@ -462,9 +575,20 @@ select {
     margin-bottom: $gutter/3;
   }
 }
-a.button {
+button, .btn{
+  @include roboto-reg(0.75rem);
+  text-transform: uppercase;
   display: inline-block;
   text-decoration: none;
+  background-color: $accent-color;
+  text-decoration: none;
+  color: $font-color;
+  min-width: 200px;
+  height: 50px;
+  @include flex();
+  align-items: center;
+  justify-content: center;
+  max-width: 250px;
 }
 .select-wrapper {
   display: inline-block;

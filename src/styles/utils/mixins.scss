@@ -19,6 +19,13 @@
   }
 }
 
+@mixin prefix($property, $value){
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  #{$property}: $value;
+}
+
 // Clearfix
 @mixin clearfix() {
   display: block; // TBC - is this OK? Seems to help
@@ -48,6 +55,18 @@
 }
 @mixin xl() {
   @media (min-width: $xl) {
+    @content;
+  }
+}
+
+@mixin min-query($resolution){
+  @media screen and (min-width: $resolution){
+    @content;
+  }
+}
+
+@mixin max-query($resolution){
+  @media screen and (max-width: $resolution){
     @content;
   }
 }
@@ -119,7 +138,7 @@
 
 // Overlays
 @mixin overlay() {
-  top: 0;
+  top: 0 !important;
   left: 0;
   right: 0;
   bottom: 0;
@@ -147,4 +166,51 @@
       stroke-miterlimit: 10;
     }
   }
+}
+
+
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@mixin roboto-reg($font-size){
+  font-family: 'Roboto', sans-serif;
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: 400;
+}
+@mixin lato-reg($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 400;
+}
+
+@mixin lato-bold($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 700;
+}
+
+@mixin lato-bold-italic($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style: italic;
+  font-weight: 700;
+}
+
+@mixin play-bold($font-size){
+  font-family: 'Playfair Display', serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 700;
 }
