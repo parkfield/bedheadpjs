@@ -1,0 +1,26 @@
+.homepage-promobar{
+
+}
+.homepage-promobar .text-content{
+  @include flex();
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  p{
+    text-transform: uppercase;
+    @include lato-bold(1rem);
+  }
+  img{
+    margin-right: 30px;
+  }
+  @include m(){
+    p{
+      font-size: 1.125rem;
+    }    
+  }
+  @include s(){
+    img{
+      display: none;
+    }
+  }
+}

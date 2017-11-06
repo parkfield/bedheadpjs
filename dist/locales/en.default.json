@@ -209,6 +209,7 @@
   },
   "search": {
     "title": "Search",
+    "label":"Search Bedhead Pajamas",
     "no_results_html": "Sorry, no results for \"{{ terms }}\"",
     "results_for_html": "We found these matches for \"{{ terms }}\""
   },

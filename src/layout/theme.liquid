@@ -59,6 +59,7 @@ MIT License
 </head>
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix != null %} suffix-{{ template.suffix }}{% endif %}" itemscope itemtype="http://schema.org/WebSite">
+  {% section 'homepage-promobar' %}
   {% section 'theme-header' %}
   {% include 'theme-nav-toggled' %}
   <main id="MainContent" role="main">

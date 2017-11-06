@@ -36,6 +36,18 @@
 @import url('modules/icon.scss');
 @import url('modules/product.scss');
 
+/* Homepage ==================================== */
+@import url('homepage/promobar.scss');
+@import url('homepage/header.scss');
+@import url('homepage/nav.scss');
+@import url('homepage/mobile-nav.scss');
+@import url('homepage/hero.scss');
+@import url('homepage/text-image.scss');
+@import url('homepage/banner.scss');
+@import url('homepage/collection.scss');
+@import url('homepage/media.scss');
+@import url('homepage/newsletter.scss');
+@import url('homepage/footer.scss');
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');
 

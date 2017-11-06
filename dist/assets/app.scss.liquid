@@ -135,12 +135,10 @@ $iconLinecap: sqaure;
 
 // Flex
 @mixin flex() {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -webkit-flexbox;
+display: -webkit-box;
   display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 @mixin box-orient--vertical() {
@@ -417,7 +415,7 @@ h1, h2, h3, h4, h5, h6,
   font-weight: $fontBold;
   line-height: $lineHeight;
   display: block;
-  margin-bottom: $gutter/3;
+  margin-bottom: 0px;
   color: $font-color;
 }
 h1, .h1 { font-size: 2.625rem; }
@@ -431,7 +429,7 @@ p {
   color: $font-color;
   @include lato-reg(0.875rem);
   line-height: $lineHeight;
-  margin-bottom: 1.4rem;
+  margin-bottom: 0px;
 }
 
 a {
@@ -495,7 +493,6 @@ input[type="password"],
 input[type="search"],
 textarea {
   max-width: 100%;
-  height: $gutter;
   line-height: ($gutter - $borderWeight*2);
   padding: 0 $gutter/2;
   font-size: 1.125rem;
@@ -802,7 +799,6 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 /* Modules ===================================================================*/
 /* Header ====================================================================*/
-
 .theme-header {
   padding: $gutter/2 0;
   .logo {
@@ -1182,6 +1178,130 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .template-product {
 
 }
+
+
+/* Homepage ==================================== */
+.homepage-promobar{
+
+}
+.homepage-promobar .text-content{
+  @include flex();
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  p{
+    text-transform: uppercase;
+    @include lato-bold(1rem);
+  }
+  img{
+    margin-right: 30px;
+  }
+  @include m(){
+    p{
+      font-size: 1.125rem;
+    }    
+  }
+  @include s(){
+    img{
+      display: none;
+    }
+  }
+}
+.theme-header{
+  padding: 42px 0px;
+  @include s(){
+    padding: 20px;
+  }
+  .logo-image img{
+    @include s(){
+      max-height: 40px;
+    }
+    @include m(){
+      max-height: 54px;
+    }
+    width: auto;
+  }
+}
+
+.theme-header .icons-row{
+  @include flex();
+  align-items: center;
+  position: relative;
+  img{
+    vertical-align: middle;
+  }
+}
+
+.theme-header .icons-row{
+  #MobileNavToggle{
+    display: none;
+  }
+  .desktop-search-icon{
+    display: inline-block;
+  }
+  @include max-query($m){
+    .desktop-search-icon{
+      display: none;
+    }
+    #MobileNavToggle{
+      display: inline-block;
+    }
+  }
+}
+.theme-header .icons-row .search-container{
+  width: 100%;
+  position: absolute;
+  bottom: -94px;
+  left: 0;
+  height: 94px;
+  background: $bg-main;
+  text-align: center;
+  opacity: 0;
+  @include max-query($m){
+    display: none;
+  }
+}
+
+.theme-header .search-container .search-content{
+  max-width: 930px;
+  margin: 0 auto;
+  text-align: left;
+  p{
+    text-transform: uppercase;
+    @include lato-reg(.75rem);
+    margin-bottom: 30px;
+    color: #D8D9DB;
+  }
+  form, input{
+    width: 90%;
+    position: relative;
+  }
+  input{
+    border: none;
+    border-bottom: 1px solid #D8D9DB;
+    @include lato-reg(2rem);
+    padding-bottom: 8px;
+    padding-left: 0px;    
+  }
+  button{
+    background: transparent;
+    width: auto;
+    border: none;
+    position: absolute;
+    right : 0;
+    top: 50%;
+    min-width: initial;
+    @include prefix(transform, translateY(-50%));
+  }
+}
+
+
+
+
+
+
+
+
 
 
 /* Helpers ===================================================================*/

@@ -16,29 +16,32 @@
 
 
 <header class="theme-header" role="banner">
-<div id="PopupNew" class="popup overlay">
-  <div class="popup-inner">
-    <div class="popup-content left">
-
-      <h1>New Popup</h1>
-
-      <a href="#close" class="popup-close" data-close aria-label="{{ 'common.close' | t }}">{% include 'icon' with 'close' %}</a>
-    </div>
-  </div>
-</div>
   <div class="container">
-    <div class="row">
-      <div class="column l3 m3 s12">
-        search
+    <div class="row icons-row">
+      {% if enable_search %}
+      <div class="search-container">
+        <div class="search-content">
+        <p>{{'search.label' | t }}</p>
+        {% include 'form-search' %}
+        </div>
       </div>
-      <div class="column l6 m8 s12 l-center m-center s-center">
+      {% endif %}
+      <div class="column l2 m2 s2">
+        {% if enable_search %}
+          <div class="desktop-search-icon">
+            {% include 'icon' with 'search' %}
+          </div>
+        {% endif %}
+          <img id="MobileNavToggle" src="{{'ic_hamburger_menu.png' | asset_img_url:'master'}}" alt="Navigation">
+      </div>
+      <div class="column l8 m8 s7 l-center m-center s-center">
         {% if template == 'index' %}
           <h1 class="logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
         {% else %}
           <div class="h1 logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
         {% endif %}
           <meta itemprop="name" content="{{ shop.name }}">
-          {% if logo != nil %}
+          {% if logo %}
             <a href="/" itemprop="url" title="{{ shop.name }}" class="logo-image">
               <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
                 <img src="{{ logo | img_url: logo_width, scale: 2 }}" alt="{{ shop.name }}" title="{{ shop.name }}" itemprop="image" width="{{ logo_width | replace: 'x', 'px' }}">
@@ -53,17 +56,20 @@
           </div>
         {% endif %}
       </div>
-      <div class="column l3 m3 s12">
+      <div class="column l2 m2 s3">
         {% if customer %}
-          <a href="/account">{{ 'account.title' | t }}</a>
+          <a href="/account">
+            <img src="{{'icons8-guest.png' | asset_img_url:'master'}}" alt="">
+          </a>
         {% else %}
-          <a href="/account">{{ 'account.login' | t }}</a>
+          <a href="/account">
+            <img src="{{'icons8-guest.png' | asset_img_url:'master'}}" alt="">
+          </a>
         {% endif %}
 
         <a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
-          {{ 'cart.title' | t }}
+          <img src="{{'icons8-paid.png' | asset_img_url:'master'}}" alt="">
           <span data-cart-item-count>{{ cart.item_count }}</span>
-          (<span data-cart-total>{{ cart.total_price | money_with_currency }}</span>)
         </a>
       </div>
     </div>
@@ -72,11 +78,6 @@
       <div class="column{% if enable_search %} l9 m9 {% else %} l12{% endif %} s12 l-left m-left s-v-middle">
         {% include 'theme-nav-main' %}
       </div>
-      {% if enable_search %}
-        <div class="column l3 m3 s12 l-right m-right">
-          {% include 'form-search' %}
-        </div>
-      {% endif %}
     </div>
 
     <hr>

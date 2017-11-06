@@ -1,0 +1,61 @@
+<!-- sections/products.liquid -->
+<div class="text-content">
+  <img src="{{section.settings.image | img_url:'master'}}" alt="{{section.settings.image.alt}}">
+  <p>{{section.settings.text}}</p>
+</div>
+<style>
+  .homepage-promobar{
+    background: {{section.settings.bg_color}};
+    color: {{section.settings.text_color}};
+  }
+</style>
+{% schema %}
+  {
+    "name": "Promobar",
+    "class": "homepage-promobar",
+    "settings": [
+      {
+        "type":"checkbox",
+        "id":"enable_section",
+        "label":"Enable Promobar",
+        "default":true
+      },
+      {
+        "type": "header",
+        "content": "Text Content"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      },
+      {
+        "id":"text",
+        "type":"textarea",
+        "label":"Text"
+      },
+      {
+        "type":"header",
+        "content":"Styling"
+      },
+      {
+        "type":"color",
+        "id":"bg_color",
+        "label":"Background Color",
+        "default":"#A0DAE8"
+      },
+      {
+        "type":"color",
+        "id":"text_color",
+        "label":"Text Color",
+        "default":"#333E48"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Promobar",
+        "category": "Homepage"
+      }
+    ]
+  }
+{% endschema %}

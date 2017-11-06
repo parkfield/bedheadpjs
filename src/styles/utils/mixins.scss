@@ -73,12 +73,10 @@
 
 // Flex
 @mixin flex() {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -webkit-flexbox;
+display: -webkit-box;
   display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 @mixin box-orient--vertical() {
