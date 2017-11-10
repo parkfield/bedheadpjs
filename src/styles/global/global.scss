@@ -181,7 +181,7 @@ select {
     margin-bottom: $gutter/3;
   }
 }
-button, .btn{
+button, .btn, a.btn{
   @include roboto-reg(0.75rem);
   text-transform: uppercase;
   display: inline-block;
@@ -195,6 +195,9 @@ button, .btn{
   align-items: center;
   justify-content: center;
   max-width: 250px;
+  &:hover{
+    color: white;
+  }
 }
 .select-wrapper {
   display: inline-block;

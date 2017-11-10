@@ -583,7 +583,7 @@ select {
     margin-bottom: $gutter/3;
   }
 }
-button, .btn{
+button, .btn, a.btn{
   @include roboto-reg(0.75rem);
   text-transform: uppercase;
   display: inline-block;
@@ -597,6 +597,9 @@ button, .btn{
   align-items: center;
   justify-content: center;
   max-width: 250px;
+  &:hover{
+    color: white;
+  }
 }
 .select-wrapper {
   display: inline-block;
@@ -1375,6 +1378,53 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .theme-nav-main .parent-link{
   @include lato-semibold(.875rem);
   text-transform: uppercase;
+}
+
+.homepage-hero{
+  position: relative;
+  img{width: 100%;}
+  .text-block{
+    position: absolute;
+    top: 94px;
+    left: 87px;
+  }
+}
+
+.homepage-hero .main-text{
+  font-size: 3rem;
+  line-height: 3rem;
+  position: relative;
+  &:after{
+    content:"";
+    position: relative;
+    margin-top: 28px;
+    display: block;
+    width: 20%;
+    height: 1px;
+    background: white;
+  }
+}
+
+.homepage-hero .sub-text{
+  margin-top: 21px;
+  margin-bottom: 24px;
+  font-size: 1.875rem;
+  text-transform: uppercase;
+}
+
+.homepage-hero .btn{
+  max-width: 200px;
+  height: 50px;
+}
+@include max-query($s){//600px
+
+}
+@include max-query($m){//850px
+
+}
+@include max-query($l){//1280px
+  .homepage-hero .main-text{}
+  .homepage-hero .sub-text{}
 }
 
 

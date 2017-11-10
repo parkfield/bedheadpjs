@@ -1,23 +1,30 @@
+{% for block in section.blocks %}
+<div class="slide slide-{{forloop.index}}">
+<img src="{{block.settings.image | img_url:'master'}}" alt="{{block.settings.image.alt}}">
+<div class="text-block">
+  <h2 class="main-text">{{block.settings.heading_line1}}<br>{{block.settings.heading_line2}}</h2>
+  <p class="sub-text">{{block.settings.subtext_line1}}<br>{{block.settings.subtext_line2}}</p>
+  <a class="btn" href="{{block.settings.button_url}}">{{block.settings.button_text}}</a>
+</div>
+</div>
+<style>
+{% for block in section.blocks %}
+  .homepage-hero .slide-{{forloop.index}} .text-block .main-text, 
+  .homepage-hero .slide-{{forloop.index}} .text-block .sub-text{
+    color:  {{block.settings.color}};
+  }
+{% endfor %}
+</style>
+{% endfor %}
 {% schema %}
   {
     "name": "Hero",
     "class": "homepage-hero",
     "settings": [
       {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Featured news articles"
-      },
-      {
-        "id": "blog",
-        "type": "blog",
-        "label": "Blog"
-      },
-      {
         "type": "select",
-        "id": "post_limit",
-        "label": "Posts",
+        "id": "autoplay_speed",
+        "label": "Autoplay Speed",
         "default": "3",
         "options": [
           {
@@ -25,16 +32,70 @@
             "label": "3"
           },
           {
-            "value": "6",
-            "label": "6"
+            "value": "4",
+            "label": "4"
           },
           {
-            "value": "9",
-            "label": "9"
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      }
+    ],
+    "blocks":[
+      {
+        "type":"slide",
+        "name":"Slide",
+        "limit": 5,
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
           },
           {
-            "value": "12",
-            "label": "12"
+            "type":"header",
+            "content":"Heading Settings"
+          },
+          {
+            "type":"text",
+            "id":"heading_line1",
+            "label":"Heading Line 1"
+          },
+          {
+            "type":"text",
+            "id":"heading_line2",
+            "label":"Heading Line 2"
+          },
+          {
+            "type":"text",
+            "id":"subtext_line1",
+            "label":"Subtext Line 1"
+          },
+          {
+            "type":"text",
+            "id":"subtext_line2",
+            "label":"Subtext Line 2"
+          },
+          {
+            "type":"color",
+            "id":"color",
+            "label":"Text Color",
+            "default":"#FFFFFF"
+          },
+          {
+            "type":"header",
+            "content":"Button Settings"
+          },
+          {
+            "type":"text",
+            "id":"button_text",
+            "label":"Text"
+          },
+          {
+            "type":"url",
+            "id":"button_url",
+            "label":"Link"
           }
         ]
       }
