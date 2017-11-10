@@ -18,6 +18,7 @@
   @include flex();
   align-items: center;
   position: relative;
+  margin-bottom: 48px;
   img{
     vertical-align: middle;
   }
@@ -29,6 +30,16 @@
   }
   .desktop-search-icon{
     display: inline-block;
+    margin-left: 42px;
+    use{
+      transition: fill .3s;
+    }
+    &:hover{
+      cursor: pointer;
+      use{
+        fill: $accent-color;
+      }
+    }
   }
   @include max-query($m){
     .desktop-search-icon{
@@ -39,6 +50,7 @@
     }
   }
 }
+
 .theme-header .icons-row .search-container{
   width: 100%;
   position: absolute;
@@ -48,15 +60,22 @@
   background: $bg-main;
   text-align: center;
   opacity: 0;
+  z-index: -1;
+  transition: opacity .5s;
   @include max-query($m){
     display: none;
   }
 }
 
+.theme-header .icons-row .search-container.active{
+  opacity: 1;
+  z-index: 2;
+}
+
 .theme-header .search-container .search-content{
   max-width: 930px;
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
   p{
     text-transform: uppercase;
     @include lato-reg(.75rem);
@@ -83,5 +102,39 @@
     top: 50%;
     min-width: initial;
     @include prefix(transform, translateY(-50%));
+  }
+}
+
+.theme-header .logo{
+  @include inline-flex();
+  a, span{@include inline-flex();}
+}
+
+.theme-header .user-column{
+  @include flex();
+  align-items: center;
+  justify-content: flex-end;
+  #CartLink{
+    position: relative;
+    display: inline-block;
+    margin-left: 55px;
+    margin-right: 42px;
+    &:hover{
+      color: $font-color;
+    }
+  }
+  span{
+   display: none;
+   position: absolute;
+   background: $accent-color;
+   width: 24px;
+   height: 24px;
+   top: -6px;
+   right: -14px;
+   border-radius: 24px;
+   @include flex();
+   align-items: center;
+   justify-content: center; 
+   @include lato-bold(0.875rem);
   }
 }

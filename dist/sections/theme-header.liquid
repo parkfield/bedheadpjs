@@ -26,15 +26,15 @@
         </div>
       </div>
       {% endif %}
-      <div class="column l2 m2 s2">
+      <div class="column l2 m2 s2 search-column">
         {% if enable_search %}
-          <div class="desktop-search-icon">
+          <div id="HeaderSearch" class="desktop-search-icon">
             {% include 'icon' with 'search' %}
           </div>
         {% endif %}
           <img id="MobileNavToggle" src="{{'ic_hamburger_menu.png' | asset_img_url:'master'}}" alt="Navigation">
       </div>
-      <div class="column l8 m8 s7 l-center m-center s-center">
+      <div class="column l8 m8 s7 l-center m-center s-center logo-column">
         {% if template == 'index' %}
           <h1 class="logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
         {% else %}
@@ -56,7 +56,7 @@
           </div>
         {% endif %}
       </div>
-      <div class="column l2 m2 s3">
+      <div class="column l2 m2 s3 user-column">
         {% if customer %}
           <a href="/account">
             <img src="{{'icons8-guest.png' | asset_img_url:'master'}}" alt="">
@@ -75,7 +75,7 @@
     </div>
 
     <div class="row l-table m-table s-hide">
-      <div class="column{% if enable_search %} l9 m9 {% else %} l12{% endif %} s12 l-left m-left s-v-middle">
+      <div class="column l12 s12 l-left m-left s-v-middle">
         {% include 'theme-nav-main' %}
       </div>
     </div>

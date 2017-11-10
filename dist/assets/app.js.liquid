@@ -696,7 +696,15 @@ concrete.EmptySection = (function() {
   return EmptySection;
 })();
 
-// =require parkfield/nav.js
+$('document').ready(function(){
+  //Hides the CartCount in Header if Zero
+  if(parseInt($('#CartLink span').text())== 0){
+    $('#CartLink span').hide();
+  }
+  $('#HeaderSearch').click(function(){
+    $('.search-container').toggleClass('active');
+  });
+});
 
 // Initialize on document ready
 $(document).ready(function() {

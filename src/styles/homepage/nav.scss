@@ -1,0 +1,18 @@
+.theme-nav-main{
+  text-align: center;
+}
+
+.theme-nav-main > ul{
+  width: 80%;
+  margin: 0 auto;
+  @include flex();
+  justify-content: space-between;
+  @include m(){
+    width: 98%;
+  }
+}
+
+.theme-nav-main .parent-link{
+  @include lato-semibold(.875rem);
+  text-transform: uppercase;
+}
