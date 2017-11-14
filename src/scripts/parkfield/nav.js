@@ -3,7 +3,7 @@ $('document').ready(function(){
   if(parseInt($('#CartLink span').text())== 0){
     $('#CartLink span').hide();
   }
-  $('#HeaderSearch').click(function(){
+  $('.desktop-search-icon').click(function(){
     $('.search-container').toggleClass('active');
   });
 });
