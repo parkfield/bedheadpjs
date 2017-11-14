@@ -4,6 +4,7 @@
 
 .theme-nav-main > ul{
   width: 80%;
+  position: relative;
   margin: 0 auto;
   @include flex();
   justify-content: space-between;
@@ -15,4 +16,13 @@
 .theme-nav-main .parent-link{
   @include lato-semibold(.875rem);
   text-transform: uppercase;
+}
+
+.theme-nav-main .dropdown{
+  position: static;
+}
+
+.theme-nav-main .dropdown_menu{
+  left: 0;
+  width: 100%;
 }
