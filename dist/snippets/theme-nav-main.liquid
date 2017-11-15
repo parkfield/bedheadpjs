@@ -1,24 +1,44 @@
 <!-- /snippets/theme-nav-main.liquid -->
+{% assign dropdownCount = 0 %}
 <nav class="theme-nav-main" role="navigation">
   <ul class="inline">
     {% for link in linklists.main-menu.links %}
       {% assign child_list_handle = link.title | handleize %}
       {% if linklists[child_list_handle].links != blank %}
-        <li class="dropdown" aria-haspopup="true" data-id="{{ child_list_handle}}">
-          <a href="{{ link.url }}" class="parent-link {% if link.active %} active{% endif %}">
+        <li class="dropdown dropdown-{{dropdownCount}}" aria-haspopup="true" data-id="{{ child_list_handle}}">
+          {% assign dropdownCount = dropdownCount | plus: 1 %}
+          <a href="{{ link.url }}" class="nav-link {% if link.active %} active{% endif %}">
             {{ link.title }}
           </a>
+          <div class="dropdown_menu_container">
+          <div class="container">
+          <div class="shop-by">Shop by Collection</div>
+          <div class="slider-container">
+          <div class="prev arrow">
+            <img src="{{'icons8-arrow-left.svg' | asset_url}}">
+          </div>
           <ul class="dropdown_menu" id="{{ child_list_handle }}">
             {% for childlink in linklists[child_list_handle].links %}
               <li>
-                <a href="{{ childlink.url }}" class="child-link{% if childlink.active %} active{% endif %}">{{ childlink.title | escape }}</a>
+                {% if childlink.type == 'collection_link' %}
+                  {% assign linkImage = collections[childlink.handle].image %}
+                {% endif %}
+                <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">
+                  <img src="{{linkImage | img_url:'medium'}}" alt="{{linkImage.alt}}">
+                </a>
               </li>
             {% endfor %}
           </ul>
+          <div class="next arrow">
+            <img src="{{'icons8-arrow-right.svg' | asset_url}}">
+          </div>
+          </div>
+          </div>
+          </div>
         </li>
       {% else %}
         <li>
-          <a href="{{ link.url }}" class="parent-link{% if link.active %} active{% endif %}">{{ link.title }}</a>
+          <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}">{{ link.title }}</a>
         </li>
       {% endif %}
     {% endfor %}

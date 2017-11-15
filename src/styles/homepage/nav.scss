@@ -1,10 +1,36 @@
-.theme-nav-main{
+// Main Nav
+.theme-nav-main {
   text-align: center;
+  .nav-link {
+    font-size: 1.1rem;
+    font-weight: $fontBold;
+    margin-right: $gutter/3;
+  }
+  .dropdown {
+    position: relative;
+    &:hover {
+      .dropdown_menu_container {
+        display: block;
+      }
+    }
+    .dropdown_menu_container {
+      display: none;
+      padding: $gutter/3 0;
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      width: 100%;
+      height: 350px;
+      bottom: -300px;
+    }
+  }
 }
+/* .theme-nav-main .dropdown-1 .dropdown_menu_container{
+  display: block;
+} */
 
 .theme-nav-main > ul{
   width: 80%;
-  position: relative;
   margin: 0 auto;
   @include flex();
   justify-content: space-between;
@@ -22,7 +48,41 @@
   position: static;
 }
 
+.theme-nav-main .dropdown .container{
+  background-color: rgba($bg-main, .95);
+  padding-top: 40px;
+  padding-bottom: 20px;
+  @include m(){
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+}
+.theme-nav-main .shop-by{
+  padding-top: 50px;
+  @include lato-semibold(0.875rem);
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 31px;
+}
+.theme-nav-main .slider-container{
+  @include flex();
+  align-items: center;
+  justify-content: space-around;
+  .slick-slide {
+    background-color: transparent;
+    margin: 0 20px;
+  }
+  .slick-list {
+    margin: 0 -20px;
+  }
+  .arrow{
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
 .theme-nav-main .dropdown_menu{
-  left: 0;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }

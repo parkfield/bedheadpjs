@@ -1,7 +1,8 @@
 .theme-header{
+  position: relative;
   padding: 42px 0px 22px 0px;
   @include s(){
-    padding: 20px;
+    padding: 20px 10px;
   }
   .logo-image img{
     @include s(){
@@ -122,6 +123,16 @@
     &:hover{
       color: $font-color;
     }
+  }
+  @include m(){
+    #CartLink{
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+  @include s(){
+    #CartLink{margin: 0px;}
+    justify-content: space-between;
   }
   span{
    display: none;
