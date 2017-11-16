@@ -7,7 +7,15 @@
     left: 87px;
   }
 }
+.homepage-hero .slide{
+  position: relative;
+}
 
+.homepage-hero .image{
+  background-size: cover;
+  padding-top: 49%;
+  background-position: 50% 50%;
+}
 .homepage-hero .main-text{
   font-size: 3rem;
   line-height: 3rem;
@@ -34,14 +42,31 @@
   max-width: 200px;
   height: 50px;
 }
-@include max-query($s){//600px
 
-}
-@include max-query($m){//850px
-
-}
 @include max-query($l){//1280px
-  .homepage-hero .main-text{}
-  .homepage-hero .sub-text{}
+  .homepage-hero .text-block{
+    top: 74px;
+    left: 67px;
+  }
+}
+
+@include max-query($m){//600px
+  .homepage-hero .text-block{
+    top: 44px;
+    left: 37px;
+  }
+  .homepage-hero .sub-text{
+    font-size: 1.25rem;
+  }
+  .homepage-hero .main-text{
+    font-size: 2.5rem;
+  }
+}
+
+@include max-query($s){//850px
+  .homepage-hero .text-block{
+    top: 21px;
+    left: 37px;
+  }
 }
 
