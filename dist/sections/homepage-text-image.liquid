@@ -1,0 +1,82 @@
+<div class="text-container">
+  <div class="content">
+    <img src="{{section.settings.tiny_image | img_url:'master'}}" alt="{{section.settings.tiny_image.alt}}">
+    <h2>
+      {{section.settings.heading_line1}}<br>
+      {{section.settings.heading_line2}}<br>
+      {{section.settings.heading_line3}}
+    </h2>
+    <p>{{section.settings.subtext}}</p>
+    <a class="btn" href="{{section.settings.button_url}}">{{section.settings.button_text}}</a>
+  </div>
+</div>
+<div class="image-container">
+  <img class="main-image" src="{{section.settings.main_image | img_url:'master'}}" alt="">
+</div>
+{% schema %}
+  {
+    "name": "Text & Image Banner",
+    "class": "homepage-text-image",
+    "settings": [
+      {
+        "type":"header",
+        "content":"Text Block Settings"
+      },
+      {
+        "type":"image_picker",
+        "id":"tiny_image",
+        "label":"Tiny Image",
+        "info":"40x40 Image Recommended"
+      },
+      {
+        "type":"text",
+        "id":"heading_line1",
+        "label":"Heading Line 1"
+      },
+      {
+        "type":"text",
+        "id":"heading_line2",
+        "label":"Heading Line 2"
+      },
+      {
+        "type":"text",
+        "id":"heading_line3",
+        "label":"Heading Line 3"
+      },
+      {
+        "type":"text",
+        "id":"subtext",
+        "label":"Subtext"
+      },
+      {
+        "type":"header",
+        "content":"Button Settings"
+      },
+      {
+        "type":"text",
+        "id":"button_text",
+        "label":"Text"
+      },
+      {
+        "type":"url",
+        "id":"button_url",
+        "label":"Link"
+      },
+      {
+        "type":"header",
+        "content":"Image Block Settings"
+      },
+      {
+        "type": "image_picker",
+        "id":"main_image",
+        "label":"Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "2x1 Banner",
+        "category": "Homepage"
+      }
+    ]
+  }
+{% endschema %}

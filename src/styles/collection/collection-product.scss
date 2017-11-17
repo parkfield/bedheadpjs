@@ -1,0 +1,79 @@
+.collection-product{
+  position: relative;
+  padding: 0 20px;
+  margin-bottom: 70px;
+  @include s(){
+    padding: 0px 10px;
+  }
+}
+.collection-product .product-info{
+  margin-top: 23px;
+  font-size: 1.125rem;
+  text-align: center;
+  line-height: 28px;
+  @include max-query($s){
+    font-size: 1.375rem;
+  }
+}
+
+.collection-product .image-container{
+  position: relative;
+  overflow: hidden;
+  .quick-add{
+    position: absolute;
+    width: 100%;
+    min-height: 75px;
+    bottom: -200px;
+    background: $accent-color;
+    transition: bottom .3s;
+    .label{
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 8px;
+      text-transform: uppercase;
+      color: $quick-add-label;
+    }
+    .variants{
+      margin: 20px;
+      text-align: center;
+    }
+    a{
+      display: inline-block;
+      margin: 0px 2.5px;
+      @include lato-bold(1.25rem);
+      text-transform: uppercase;
+      color: $quick-add-inactive;
+      &:hover{
+        color: $quick-add-active;
+      }
+    }
+    @include max-query($m){
+      display: none;
+    }
+  }
+  &:hover{
+    .quick-add{
+      bottom: 0;
+    }
+  }
+}
+
+.collection-product.isNew .new-icon{
+  @include flex();
+  position: absolute;
+  z-index: 2;
+  top: -30px;
+  right: 0px;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  height: 63px;
+  width: 63px;
+  color: $new-icon;
+  border-radius: 100%;
+  border-width: 2px;
+  border-color: $new-icon;
+  background-color: $new-icon-bg;
+  border-style: solid;
+  @include lato-bold(0.6875rem);
+}

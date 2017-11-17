@@ -11,7 +11,9 @@
 </div>
 {% endfor %}
 </div>
-<div class="next"></div>
+<div class="next">
+  <img class="arrow" src="{{'icon-hero-arrow.png' | asset_img_url:'master'}}">
+</div>
 <div class="dots"></div>
 <style>
 {% for block in section.blocks %}
@@ -19,11 +21,10 @@
   .homepage-hero .slide-{{forloop.index}} .text-block .sub-text{
     color:  {{block.settings.color}};
   }
-  @media screen and (max-width: 600px){
-    .homepage-hero .slide-{{forloop.index}} .image{
-      padding-top:{{block.settings.mobile_padding_top}}%;
-      background-position: {{block.settings.mobile_horizontal_position}}% 50%;
-    }
+  
+  .homepage-hero .slide-{{forloop.index}} .image{
+    padding-top:{{block.settings.desktop_padding_top}}%;
+    background-position: {{block.settings.desktop_horizontal_position}}% 50%;
   }
   @media screen and (max-width: 850px){
     .homepage-hero .slide-{{forloop.index}} .image{
@@ -31,15 +32,28 @@
       background-position: {{block.settings.mobile_horizontal_position}}% 50%;
     }
   }
+
+  @media screen and (max-width: 600px){
+    .homepage-hero .slide-{{forloop.index}} .image{
+      padding-top:{{block.settings.mobile_padding_top}}%;
+      background-position: {{block.settings.mobile_horizontal_position}}% 50%;
+    }
+  }
+
 {% endfor %}
 </style>
 <script>
   $('.homepage-hero .slider').slick({
     'nextArrow':'.homepage-hero .next',
     'prevArrow':'.homepage-hero .prev',
-    'dots':true
+    'dots':true,
+    'appendDots':'.homepage-hero .dots',
+    'fade':true,
+    'autoplay':true,
+    'autoplaySpeed':{{section.settings.autoplay_speed | plus: 0 }}
   });
 </script>
+
 {% schema %}
   {
     "name": "Hero",
@@ -49,18 +63,18 @@
         "type": "select",
         "id": "autoplay_speed",
         "label": "Autoplay Speed",
-        "default": "3",
+        "default": "3000",
         "options": [
           {
-            "value": "3",
+            "value": "3000",
             "label": "3"
           },
           {
-            "value": "4",
+            "value": "4000",
             "label": "4"
           },
           {
-            "value": "5",
+            "value": "5000",
             "label": "5"
           }
         ]
@@ -105,7 +119,7 @@
             "type":"color",
             "id":"color",
             "label":"Text Color",
-            "default":"#FFFFFF"
+            "default":"#333e48"
           },
           {
             "type":"header",
@@ -123,14 +137,39 @@
           },
           {
             "type":"header",
+            "content":"Desktop Image Settings"
+          },
+          {
+              "type":   "range",
+              "id":     "desktop_padding_top",
+              "min":       0,
+              "max":       100,
+              "step":      1,
+              "unit":      "%",
+              "label":     "Desktop Image Height",
+              "default":   49
+          },
+          {
+              "type":   "range",
+              "id":     "desktop_horizontal_position",
+              "min":       0,
+              "max":       100,
+              "step":      1,
+              "unit":      "%",
+              "label":     "Desktop Horizontal Position",
+              "default":   50,
+              "info":"Changes the horizontal position of the image, if the entire image isn't shown"
+          },
+          {
+            "type":"header",
             "content":"Mobile Image Settings"
           },
           {
               "type":   "range",
               "id":     "mobile_padding_top",
-              "min":       0,
-              "max":       200,
-              "step":      5,
+              "min":       50,
+              "max":       150,
+              "step":      1,
               "unit":      "%",
               "label":     "Mobile Image Height",
               "default":   135
@@ -140,7 +179,7 @@
               "id":     "mobile_horizontal_position",
               "min":       0,
               "max":       100,
-              "step":      5,
+              "step":      1,
               "unit":      "%",
               "label":     "Mobile Horizontal Position",
               "default":   35,

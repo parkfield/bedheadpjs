@@ -1,5 +1,6 @@
 .homepage-hero{
   position: relative;
+  overflow: hidden;
   img{width: 100%;}
   .text-block{
     position: absolute;
@@ -10,11 +11,74 @@
 .homepage-hero .slide{
   position: relative;
 }
-
+.homepage-hero .dots{
+  position: absolute;
+  bottom: 37px;
+  left: 50%;
+  @include prefix(transform, translateX(-50%));
+  .slick-dots{
+    display: inline-flex;
+    li button:before {
+     content:"";
+    }
+    li button {
+      font-size: 0px;
+      height: 15px;
+      width: 15px;
+      min-width: initial;
+      padding: 0px;
+      margin: 0px 5px;
+      border-radius: 20px;
+      border: none;
+      background: rgba(white, .51);
+      min-height: initial;
+      outline: transparent;
+    }
+    li.slick-active button {
+      background: white;
+    }
+  }
+  @include s(){
+    bottom: 25px;
+  }  
+}
+.homepage-hero .next{
+  height: 184px;
+  width: 184px;
+  border-radius: 100%;
+  background-color: rgba(255,255,255, .3166);
+  position: absolute;
+  top: 50%;
+  right: -184px;
+  transition: right .3s, background-color .3s;
+  @include prefix(transform, translateY(-50%));
+  @include flex();
+  img{
+    @include prefix(user-select, none);
+  }
+  .arrow{
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 52px;
+    border-radius: 2px;
+    @include prefix(transform, translate(-50% , -50%));
+  }
+  &:hover{
+    background-color: rgba(#A0DAE8, .7);
+    cursor: pointer;
+  }
+  @include max-query($s){
+    display: none !important;
+  }
+}
+.homepage-hero:hover .next{
+  right: -122px;
+}
 .homepage-hero .image{
   background-size: cover;
-  padding-top: 49%;
-  background-position: 50% 50%;
+  min-height: 1px;
 }
 .homepage-hero .main-text{
   font-size: 3rem;

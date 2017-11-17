@@ -15,20 +15,38 @@
  {% assign sold_out = false %}
 {% endif %}
 
-<div class="{{ column_width }} product {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %}"
+{% assign newArrival = false %}
+{% for tag in product.tags %}
+{% if tag == 'new' %}
+  {% assign newArrival = true %}
+{% endif %}
+{% endfor %}
+
+<div class="{{ column_width }} collection-product {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %} {% if newArrival %} isNew {% endif %}"
      data-product-id="{{ product.id }}"
-     data-product-price="{{ product.price }}"
-     data-product-tags="{% for tag in product.tags %}{{ tag | downcase }}{% unless forloop.last %}, {% endunless %}{% endfor %}">
-
-  {% if padded_collection == true %}
-    <div class="padding-bottom">
+     data-product-price="{{ product.price }}">
+  {% if newArrival %}
+  <span class="new-icon">{{'product.new' | t }}</span>
   {% endif %}
-
-  <a href="{{ product.url | within: collection }}">
-    <img srcset="{{ product.featured_image.src | img_url: 'x960' }} 2x" src="{{ product.featured_image.src | img_url: 'x960' }}" alt="{{ product.featured_image.alt | escape }}">
-  </a>
-
-  <p>
+  <div class="image-container">
+    <a href="{{ product.url | within: collection }}">
+      <img srcset="{{ product.featured_image.src | img_url: 'x960' }} 2x" src="{{ product.featured_image.src | img_url: 'x960' }}" alt="{{ product.featured_image.alt | escape }}">
+    </a>
+    <div class="quick-add">
+      <div class="label">{{'product.add_to_cart' | t }}</div>
+      <div class="variants">
+        {% for variant in product.variants %}
+        {% assign quickAvailable = false %}
+        {% if variant.available %}
+        {% assign quickAvailable = true %}
+        {% endif %}
+        <a data-quick-add="{{variant.id}}">{% include 'collection-product-variant-title' %}</a>
+        {% endfor %}
+      </div>
+    </div>
+    
+  </div>
+  <p class="product-info">
     <a href="{{ product.url | within: collection }}" class="product-title">{{ product.title }}</a><br>
     {% if on_sale %}
       {% if product.price_varies %}
@@ -54,30 +72,4 @@
       {% endif %}
     {% endunless %}
   </p>
-
-  {% if add_to_cart %}
-    <p>
-      <button {% if sold_out %} class="disabled" disabled{% else %}type="submit" name="add" data-quick-add="{{ product.first_available_variant.id }}"{% endif %}>
-        <span id="AddToCartText">{% if sold_out %}{{ 'product.sold_out' | t }}{% else %}{{ 'product.add_to_cart' | t }}{% endif %}</span>
-      </button>
-    </p>
-  {% endif %}
-
-  {% if quick_look %}
-    {% unless slick_quick_look %}
-      {% comment %}Create a truncated description here because it's easier in liquid than JSON if the description has html markup in it.{% endcomment %}
-      {% assign truncated_description = product.description | truncatewords: 25 | json | prepend: ',"truncated_description":' | append: ',"description":"' %}
-      <pre class="hidden" data-product="{{ product.id }}">{{ product | json | replace: ',"description":"', truncated_description }}</pre>
-    {% endunless %}
-    <p>
-      <button data-trigger="popup" data-target="#PopupQuicklook" data-product="{{ product.id }}" data-thumbnails="true" data-autoplay="true" class="s-hide quickLookButton">
-        <span>{{ 'product.quick_look' | t }}</span>
-     </button>
-    </p>
-  {% endif %}
-
-  {% if padded_collection == true %}
-    </div>
-  {% endif %}
-
 </div>

@@ -159,7 +159,7 @@
     }
   },
   "product": {
-    "add_to_cart": "Add to Cart",
+    "add_to_cart": "Add to Bag",
     "add_to_cart_unavailable": "Unavailable",
     "regular_price": "Regular Price",
     "quantity": "Quantity",
@@ -171,7 +171,8 @@
     "previous_product": "Previous",
     "next_product": "Next",
     "unavailable": "Sold out",
-    "sold_out": "Sold out"
+    "sold_out": "Sold out",
+    "new":"New"
   },
   "home_page": {
     "title": "Home"

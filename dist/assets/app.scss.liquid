@@ -32,6 +32,12 @@ $bg-dark: #333E48;
 $bg-light: #F7F7F7;
 $border-color: #A1A4AA;
 
+//Collection Product
+$quick-add-label: white;
+$quick-add-active: white;
+$quick-add-inactive: #B3E9F6;
+$new-icon: #A2AD00;
+$new-icon-bg: white;
 // Typography
 $fontLight: 300;
 $fontRegular: 400;
@@ -322,6 +328,21 @@ $iconLinecap: sqaure;
   font-weight: 700;
 }
 
+//Additional Styles
+@mixin heading-dash(){
+  &:after{
+    content:"";
+    position: relative;
+    margin-top: 28px;
+    display: block;
+    width: 20%;
+    height: 3px;
+    background: #D8D8D8;
+    left: 50%;
+    @include prefix(transform, translateX(-50%));
+  }
+}
+
 /* Global ====================================================================*/
 /* Reset =====================================================================*/
 #admin_bar_iframe{
@@ -601,6 +622,11 @@ button, .btn, a.btn{
     color: white;
   }
 }
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
 .select-wrapper {
   display: inline-block;
   position: relative;
@@ -1430,6 +1456,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 .homepage-hero{
   position: relative;
+  overflow: hidden;
   img{width: 100%;}
   .text-block{
     position: absolute;
@@ -1440,11 +1467,74 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .homepage-hero .slide{
   position: relative;
 }
-
+.homepage-hero .dots{
+  position: absolute;
+  bottom: 37px;
+  left: 50%;
+  @include prefix(transform, translateX(-50%));
+  .slick-dots{
+    display: inline-flex;
+    li button:before {
+     content:"";
+    }
+    li button {
+      font-size: 0px;
+      height: 15px;
+      width: 15px;
+      min-width: initial;
+      padding: 0px;
+      margin: 0px 5px;
+      border-radius: 20px;
+      border: none;
+      background: rgba(white, .51);
+      min-height: initial;
+      outline: transparent;
+    }
+    li.slick-active button {
+      background: white;
+    }
+  }
+  @include s(){
+    bottom: 25px;
+  }  
+}
+.homepage-hero .next{
+  height: 184px;
+  width: 184px;
+  border-radius: 100%;
+  background-color: rgba(255,255,255, .3166);
+  position: absolute;
+  top: 50%;
+  right: -184px;
+  transition: right .3s, background-color .3s;
+  @include prefix(transform, translateY(-50%));
+  @include flex();
+  img{
+    @include prefix(user-select, none);
+  }
+  .arrow{
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 52px;
+    border-radius: 2px;
+    @include prefix(transform, translate(-50% , -50%));
+  }
+  &:hover{
+    background-color: rgba(#A0DAE8, .7);
+    cursor: pointer;
+  }
+  @include max-query($s){
+    display: none !important;
+  }
+}
+.homepage-hero:hover .next{
+  right: -122px;
+}
 .homepage-hero .image{
   background-size: cover;
-  padding-top: 49%;
-  background-position: 50% 50%;
+  min-height: 1px;
 }
 .homepage-hero .main-text{
   font-size: 3rem;
@@ -1501,12 +1591,173 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 
 
+.homepage-text-image{
+  @include flex();
+  flex-flow: row wrap;
+  .text-container, .image-container{
+    width: 50%;
+    @include max-query($m){
+      width: 100%;
+    }
+  }
+}
+.homepage-text-image .image-container{
+  .main-image{
+    vertical-align: middle;
+      width: 100%;
+  }
+}
+.homepage-text-image .text-container{
+  background-color: $accent-color-2;
+  @include flex();
+  align-items: center;
+  justify-content: center;
+  @include max-query($m){
+    padding: 130px 15px;
+  }
+}
+
+.homepage-text-image .text-container .content{
+  text-align: center;
+  img{
+    margin-bottom: 15px;
+  }
+  h2{
+    font-size: 2.625rem;
+    line-height: 48px;
+    @include heading-dash();
+    &:after{
+      margin-top: 31px;
+      margin-bottom: 23px;
+    }
+  }
+  p{
+    @include lato-reg(1.25rem);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  a.btn{
+    margin: 0 auto;
+  }
+}
+.homepage-image-banner .image{
+  background-size: cover;
+  min-height: 1px;
+  position: relative;
+}
+
+.homepage-image-banner .text-container{
+  position: absolute;
+  top: 31%;
+  left: 6%;
+  h2{
+    line-height: 48px;
+    font-size: 2.625rem;
+    margin-bottom: 35px;
+  }
+}
+.collections-grid{
+  padding: 0px 50px;
+  @include s(){
+    padding: 0px 40px;
+  }
+}
+
+.homepage-featured-collection h2{
+  @include lato-bold(1.375rem);
+  text-align: center;
+  @include heading-dash();
+  margin-top: 70px;
+  text-transform: uppercase;
+  &:after{
+    margin-top: 30px;
+    margin-bottom: 70px;
+  }
+}
 
 
 
 
+/* Collection ========= */
+.collection-product{
+  position: relative;
+  padding: 0 20px;
+  margin-bottom: 70px;
+  @include s(){
+    padding: 0px 10px;
+  }
+}
+.collection-product .product-info{
+  margin-top: 23px;
+  font-size: 1.125rem;
+  text-align: center;
+  line-height: 28px;
+  @include max-query($s){
+    font-size: 1.375rem;
+  }
+}
 
+.collection-product .image-container{
+  position: relative;
+  overflow: hidden;
+  .quick-add{
+    position: absolute;
+    width: 100%;
+    min-height: 75px;
+    bottom: -200px;
+    background: $accent-color;
+    transition: bottom .3s;
+    .label{
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 8px;
+      text-transform: uppercase;
+      color: $quick-add-label;
+    }
+    .variants{
+      margin: 20px;
+      text-align: center;
+    }
+    a{
+      display: inline-block;
+      margin: 0px 2.5px;
+      @include lato-bold(1.25rem);
+      text-transform: uppercase;
+      color: $quick-add-inactive;
+      &:hover{
+        color: $quick-add-active;
+      }
+    }
+    @include max-query($m){
+      display: none;
+    }
+  }
+  &:hover{
+    .quick-add{
+      bottom: 0;
+    }
+  }
+}
 
+.collection-product.isNew .new-icon{
+  @include flex();
+  position: absolute;
+  z-index: 2;
+  top: -30px;
+  right: 0px;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  height: 63px;
+  width: 63px;
+  color: $new-icon;
+  border-radius: 100%;
+  border-width: 2px;
+  border-color: $new-icon;
+  background-color: $new-icon-bg;
+  border-style: solid;
+  @include lato-bold(0.6875rem);
+}
 /* Helpers ===================================================================*/
 // Alignment Helpers
 .left {

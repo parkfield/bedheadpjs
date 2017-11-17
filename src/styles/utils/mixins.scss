@@ -223,3 +223,18 @@
   font-style:normal;
   font-weight: 700;
 }
+
+//Additional Styles
+@mixin heading-dash(){
+  &:after{
+    content:"";
+    position: relative;
+    margin-top: 28px;
+    display: block;
+    width: 20%;
+    height: 3px;
+    background: #D8D8D8;
+    left: 50%;
+    @include prefix(transform, translateX(-50%));
+  }
+}

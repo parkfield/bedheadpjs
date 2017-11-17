@@ -1,0 +1,68 @@
+{% assign newTitle = '' %}
+
+<!-- XS Size -->
+{% assign extraSmall = 'XS 2/4, XS 2/6' %}
+{% assign extraSmall = extraSmall | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in extraSmall %}
+{% if title == variant.title %}
+{% assign newTitle = 'XS' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- S Size -->
+{% assign small = 'Small 4/6,' %}
+{% assign small = small | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in small %}
+{% if title == variant.title %}
+{% assign newTitle = 'S' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- M Size -->
+{% assign medium = 'Medium 8/10,' %}
+{% assign medium = medium | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in medium %}
+{% if title == variant.title %}
+{% assign newTitle = 'M' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- L Size -->
+{% assign large = 'Large 12/14,L: MENS 36-39' %}
+{% assign large = large | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in large %}
+{% if title == variant.title %}
+{% assign newTitle = 'L' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- XL Size -->
+{% assign extraLarge = 'XL 16,' %}
+{% assign extraLarge = extraLarge | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in extraLarge %}
+{% if title == variant.title %}
+{% assign newTitle = 'XL' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if newTitle == blank %}
+  {{variant.title}}
+{% else %}
+  {{newTitle}}
+{% endif %}
+
