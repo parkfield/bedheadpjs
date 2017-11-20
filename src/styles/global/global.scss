@@ -213,13 +213,11 @@ button::-moz-focus-inner {
     margin-bottom: $gutter/3;
   }
 }
-.errors, .note {
+.errors{
   padding: $gutter/3.5;
   margin: $gutter/2 auto;
   color: lighten($colorHighlight, 50%);
-  background-color: $colorHighlight;
-  border: $borderWeight $borderStyle $colorHighlight;
-  border-radius: $borderRadius;
+  background-color: transparent;
   li {
     margin-bottom: $gutter/3;
     &:last-of-type {
@@ -229,4 +227,33 @@ button::-moz-focus-inner {
   a {
     color: lighten($colorHighlight, 50%);
   }
+}
+
+.note{
+  padding: $gutter/3.5;
+  margin: $gutter/2 auto;
+  color: lighten($accent-color, 50%);
+  background-color: transparent;
+  li {
+    margin-bottom: $gutter/3;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  a {
+    color: lighten($accent-color, 50%);
+  } 
+}
+
+.shopify-challenge__button.btn{
+  height: 50px;
+}
+
+.shopify-challenge__error{
+  background-color: transparent;
+  color: $bad-status;
+}
+
+.form-success{
+  color: $accent-color;
 }

@@ -5,12 +5,18 @@
   }
 }
 
+.homepage-featured-collection{
+  margin-top: 70px;
+}
+
 .homepage-featured-collection h2{
   @include lato-bold(1.375rem);
   text-align: center;
   @include heading-dash();
-  margin-top: 70px;
   text-transform: uppercase;
+  @include max-query($m){
+    font-size: 1.75rem;
+  }
   &:after{
     margin-top: 30px;
     margin-bottom: 70px;

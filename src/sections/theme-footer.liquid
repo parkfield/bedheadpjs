@@ -9,33 +9,53 @@
 <footer class="theme-footer" role="contentinfo">
   <div class="container center">
     <div class="row l-table">
+      <div class="column l2 m2 s2">
+        <img src="{{section.settings.column1_image | img_url:'master'}}" alt="{{section.settings.column1_image}}">
+      </div>
+      <div class="column l3 m3 s3">
+        <h5>{{section.settings.column2_heading}}</h5>
+        <ul>
+          {% for link in linklists[column2_linklist].links %}
+          <li>
+            <a href="{{link.url}}">{{link.title}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="column l2 m2 s2">
+        <h5>{{section.settings.column3_heading}}</h5>
+        <ul>
+          {% for link in linklists[column3_linklist].links %}
+          <li>
+            <a href="{{link.url}}">{{link.title}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="column l2 m2 s2">
+        <h5>{{section.settings.column4_heading}}</h5>
+        <ul>
+          {% for link in linklists[column4_linklist].links %}
+          <li>
+            <a href="{{link.url}}">{{link.title}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="column l3 m3 s3">
+        <h5>{{section.settings.column5_heading}}</h5>
+      </div>
+    </div>
+  </div>
+  <div class="container center">
+    <div class="row l-table">
       <div class="column l5 m12 s12 l-left v-middle">
         {% if section.settings.enable_social %}
           {% include 'social-links' %}
         {% endif %}
       </div>
-      <div class="column l7 m12 s12 l-right v-middle">
-        {% if section.settings.enable_subscribe %}
-          <h5>{{ heading }}</h5>
-          {% include 'section-subscribe-form' %}
-        {% endif %}
-      </div>
     </div>
   </div>
-
-  <div class="container center">
-    <div class="row l-table">
-      <div class="column l7 m12 s12 l-left v-middle">
-        {% if section.settings.enable_gateway_icons %}
-          {% include 'payment-gateways' %}
-        {% endif %}
-      </div>
-      <div class="column l5 m12 s12 l-right v-middle">
-        <small>&copy; {{ 'now' | date: "%Y" }} <a href="/">{{ shop.name }}</a> | site by <a href="https://elkfox.com?ref={{ shop.name | handleize }}" title="Digital Commerce Agency Elkfox.com">{% include 'icon' with 'elkfox' %}</a> &amp; <a href="http://shopify.com?ref=elkfox" title="Shopify.com" class="icon-small">{% include 'icon' with 'shopify' %} Shopify</a></small>
-      </div>
-    </div>
-  </div>
-
 </footer>
 {% schema %}
   {
@@ -51,51 +71,69 @@
         "label": "Show social media icons"
       },
       {
-        "type": "checkbox",
-        "id": "enable_gateway_icons",
-        "label": "Show payment gateway icons",
-        "info": "Relevant payment icons will appear automatically when configured in [Payment Settings](/admin/settings/payments)"
+        "type":"header",
+        "content":"Column 1"
       },
       {
-        "type": "header",
-        "content": "Subscribe form"
+        "type":"image_picker",
+        "id":"column1_image",
+        "label":"Image"
       },
       {
-        "type": "checkbox",
-        "id": "enable_subscribe",
-        "label": "Show subscribe form"
+        "type":"header",
+        "content":"Column 2"
       },
       {
-        "type": "text",
-        "id": "heading",
-        "label": "Title",
-        "placeholder": "Subscribe"
+        "type":"text",
+        "id":"column2_heading",
+        "label":"Heading"
       },
       {
-        "id": "email_placeholder",
-        "type": "text",
-        "placeholder": "Email",
-        "label": "Email Placeholder",
-        "default": "Email"
+        "type":"link_list",
+        "id":"column2_linklist",
+        "label":"Menu"
       },
       {
-        "id": "show_button",
-        "type": "checkbox",
-        "default": true,
-        "label": "Show button"
+        "type":"header",
+        "content":"Column 3"
       },
       {
-        "id": "success",
-        "type": "text",
-        "placeholder": "Thank you for subscribing",
-        "label": "Confirmation message",
-        "default": "Thank you for subscribing"
+        "type":"text",
+        "id":"column3_heading",
+        "label":"Heading"
       },
       {
-        "id": "button_text",
-        "type": "text",
-        "label": "Button Text",
-        "default": "Subscribe"
+        "type":"link_list",
+        "id":"column3_linklist",
+        "label":"Menu"
+      },
+      {
+        "type":"header",
+        "content":"Column 4"
+      },
+      {
+        "type":"text",
+        "id":"column4_heading",
+        "label":"Heading"
+      },
+      {
+        "type":"link_list",
+        "id":"column4_linklist",
+        "label":"Menu"
+      },
+      {
+        "type":"header",
+        "content":"Column 5"
+      },
+      {
+        "type":"text",
+        "id":"column5_heading",
+        "label":"Heading"
+      },
+      {
+        "type":"richtext",
+        "id":"column5_content",
+        "label":"Column 5 Content"
       }
     ]
   }

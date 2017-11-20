@@ -1,9 +1,8 @@
 <!-- /snippets/section-subscribe-form.liquid -->
 
-{% unless success %}{% assign success = 'form.subscribe.confirmation' | t %}{% endunless %}
-{% unless email_placeholder %}{% assign email_placeholder = 'form.email' | t %}{% endunless %}
-{% unless button_text %}{% assign button_text = 'form.subscribe.title' | t %}{% endunless %}
-
+{% assign success = 'form.subscribe.confirmation' | t %}
+{% assign email_placeholder = 'form.email' | t %}
+{% assign button_text = 'form.subscribe.title' | t %}
 {% form 'customer' %}
   {{ form.errors | default_errors }}
   {% if form.posted_successfully? %}
@@ -26,7 +25,7 @@
     <input type="submit"
            name="subscribe"
            id="subscribe"
-           class="button{% unless show_button %} hidden{% endunless %}"
+           class="btn"
            value="{{ button_text }}">
   {% endif %}
 {% endform %}

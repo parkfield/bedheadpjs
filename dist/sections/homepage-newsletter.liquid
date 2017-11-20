@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="column l12 m12 s12">
+      <div class="content">
+      {% unless section.settings.heading == blank %}
+      <h3>{{section.settings.heading}}</h3>
+      {% endunless %}
+      {% unless section.settings.sub_heading == blank %}
+      <p class="subheading">{{section.settings.sub_heading}}</p>
+      {% endunless %}
+      {% assign show_button = true %}
+      {% include 'section-subscribe-form' %}
+      </div>
+    </div>
+</div>
+</div>
+{% schema %}
+  {
+    "name": "Newsletter",
+    "class": "homepage-newsletter",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Text Content"
+      },
+      {
+        "id":"heading",
+        "type":"text",
+        "label":"Heading",
+        "default":"Sign Up & Get 15% off"
+      },
+      {
+        "id":"sub_heading",
+        "type":"text",
+        "label":"Sub Heading",
+        "default":"Sign up to get updates and offers on our products. First time buyers get 15% off."
+      }
+    ],
+    "presets": [
+      {
+        "name": "Newsletter",
+        "category": "Homepage"
+      }
+    ]
+  }
+{% endschema %}

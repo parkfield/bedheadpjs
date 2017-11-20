@@ -32,6 +32,8 @@ $bg-dark: #333E48;
 $bg-light: #F7F7F7;
 $border-color: #A1A4AA;
 
+$bad-status: #d9534f;
+
 //Collection Product
 $quick-add-label: white;
 $quick-add-active: white;
@@ -335,8 +337,8 @@ $iconLinecap: sqaure;
     position: relative;
     margin-top: 28px;
     display: block;
-    width: 20%;
-    height: 3px;
+    width: 75px;
+    height: 2px;
     background: #D8D8D8;
     left: 50%;
     @include prefix(transform, translateX(-50%));
@@ -636,13 +638,11 @@ button::-moz-focus-inner {
     margin-bottom: $gutter/3;
   }
 }
-.errors, .note {
+.errors{
   padding: $gutter/3.5;
   margin: $gutter/2 auto;
   color: lighten($colorHighlight, 50%);
-  background-color: $colorHighlight;
-  border: $borderWeight $borderStyle $colorHighlight;
-  border-radius: $borderRadius;
+  background-color: transparent;
   li {
     margin-bottom: $gutter/3;
     &:last-of-type {
@@ -654,6 +654,34 @@ button::-moz-focus-inner {
   }
 }
 
+.note{
+  padding: $gutter/3.5;
+  margin: $gutter/2 auto;
+  color: lighten($accent-color, 50%);
+  background-color: transparent;
+  li {
+    margin-bottom: $gutter/3;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  a {
+    color: lighten($accent-color, 50%);
+  } 
+}
+
+.shopify-challenge__button.btn{
+  height: 50px;
+}
+
+.shopify-challenge__error{
+  background-color: transparent;
+  color: $bad-status;
+}
+
+.form-success{
+  color: $accent-color;
+}
 /* Grid System ===============================================================*/
 
 .container {
@@ -1663,20 +1691,126 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   }
 }
 
+.homepage-featured-collection{
+  margin-top: 70px;
+}
+
 .homepage-featured-collection h2{
   @include lato-bold(1.375rem);
   text-align: center;
   @include heading-dash();
-  margin-top: 70px;
   text-transform: uppercase;
+  @include max-query($m){
+    font-size: 1.75rem;
+  }
   &:after{
     margin-top: 30px;
     margin-bottom: 70px;
   }
 }
 
-
-
+.homepage-media{
+  margin-top: 120px;
+  .container{
+    max-width: 1090px;
+    @include max-query(1089px){
+      width: 100%;
+    }
+  }
+  h3{
+    text-align: center;
+    @include lato-bold(1.375rem);
+    @include heading-dash();
+    &:after{
+      margin-top: 20px;
+    }
+    @include max-query($m){
+      font-size: 1.75rem;
+    }
+  }
+  .images{
+    margin-top: 70px;
+    @include max-query($s){
+      margin-top: 40px;
+    }
+    @include flex();
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+  .images .image-container{
+    width: 20%;
+    padding: 0px 10px;
+    @include flex();
+    align-items: center;
+    justify-content: center;
+    @include max-query($m){
+      width: 33.333%;
+    }
+  }
+}
+.homepage-newsletter{
+  background-color: $bg-light;
+  padding: 69px 0px;
+  text-align: center;
+  margin-top: 113px;
+  .content{
+    display: inline-block;
+  }
+  h3{
+    text-transform: uppercase;
+    text-align: center;
+    @include lato-bold(1.375rem);
+    @include heading-dash();
+    &:after{
+      margin-top: 20px;
+      margin-bottom: 16px;
+    }
+    @include max-query($m){
+      font-size: 1.75rem;
+    }
+  }
+  .subheading{
+    font-size: 1.125rem;
+    text-align: center;
+    margin-bottom: 33px;
+  }
+  form#contact_form{
+    text-align: center;
+    @include flex();
+    flex-flow: nowrap;
+  }
+  .contact-form input{
+    display: inline-block;
+    height: 50px;
+  }
+  .contact-form input[type="email"]{
+    background-color: $bg-main;
+    border-color: $border-color;
+    @include lato-reg(0.875rem);
+    width: 75%;
+  }
+  .contact-form input[type="submit"]{
+    width: 25%;
+    @include roboto-reg(0.75rem);
+    color: $font-color;
+  }
+  @include s(){
+    form#contact_form{
+      flex-flow: row wrap;
+    }
+    .contact-form input[type="email"]{
+      width: 90%;
+      margin: 0 auto;
+    }
+    .contact-form input[type="submit"]{
+      width: 50%;
+      min-width: 200px;
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+  }
+}
 
 /* Collection ========= */
 .collection-product{

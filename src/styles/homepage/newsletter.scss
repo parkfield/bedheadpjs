@@ -1,0 +1,62 @@
+.homepage-newsletter{
+  background-color: $bg-light;
+  padding: 69px 0px;
+  text-align: center;
+  margin-top: 113px;
+  .content{
+    display: inline-block;
+  }
+  h3{
+    text-transform: uppercase;
+    text-align: center;
+    @include lato-bold(1.375rem);
+    @include heading-dash();
+    &:after{
+      margin-top: 20px;
+      margin-bottom: 16px;
+    }
+    @include max-query($m){
+      font-size: 1.75rem;
+    }
+  }
+  .subheading{
+    font-size: 1.125rem;
+    text-align: center;
+    margin-bottom: 33px;
+  }
+  form#contact_form{
+    text-align: center;
+    @include flex();
+    flex-flow: nowrap;
+  }
+  .contact-form input{
+    display: inline-block;
+    height: 50px;
+  }
+  .contact-form input[type="email"]{
+    background-color: $bg-main;
+    border-color: $border-color;
+    @include lato-reg(0.875rem);
+    width: 75%;
+  }
+  .contact-form input[type="submit"]{
+    width: 25%;
+    @include roboto-reg(0.75rem);
+    color: $font-color;
+  }
+  @include s(){
+    form#contact_form{
+      flex-flow: row wrap;
+    }
+    .contact-form input[type="email"]{
+      width: 90%;
+      margin: 0 auto;
+    }
+    .contact-form input[type="submit"]{
+      width: 50%;
+      min-width: 200px;
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+  }
+}

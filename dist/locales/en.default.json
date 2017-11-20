@@ -100,17 +100,18 @@
     "message": "Message",
     "send": "Send",
     "submit": "Submit",
+    "subscribe":"Subscribe",
     "cancel": "Cancel",
     "add": "Add",
     "edit": "Edit",
     "delete": "Delete",
     "contact": {
       "success": "Form posted successfully"
+    },
+    "subscribe": {
+      "title": "Subscribe",
+      "confirmation": "Thank you for subscribing!"
     }
-  },
-  "subscribe": {
-    "title": "Subscribe",
-    "confirmation": "Thank you for subscribing!"
   },
   "cart": {
     "title": "Cart",
