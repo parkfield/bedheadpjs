@@ -1,6 +1,6 @@
 <!-- /snippets/theme-nav-main.liquid -->
 {% assign dropdownCount = 0 %}
-<nav class="theme-nav-main" role="navigation">
+<nav class="theme-nav-main theme-nav-main-standard" role="navigation">
   <ul class="inline">
     {% for link in linklists.main-menu.links %}
       {% assign child_list_handle = link.title | handleize %}
@@ -24,7 +24,7 @@
                   {% assign linkImage = collections[childlink.handle].image %}
                 {% endif %}
                 <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">
-                  <img src="{{linkImage | img_url:'medium'}}" alt="{{linkImage.alt}}">
+                  <img src="{{linkImage | img_url:'master'}}" alt="{{linkImage.alt}}">
                 </a>
               </li>
             {% endfor %}

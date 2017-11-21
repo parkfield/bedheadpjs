@@ -7,52 +7,60 @@
 {% assign show_button = section.settings.show_button %}
 
 <footer class="theme-footer" role="contentinfo">
-  <div class="container center">
-    <div class="row l-table">
-      <div class="column l2 m2 s2">
+  <div class="container center links-container">
+    <div class="row">
+      <div class="column l2 m6 s-hide">
         <img src="{{section.settings.column1_image | img_url:'master'}}" alt="{{section.settings.column1_image}}">
       </div>
-      <div class="column l3 m3 s3">
+      <div class="column l3 m6 s-hide">
         <h5>{{section.settings.column2_heading}}</h5>
         <ul>
-          {% for link in linklists[column2_linklist].links %}
+          {% for link in linklists[section.settings.column2_linklist].links %}
           <li>
             <a href="{{link.url}}">{{link.title}}</a>
           </li>
           {% endfor %}
         </ul>
       </div>
-      <div class="column l2 m2 s2">
+      <div class="column l2 m6 s-hide">
         <h5>{{section.settings.column3_heading}}</h5>
         <ul>
-          {% for link in linklists[column3_linklist].links %}
+          {% for link in linklists[section.settings.column3_linklist].links %}
           <li>
             <a href="{{link.url}}">{{link.title}}</a>
           </li>
           {% endfor %}
         </ul>
       </div>
-      <div class="column l2 m2 s2">
+      <div class="column l2 m6 s-hide">
         <h5>{{section.settings.column4_heading}}</h5>
         <ul>
-          {% for link in linklists[column4_linklist].links %}
+          {% for link in linklists[section.settings.column4_linklist].links %}
           <li>
             <a href="{{link.url}}">{{link.title}}</a>
           </li>
           {% endfor %}
         </ul>
       </div>
-      <div class="column l3 m3 s3">
+      <div class="column l3 m6 s-hide">
         <h5>{{section.settings.column5_heading}}</h5>
+        <p>{{section.settings.column5_content}}</p>
       </div>
     </div>
   </div>
   <div class="container center">
-    <div class="row l-table">
-      <div class="column l5 m12 s12 l-left v-middle">
+    <div class="row">
+      <div class="column l12 m12 s12">
         {% if section.settings.enable_social %}
           {% include 'social-links' %}
         {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="container center copyright-container">
+    <div class="row">
+      <div class="column l12 m12 s12">
+        <div class="copyright">&copy; {{ 'now' | date: "%Y" }} BedheadPajamas, Inc. All Rights Reserved. Terms & Privacy</div>
       </div>
     </div>
   </div>
@@ -68,7 +76,8 @@
       {
         "type": "checkbox",
         "id": "enable_social",
-        "label": "Show social media icons"
+        "label": "Show social media icons",
+        "default":true
       },
       {
         "type":"header",
@@ -131,7 +140,7 @@
         "label":"Heading"
       },
       {
-        "type":"richtext",
+        "type":"html",
         "id":"column5_content",
         "label":"Column 5 Content"
       }

@@ -15,13 +15,12 @@
 {% assign include_results = include_results | append: '[last]' | remove: ',[last]' | remove: '[last]' %}
 
 
-<header class="theme-header" role="banner">
+<header class="theme-header fixed" role="banner">
   <div class="container">
     <div class="row icons-row">
       {% if enable_search %}
       <div class="search-container">
         <div class="search-content">
-        <p>{{'search.label' | t }}</p>
         {% include 'form-search' %}
         </div>
       </div>
@@ -55,6 +54,7 @@
         {% else %}
           </div>
         {% endif %}
+        {% include 'theme-nav-main-sticky' %}
       </div>
       <div class="column l2 m2 s3 user-column">
         {% if customer %}
@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <div class="row l-table m-table s-hide">
+    <div class="row l-table m-table s-hide theme-nav-main-container">
       <div class="column l12 s12">
         {% include 'theme-nav-main' %}
       </div>

@@ -5,29 +5,38 @@
     font-size: 1.1rem;
     font-weight: $fontBold;
     margin-right: $gutter/3;
+    padding-bottom: 40px;
+    text-transform: uppercase;
   }
   .dropdown {
     position: relative;
-    &:hover {
-      .dropdown_menu_container {
-        display: block;
-      }
-    }
     .dropdown_menu_container {
-      display: none;
-      padding: $gutter/3 0;
+      display: block;
       position: absolute;
       z-index: 2;
       left: 0;
       width: 100%;
-      height: 350px;
-      bottom: -300px;
+      transition: height .3s;
+      height: 0px;
+      overflow: hidden;
+      @include min-query(500px){
+        top: 190px;
+      }
+      @include min-query(1000px){
+        top: 180px;
+      }
+      @include min-query(1280px){
+        top: 225px;
+      }
+
+    }
+    &:hover {
+      .dropdown_menu_container {
+        height: 350px;
+      }
     }
   }
 }
-/* .theme-nav-main .dropdown-1 .dropdown_menu_container{
-  display: block;
-} */
 
 .theme-nav-main > ul{
   width: 80%;
@@ -50,7 +59,6 @@
 
 .theme-nav-main .dropdown .container{
   background-color: rgba($bg-main, .95);
-  padding-top: 40px;
   padding-bottom: 20px;
   @include m(){
     padding-top: 20px;
@@ -85,4 +93,65 @@
 .theme-nav-main .dropdown_menu{
   width: 80%;
   margin: 0 auto;
+}
+.theme-header .theme-nav-main-sticky{
+  display: none;
+}
+.theme-header.fixed{
+  @include min-query(850px){
+    position: fixed;
+    background: $bg-main;
+    z-index: 3;
+    width: 100%;
+    top: 0;
+    padding: 25px 0px;
+    .theme-nav-main-container{
+      display: none;
+    }
+    .theme-nav-main-sticky{
+      display: block;
+    }
+    .logo-column{
+      @include flex();
+      align-items: center;
+      nav{
+        width: 100%;
+      }
+    }
+    .logo-image{
+      display: none;
+    }
+    .icons-row{
+      margin: 0px;
+    }
+    .search-column{
+      width: 5%;
+      .desktop-search-icon{
+        margin-left: 0px;
+      }
+    }
+    .logo-column{
+      width: 85%;
+    }
+    .user-column{
+      position: absolute;
+      right: 0;
+      top: 50%;
+      @include prefix(transform, translateY(-50%));
+    }
+  }
+  
+  @include min-query(1280px){
+    .theme-nav-main .dropdown .dropdown_menu_container{
+      top: 40px;
+    }
+  }
+  @include max-query(1200px){
+    .nav-link{font-size: .8rem;}
+  }
+  @include max-query(850px){
+    .theme-nav-main-container, .theme-nav-main-sticky{
+      display: none;
+    }
+  }
 }

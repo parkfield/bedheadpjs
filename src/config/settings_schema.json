@@ -93,26 +93,6 @@
     ]
   },
   {
-    "name": "Footer",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "enable_footer_social",
-        "label": "Show social media icons"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_footer_subscribe",
-        "label": "Show a subscribe form"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_gateway_icons",
-        "label": "Show payment gateway icons"
-      }
-    ]
-  },
-  {
     "name": "Cart page",
     "settings": [
       {

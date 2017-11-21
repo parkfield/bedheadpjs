@@ -5,6 +5,7 @@
   .text-block{
     position: absolute;
     top: 94px;
+    top: 120px;
     left: 87px;
   }
 }
@@ -116,7 +117,7 @@
 
 @include max-query($m){//600px
   .homepage-hero .text-block{
-    top: 44px;
+    top: 90px;
     left: 37px;
   }
   .homepage-hero .sub-text{
@@ -129,7 +130,7 @@
 
 @include max-query($s){//850px
   .homepage-hero .text-block{
-    top: 21px;
+    top: 90px;
     left: 37px;
   }
 }

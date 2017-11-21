@@ -1,11 +1,14 @@
-<div class="image" style="background-image: url('{{section.settings.image | img_url:'master'}}" alt="{{section.settings.image.alt}}');">
-  <div class="text-container">
+<div class="image rellax" data-rellax-speed=".5" style="background-image: url('{{section.settings.image | img_url:'master'}}" alt="{{section.settings.image.alt}}');">
+  <div class="text-container rellax" data-rellax-speed="1.1">
+  <div data-aos="fade-up" data-aos-anchor-placement="top-center"  data-aos-offset="-300">
+
     <h2>
       {{section.settings.heading_line1}}<br>
       {{section.settings.heading_line2}}<br>
       {{section.settings.heading_line3}}
     </h2>
     <a class="btn" href="{{section.settings.button_url}}">{{section.settings.button_text}}</a>
+  </div>
   </div>
 </div>
 

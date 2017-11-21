@@ -18,19 +18,19 @@
         "type": "color",
         "id": "color_brand",
         "label": "Brand Color",
-        "default": "#A0DAE8"
+        "default": "#EB666B"
       },
       {
         "type": "color",
         "id": "color_body",
         "label": "Main Text Color",
-        "default": "#333E48"
+        "default": "#333333"
       },
       {
         "type": "color",
         "id": "color_background",
         "label": "Background Color",
-        "default": "#FFFFFF"
+        "default": "#EFECE8"
       },
       {
         "type": "color",
@@ -89,26 +89,6 @@
         "max-width": 32,
         "max-height": 32,
         "info": "32 x 32px .png required"
-      }
-    ]
-  },
-  {
-    "name": "Footer",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "enable_footer_social",
-        "label": "Show social media icons"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_footer_subscribe",
-        "label": "Show a subscribe form"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_gateway_icons",
-        "label": "Show payment gateway icons"
       }
     ]
   },
