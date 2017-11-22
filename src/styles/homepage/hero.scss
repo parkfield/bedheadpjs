@@ -135,3 +135,10 @@
   }
 }
 
+@include max-query(500px){
+  .homepage-hero .text-block{
+    top: 49px;
+    left: 37px;
+  }
+}
+

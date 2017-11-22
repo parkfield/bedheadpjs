@@ -23,9 +23,13 @@
                 {% if childlink.type == 'collection_link' %}
                   {% assign linkImage = collections[childlink.handle].image %}
                 {% endif %}
+                {% if linkImage != blank %}
                 <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">
                   <img src="{{linkImage | img_url:'master'}}" alt="{{linkImage.alt}}">
                 </a>
+                {% else %}
+                {{childlink.title}}-No Image
+                {% endif %}
               </li>
             {% endfor %}
           </ul>

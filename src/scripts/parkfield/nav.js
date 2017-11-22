@@ -21,3 +21,41 @@ $('.theme-nav-main .dropdown').each(function(index){
     dropdownMenu.get(0).slick.setPosition(0);
   });
 });
+
+/* Sticky Nav Scroll */
+$(window).scroll(function (event) {
+    var scroll = $(window).scrollTop();
+    if($(window).width() < 800){
+      if(scroll > 180){
+        $('.theme-header').addClass('hide');
+      }else{
+        $('.theme-header').removeClass('hide');
+      }
+      if(scroll > 200){
+        $('.theme-header').addClass('fixed');
+      }else{
+        $('.theme-header').removeClass('fixed');
+      }
+      if(scroll > 220){
+        $('.theme-header').addClass('show');
+      }else{
+        $('.theme-header').removeClass('show');
+      }
+    }else{
+      if(scroll > 380){
+        $('.theme-header').addClass('hide');
+      }else{
+        $('.theme-header').removeClass('hide');
+      }
+      if(scroll > 420){
+        $('.theme-header').addClass('fixed');
+      }else{
+        $('.theme-header').removeClass('fixed');
+      }
+      if(scroll > 430){
+        $('.theme-header').addClass('show');
+      }else{
+        $('.theme-header').removeClass('show');
+      }
+    }
+});
