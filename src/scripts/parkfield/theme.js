@@ -1,6 +1,7 @@
 $(document).ready(function(){
   AOS.init({
-    startEvent: 'load'
+    startEvent: 'load',
+    once: true
   });  
 
   var rellax = new Rellax('.rellax', {

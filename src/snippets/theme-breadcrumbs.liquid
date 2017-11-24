@@ -16,14 +16,7 @@
         <span>{{ product.title }}</span>
       {% elsif template contains 'collection' and collection.handle %}
         <span aria-hidden="true">&rsaquo;</span>
-        {% if current_tags %}
-          {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
-          {{ collection.title | link_to: url }}
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>{{ current_tags | join: " + " }}</span>
-        {% else %}
           <span>{{ collection.title }}</span>
-        {% endif %}
       {% elsif template == 'blog' %}
         <span aria-hidden="true">&rsaquo;</span>
         {% if current_tags %}

@@ -1,5 +1,6 @@
 <!-- /snippets/theme-nav-main.liquid -->
 {% assign dropdownCount = 0 %}
+<div class="container l">
 <nav class="theme-nav-main theme-nav-main-standard" role="navigation">
   <ul class="inline">
     {% for link in linklists.main-menu.links %}
@@ -28,7 +29,7 @@
                   <img src="{{linkImage | img_url:'master'}}" alt="{{linkImage.alt}}">
                 </a>
                 {% else %}
-                {{childlink.title}}-No Image
+                <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">{{childlink.handle}}</a>
                 {% endif %}
               </li>
             {% endfor %}
@@ -48,3 +49,4 @@
     {% endfor %}
   </ul>
 </nav>
+</div>

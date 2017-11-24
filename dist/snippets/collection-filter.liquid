@@ -1,0 +1,191 @@
+{% comment %}
+Used to get all unique filter categories. If tag contains underscore check the first word of that underscored word, if its not in the 'categories' variable, add to it, and split into an array at the end.
+
+tag = color_blue
+tagCat = color
+categories = [color, brand, voltage]
+{% endcomment %}
+
+{% if template contains 'collection' and collection.all_tags.size > 0 %}
+  {% assign categories = '' %}
+  {% for tag in collection.all_tags%}
+  {% unless tag contains 'related' or tag contains 'UPC' %}
+    {% if tag contains '_' %}
+      {% assign tagCat = tag | split: '_' | first | handleize %}
+      {% unless categories contains tagCat %}
+        {% unless categories == blank %}
+          {% assign categories = categories | append: '+' | append: tagCat %}
+        {% else %}
+          {% assign categories = categories | append: tagCat %}
+        {% endunless %}
+      {% endunless %}
+    {% endif %}
+  {% endunless %}
+  {% endfor %}
+
+  {% unless categories == blank %}
+    {% assign categories = categories | split: '+' %}
+  {% endunless %}
+
+{% endif %}
+
+
+{% if template contains 'collection' and collection.all_tags.size > 0 %}
+<div class="filter-menu-container">
+  <div id="filter-menu">
+    <ul class="filter-options">
+    {% for cat in categories %}
+      {% assign category = cat | handleize %}
+      {% assign label = cat | replace: '-',' ' | split: ' ' %}
+      {% capture labelCap %}
+        {% for word in label %}
+          {{ word | capitalize }}
+        {% endfor %}
+      {% endcapture %}
+      <li {% if forloop.first %}class="active"{% endif %}>
+      <button type="button" class="filter-cat-heading">{{labelCap}}</button> 
+      {% unless cat =='size' %}
+      <ul class="filter-values">
+        {% for tag in collection.all_tags %}
+          {% if tag contains '_' %}
+            {% assign tagCat = tag | split: '_' | first | handleize %}
+            {% assign tagVal = tag | split: '_' | last %}
+
+            {% if tagVal contains '(0)'%}
+              {% assign tagVal = tagVal | replace_first: '(0)', '' %}
+            {% endif %}
+            {% if tagVal contains '(d)'%}
+              {% assign tagVal = tagVal | replace_first: '(d)', '0' %}
+            {% endif %}
+            {% if tagVal contains '(h)' %}
+              {% assign tagVal = tagVal | replace_first: '(h)', '00' %}
+            {% endif %}
+            {% if tagVal contains '(k)' %}
+              {% assign tagVal = tagVal | replace_first: '(k)', '000' %}
+            {% endif %}
+
+            {% if tagCat == category %}
+              <li class="filter-value">
+                <div class="wrapper">
+                  <input name="{{tagVal}}" type="checkbox" data-group="{{category}}" value ='{{tag | handleize}}'>
+                  <div class="checkbox"></div>
+                </div>
+                <label for="{{tagVal}}">{{tagVal}}</label>
+              </li>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% else %}
+      <ul class="filter-values">
+        <li class="filter-value">
+          <div class="wrapper">
+          <input name="xs" type="checkbox" data-group="size" value ='size_xs'>
+          <div class="checkbox"></div>
+          </div>
+          <label for="xs">XS</label>
+        </li>   
+        <li class="filter-value">
+          <div class="wrapper">
+          <input name="s" type="checkbox" data-group="size" value ='size_s'>
+          <div class="checkbox"></div>
+          </div>
+          <label for="s">S</label>
+        </li> 
+        <li class="filter-value">
+          <div class="wrapper">
+          <input name="m" type="checkbox" data-group="size" value ='size_m'>
+          <div class="checkbox"></div>
+          </div>
+          <label for="m">M</label>
+        </li> 
+        <li class="filter-value">
+          <div class="wrapper">
+          <input name="l" type="checkbox" data-group="size" value ='size_l'>
+          <div class="checkbox"></div>
+          </div>
+          <label for="l">L</label>
+        </li> 
+        <li class="filter-value">
+          <div class="wrapper">
+          <input name="xl" type="checkbox" data-group="size" value ='size_xl'>
+          <div class="checkbox"></div>
+          </div>
+          <label for="xl">XL</label>
+        </li>      
+      </ul>
+      {% endunless %}
+      </li>
+    {% endfor %}
+    <!--
+    <li class="filter-button-container"><button id="filterCollectionsButton" onclick="submitFilter()">{{'collections.sidebar.button_label' | t}}</button></li>
+    </ul>-->
+  </div>
+</div>
+{% endif %}
+
+<script>
+$(document).ready(function(){
+  currentFilterState();
+});
+
+function currentFilterState(){
+  //Sets filter checkbox state depending on url
+  var urlSegment = document.URL.substring(document.URL.lastIndexOf('/')+1);
+  if(urlSegment){
+    var activeFilters = urlSegment.split('+');
+    for(var i = 0; i < activeFilters.length; i++){
+      $("input[value='"+activeFilters[i]+"']").prop("checked", true);
+    }
+  }
+}
+
+function urlRedirect(filters){
+  //Handles redirect on pressing filter submit
+  var urlSegment = '';
+  for (var i = 0; i < filters.length; i++) {
+    if(urlSegment == ''){
+      urlSegment+='/'+filters[i];
+    }else{
+      urlSegment+='+'+filters[i];
+    }
+  }
+
+  var rootUrl = '{{shop.url}}'+'{{collection.url}}';
+
+  if('{{collection.url}}' == ''){
+    rootUrl = '{{shop.url}}'+'/collections/all'
+  }
+  window.location = rootUrl+urlSegment;
+}
+
+//Redirect when button is clicked
+function submitFilter(){
+  var selected = [];
+  $('input:checked').each(function(){
+    selected.push($(this).attr('value'));
+  });
+  urlRedirect(selected);
+}
+
+//Redirects when checkbox changes
+$('#filter-menu .filter-value input[type="checkbox"]').click(function(){
+  var category = $(this).attr('data-group');
+  //Deselect all but the one clicked
+  $('#filter-menu input[data-group="'+category+'"]').not($(this)).prop("checked",false);
+  var selected = [];
+  var trigValue = $(this).attr('value');
+  $('#filter-menu input:checked').each(function(){
+    selected.push($(this).attr('value'));
+  });
+
+  urlRedirect(selected);
+});
+
+$('#filter-menu .filter-cat-heading').click(function(){
+  $('.filter-options li').removeClass('active');
+  $(this).parent().addClass('active');
+});
+
+</script>
+

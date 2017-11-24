@@ -1514,7 +1514,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 
 .theme-nav-main > ul{
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   @include flex();
   justify-content: space-between;
@@ -2077,6 +2077,114 @@ footer.theme-footer{
   border-style: solid;
   @include lato-bold(0.6875rem);
 }
+.filter-menu-container{
+  margin-bottom: 50px;
+  .filter-options{
+    @include flex();
+    position: relative;
+  }
+  .filter-options li:first-child .filter-cat-heading{
+    border-left: 1px solid $border-color;
+  }
+  .filter-options li.active{
+    .filter-cat-heading{
+      background-color: $accent-color;
+      color: $bg-main;
+    }
+    .filter-values{
+      @include flex();
+      justify-content: center;
+      position: absolute;
+      bottom: -48px;
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  .filter-cat-heading{
+    min-width: 120px;
+    height: 50px;
+    @include lato-bold(.75rem);
+    background-color: transparent;
+    border-color: $border-color;
+    border-right: 1px solid $border-color;
+    border-left: none;
+    &:hover{
+      color: $accent-color;
+    }
+  }
+
+  .filter-values{
+    display: none;
+  }
+}
+
+.filter-value {
+  @include flex();
+  margin-right: 25px;
+  .wrapper .checkbox{
+    margin-right: 15px;
+    width: 25px;
+    height: 25px;
+    position: relative;
+  }
+  .wrapper .checkbox:before {
+    display: block;
+    content:'';
+    cursor: pointer;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border:1px solid #ddd;
+  }
+  .wrapper .checkbox:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 35%;
+    left: 35%;
+    @include prefix(transform, translate(-50%, -50%));
+    border: 3px solid #333;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  .wrapper input{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    z-index: 2;
+    opacity: 0;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  /**
+   * Create the checkbox state for the tick
+   */
+  .wrapper input[type=checkbox]:checked + .checkbox:after {
+    opacity: 1;
+    border-color: white;
+  }
+  .wrapper input[type=checkbox]:checked + .checkbox:before {
+    background-color: black;
+  }
+
+  label{
+    @include lato-reg(.75rem);
+    text-transform: uppercase;
+  }
+}
+
 /* Helpers ===================================================================*/
 // Alignment Helpers
 .left {
