@@ -2185,6 +2185,26 @@ footer.theme-footer{
   }
 }
 
+.select-wrapper::after{
+display: inline-block;
+content: "\f107";
+color: $font-color;
+position: absolute;
+font-family: FontAwesome;
+top: 50%;
+right: 10px;
+@include prefix(transform, translateY(-50%));
+}
+#sort-by{
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  color: $font-color;
+  border: thin solid $border-color;
+  @include lato-bold(.75rem);
+  min-width: 160px;
+}
+
 /* Helpers ===================================================================*/
 // Alignment Helpers
 .left {

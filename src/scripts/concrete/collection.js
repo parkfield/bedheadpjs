@@ -18,7 +18,6 @@ concrete.Collection = (function() {
     },
 
     _onSortByChange: function() {
-
       var sortBy = this._getSortBy();
       this.$container.trigger({
         type: 'sortByChange',

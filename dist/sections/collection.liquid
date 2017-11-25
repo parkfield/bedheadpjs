@@ -19,10 +19,11 @@
         {% include 'collection-filter' %}
       </div>
       <div class="column l3 m12 s3">
-        <label for="SortBy">{{ 'collection.sort.title' | t }}</label>
+        <label for="sort-by" class="hidden">{{ 'collection.sort.title' | t }}</label>
         <div class="select-wrapper">
-          <select name="SortBy" data-sort>
+          <select name="sort-by" id="sort-by">
             {% assign sort_options = 'manual,best-selling,title-ascending,title-descending,price-ascending,price-descending,created-descending,created-ascending' | split: ',' %}
+            <option selected disabled>{{'collection.sort.sortby' | t }}</option>
             {% for option in sort_options %}
               <option value="{{ option }}" {% if collection.sort_by == option %}selected="selected"{% endif %}>{{ 'collection.sort.' | append: option | t }}</option>
             {% endfor %}
@@ -73,3 +74,52 @@
 {% endif %}
 
 {% endpaginate %}
+
+<script>
+  Shopify.queryParams = {};
+  if (location.search.length) {
+    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+      aKeyValue = aCouples[i].split('=');
+      if (aKeyValue.length > 1) {
+        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+      }
+    }
+  }
+  jQuery('#sort-by')
+/*    .val('{{ collection.sort_by | default: collection.default_sort_by | escape }}')*/
+    .bind('change', function() {
+      Shopify.queryParams.sort_by = jQuery(this).val();
+      location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
+    });
+</script>
+
+{% schema %}
+  {
+    "name": "Collection Page",
+    "class": "homepage-featured-collection",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content":"To add a banner to the collection. Add a banner block with an image and the collection you want to assign that image to"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"banner",
+        "name":"Collection Banner",
+        "settings":[
+          {
+            "type":"collection",
+            "id":"collection",
+            "label":"Collection"
+          },
+          {
+            "type":"image_picker",
+            "id":"banner",
+            "label":"Banner Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
