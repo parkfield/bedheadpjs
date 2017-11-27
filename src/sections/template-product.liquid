@@ -94,28 +94,16 @@
 
             <label for="Quantity" class="clearfix">{{ 'product.quantity' | t }}:</label>
             <div class="quantity-adjust">
-              <select name="quantity" id="Quantity" data-cart-quantity="1">
-                {% for i in (1..5) %}
-                <option value="{{i}}">{{i}}</option>
-                {% endfor %}
-              </select>
-              {% comment %}
               <a class="adjust" data-change="-1">&#8211;</a>
                <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
               <a class="adjust" data-change="1">&#43;</a>
-              {% endcomment %}
             </div>
             {% if sold_out %}
               <button type="submit" name="add" data-add-to-cart disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
               </button>
             {% else %}
-              {% comment %}
               <button type="submit" name="add" data-add-to-cart>
-                <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
-              </button>
-              {% endcomment %}
-              <button id="AddToCart" type="submit" name="add" data-quick-add="{{product.selected_or_first_available_variant.id}}" data-quick-add-qty="1">
                 <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
               </button>
             {% endif %}
