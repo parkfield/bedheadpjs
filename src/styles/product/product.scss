@@ -1,0 +1,23 @@
+.breadcrumb{
+  a, span{
+    @include lato-light(0.875rem);
+  }
+  span{
+    font-weight: bold;
+  }
+}
+
+.product-page{
+  .images-column{
+    @include flex();
+    #ProductThumbs{
+      width: 25%;
+    }
+    #ProductThumbs img{
+      max-height: 115px;
+    }
+    #ProductPhoto{
+      width: 75%;
+    }
+  }
+}

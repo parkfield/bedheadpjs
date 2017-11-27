@@ -15,12 +15,24 @@
     font-size: 1.375rem;
   }
 }
-
+.collection-product .product-image{
+  background-size: cover;
+  padding-top: 150%;
+  min-height: 1px;
+  background-position: 50% 50%;
+  transition: opacity .3s;
+  opacity: 1;
+}
 .collection-product .image-container{
   position: relative;
   overflow: hidden;
   .product-image.rollover{
-    display: none;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
   .quick-add{
     position: absolute;
@@ -59,10 +71,10 @@
       bottom: 0;
     }
     .product-image.hasRollover{
-      display: none;
+      opacity: 0;
     }
     .product-image.rollover{
-      display: block;
+      opacity: 1;
     }
   }
 }

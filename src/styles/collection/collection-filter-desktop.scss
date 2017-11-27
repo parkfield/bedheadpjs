@@ -1,4 +1,15 @@
+.collection-page .currentTags{
+  color: #a1a4a6;
+  display: inline-block;
+  margin-right: 30px;
+}
+.collection-page .reset-filter{
+  display: inline-block;
+}
 .filter-menu-container{
+  .mobile-filter-trigger{
+    display: none;
+  }
   .filter-options{
     @include flex();
     position: relative;
@@ -105,43 +116,3 @@
   }
 }
 
-@include max-query(1150px){
-  .breadcrumb-column{
-    display: none;
-  }
-  .filter-menu-container{
-    #filter-menu{
-      position: absolute;
-      z-index: 2;
-      width: 100%;
-      left: 0;
-    }
-    .filter-cat-heading{
-      border: thin solid $border-color;
-      background-color: $bg-main;
-      max-width: 100%;
-      margin-bottom: 0px;
-      border-bottom: none;
-    }
-    .filter-options{
-      flex-flow: row wrap;
-      justify-content: center;
-      li{
-        width: 100%;
-      }
-      li:last-child{
-        border-bottom: thin solid $border-color;
-      }
-    }
-    .filter-options li.active .filter-values{
-      position: static;
-      display: block;
-      background-color: $bg-main;
-    }
-    .filter-value{
-      margin-left: 20px;
-      @include flex();
-      margin-bottom: 10px;
-    }
-  }
-}

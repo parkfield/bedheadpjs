@@ -148,12 +148,12 @@
       "sortby":"Sort By",
       "manual": "Featured",
       "best-selling": "Best Selling",
-      "title-ascending": "Alphabetically, A-Z",
-      "title-descending": "Alphabetically, Z-A",
-      "price-ascending": "Price, low to high",
-      "price-descending": "Price, high to low",
-      "created-descending": "Date, new to old",
-      "created-ascending": "Date, old to new"
+      "title-ascending": "A to Z",
+      "title-descending": "Z to A",
+      "price-ascending": "Price: Low to High",
+      "price-descending": "Price: High to Low",
+      "created-descending": "Date: New to Old",
+      "created-ascending": "Date: Old to New"
     },
     "filter": {
       "title": "Filter",

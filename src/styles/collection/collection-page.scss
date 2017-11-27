@@ -51,6 +51,7 @@
     min-width: initial;
   }
 }
+
 .breadcrumb{
   margin: 0px;
 }
@@ -63,9 +64,18 @@
 }
 .align-center{
   @include flex();
-  flex-flow: row wrap;
   align-items: center;
   margin-bottom: 100px;
+  @include max-query(1150px){
+    margin-bottom: 20px;
+  }
+}
+.align-center.reduced-margin{
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+.active-filters{
+  margin-bottom: 50px;
 }
 .showingIndex{
   display: inline-block;

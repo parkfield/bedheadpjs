@@ -15,42 +15,57 @@
 <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
 <div class="padding-top padding-bottom">
-  <div class="container l" itemscope itemtype="http://schema.org/Product" data-section-type="product" data-section-id="{{ section.id }}" data-enable-history-state="true">
+  <div class="container main-content" itemscope itemtype="http://schema.org/Product" data-section-type="product" data-section-id="{{ section.id }}" data-enable-history-state="true">
     <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
     <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
-
+    <div class="row">
+      <div class="column l12 m12 s12">
+      {% include 'theme-breadcrumbs' %}
+      </div>
+    </div>
     <div class="row no-margin">
-      <div class="column l6 m6 s12">
+      <div class="column l6 m6 s12 images-column">
+        {% if product.images.size > 1 %}
+          <div id="ProductThumbs" class="row collapse">
+            <ul>
+            {% for image in product.images %}
+              <li><img src="{{ image.src | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}></li>
+            {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
 
         <div id="ProductPhoto">
           <img src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
         </div>
-
-        {% if product.images.size > 1 %}
-          <div id="ProductThumbs" class="row collapse">
-            {% for image in product.images %}
-              <div class="column l3 m4 s6">
-                <img src="{{ image.src | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-
       </div>
 
-      <div class="column l6 m6 s12">
+      <div class="column l6 m6 s12 text-column">
 
         <h1 itemprop="name">{{ product.title }}</h1>
-
+        <div class="style-number">Style No.<span id="styleNumber">{{product.selected_or_first_available_variant.sku}}</span></div>
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
           <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
           <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-cart-submit>
+            <span class="hidden">{{ 'product.regular_price' | t }}</span>
+            <span id="ProductPrice" class="h2 clearfix" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+              {{ current_variant.price | money }}
+            </span>
+
+            {% if on_sale %}
+              <p id="OnSale">
+                <span class="hidden">{{ 'product.original_price' | t }}</span>
+                <span>{{ 'product.original_price' | t }}</span>
+                <s id="ComparePrice">{{ product.compare_at_price | money }}</s>
+              </p>
+            {% endif %}
+
             {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
               {% for option in product.options_with_values %}
                 <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
-                  {{ option.name }}
+                  {{ option.name }}:
                 </label>
                 <select class="single-option-selector" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
                   {% for value in option.values %}
@@ -75,31 +90,32 @@
               {% endfor %}
             </select>
 
-            <span class="hidden">{{ 'product.regular_price' | t }}</span>
-            <span id="ProductPrice" class="h2 clearfix" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-              {{ current_variant.price | money }}
-            </span>
 
-            {% if on_sale %}
-              <p id="OnSale">
-                <span class="hidden">{{ 'product.original_price' | t }}</span>
-                <span>{{ 'product.original_price' | t }}</span>
-                <s id="ComparePrice">{{ product.compare_at_price | money }}</s>
-              </p>
-            {% endif %}
 
-            <label for="Quantity" class="clearfix">{{ 'product.quantity' | t }}</label>
+            <label for="Quantity" class="clearfix">{{ 'product.quantity' | t }}:</label>
             <div class="quantity-adjust">
+              <select name="quantity" id="Quantity" data-cart-quantity="1">
+                {% for i in (1..5) %}
+                <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+              </select>
+              {% comment %}
               <a class="adjust" data-change="-1">&#8211;</a>
                <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
               <a class="adjust" data-change="1">&#43;</a>
+              {% endcomment %}
             </div>
             {% if sold_out %}
               <button type="submit" name="add" data-add-to-cart disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
               </button>
             {% else %}
+              {% comment %}
               <button type="submit" name="add" data-add-to-cart>
+                <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
+              </button>
+              {% endcomment %}
+              <button id="AddToCart" type="submit" name="add" data-quick-add="{{product.selected_or_first_available_variant.id}}" data-quick-add-qty="1">
                 <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
               </button>
             {% endif %}
@@ -135,3 +151,12 @@
     </div>
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Product Page",
+    "class": "product-page",
+    "settings": [
+    ]
+  }
+{% endschema %}

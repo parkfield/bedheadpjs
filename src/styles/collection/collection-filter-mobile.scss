@@ -1,0 +1,105 @@
+@include max-query(1150px){
+  .mobile-filter-trigger{
+    background: transparent;
+    min-width: initial;
+    max-width: initial;
+    background-color: $bg-main;
+    border-color: $border-color; 
+    margin-bottom: 13px;
+    justify-content: left;
+    position: relative;
+    @include lato-bold(.75rem);
+    &:hover{
+      background-color: $bg-main;
+      color: $font-color;
+    }
+    &:after{
+      display: inline-block;
+      content: "\f107";
+      color: $font-color;
+      position: absolute;
+      font-family: FontAwesome;
+      top: 50%;
+      right: 10px;
+      @include prefix(transform, translateY(-50%));
+    }
+  }
+  .mobile-filter-trigger.active{
+    &:after{
+      content:'\f106';
+    }
+  }
+  .breadcrumb-column{
+    display: none;
+  }
+  .filter-menu-container{
+    .mobile-filter-trigger{
+      display: inline-flex;
+      min-width: 120px;
+    }
+    #filter-menu{
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity .3s;
+      width: 96.5%;
+      margin: 0 auto;
+      left: 50%;
+      @include prefix(transform, translateX(-50%));
+      box-shadow: 0px 3px 21px rgba(0, 0, 0, 0.089221);
+    }
+    #filter-menu.active{
+      z-index: 2;
+      opacity: 1;
+    }
+    .filter-options{
+      flex-flow: row wrap;
+      justify-content: center;
+      li{
+        width: 100%;
+      }
+      .filter-value-container:last-child{
+        border-bottom: thin solid $border-color;
+      }
+    }
+    .filter-options li.active{
+      border-bottom: thin solid $border-color;
+    }
+    .filter-options .filter-cat-heading{
+      border: thin solid $border-color;
+      background-color: $bg-main;
+      max-width: 100%;
+      margin-bottom: 0px;
+      border-bottom: none;
+      justify-content: left;
+      position: relative;
+      &:after{
+        position: absolute;
+        content: '\f067';
+        font-family: FontAwesome;
+        right: 20px;
+      }
+    }
+    .filter-options li.active .filter-cat-heading{
+      background: $bg-main;
+      color: $font-color;
+      border-bottom: thin solid $border-color;
+      &:after{
+        content:'\f068';
+      }
+    }
+    .filter-options li.active .filter-values{
+      position: static;
+      display: block;
+      background-color: $bg-main;
+    }
+    .filter-value{
+      margin-left: 20px;
+      @include flex();
+      padding: 10px 0px;
+      &:last-child{
+        margin-bottom: 0px;
+      }
+    }
+  }
+}

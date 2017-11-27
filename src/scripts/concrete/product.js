@@ -19,6 +19,7 @@ concrete.Product = (function() {
       originalSelectorId: '#productSelect',
       singleOptionSelector: '.single-option-selector',
       variantId: '[name=id]',
+      quantity: '#Quantity'
     };
     // Find the product json
     if (!$('#ProductJson').html()) {
@@ -49,6 +50,10 @@ concrete.Product = (function() {
       this.$container.on('variantChange', this._updateAddToCart.bind(this));
       this.$container.on('variantChange', this._updateVariantId.bind(this));
       this.$container.on('variantChange', this._updatePrices.bind(this));
+      this.$container.on('variantChange', this._customActions.bind(this));
+      $(this.selectors.quantity).change(function(){
+        $('#AddToCart').attr('data-quick-add-qty',$(this).val());
+      });
     },
 
     _updateAddToCart: function(evt) {
@@ -86,7 +91,9 @@ concrete.Product = (function() {
       if (variant)
         $(this.selectors.variantId).val(variant.id);
     },
-
+    _customActions: function(evt){
+      $('#styleNumber').text(evt.variant.sku);
+    },
     onUnload: function() {
       this.$container.off();
     }
