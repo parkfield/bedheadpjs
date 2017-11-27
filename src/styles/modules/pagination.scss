@@ -1,0 +1,23 @@
+.pagination{
+  display: inline-block;
+  a{
+    padding: 3px;
+    @include lato-reg(1.125rem);
+    border: none;
+    background-color: transparent;
+    color: $font-color;
+    &:hover{
+      background-color: transparent;
+      color: $accent-color;
+    }
+  }
+  .current{
+    padding: 3px;
+    @include lato-bold(1.125rem);
+    text-decoration: underline;
+  }
+  @include max-query(800px){
+    display: none;
+  }
+}
+

@@ -42,7 +42,7 @@ categories = [color, brand, voltage]
           {{ word | capitalize }}
         {% endfor %}
       {% endcapture %}
-      <li {% if forloop.first %}class="active"{% endif %}>
+      <li>
       <button type="button" class="filter-cat-heading">{{labelCap}}</button> 
       {% unless cat =='size' %}
       <ul class="filter-values">

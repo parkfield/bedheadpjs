@@ -1212,6 +1212,29 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 }
 
+.pagination{
+  display: inline-block;
+  a{
+    padding: 3px;
+    @include lato-reg(1.125rem);
+    border: none;
+    background-color: transparent;
+    color: $font-color;
+    &:hover{
+      background-color: transparent;
+      color: $accent-color;
+    }
+  }
+  .current{
+    padding: 3px;
+    @include lato-bold(1.125rem);
+    text-decoration: underline;
+  }
+  @include max-query(800px){
+    display: none;
+  }
+}
+
 
 /* Homepage ==================================== */
 .homepage-promobar{
@@ -2019,6 +2042,9 @@ footer.theme-footer{
 .collection-product .image-container{
   position: relative;
   overflow: hidden;
+  .product-image.rollover{
+    display: none;
+  }
   .quick-add{
     position: absolute;
     width: 100%;
@@ -2055,6 +2081,12 @@ footer.theme-footer{
     .quick-add{
       bottom: 0;
     }
+    .product-image.hasRollover{
+      display: none;
+    }
+    .product-image.rollover{
+      display: block;
+    }
   }
 }
 
@@ -2078,13 +2110,12 @@ footer.theme-footer{
   @include lato-bold(0.6875rem);
 }
 .filter-menu-container{
-  margin-bottom: 50px;
   .filter-options{
     @include flex();
     position: relative;
   }
   .filter-options li:first-child .filter-cat-heading{
-    border-left: 1px solid $border-color;
+    border-left: thin solid $border-color;
   }
   .filter-options li.active{
     .filter-cat-heading{
@@ -2107,7 +2138,7 @@ footer.theme-footer{
     @include lato-bold(.75rem);
     background-color: transparent;
     border-color: $border-color;
-    border-right: 1px solid $border-color;
+    border-right: thin solid $border-color;
     border-left: none;
     &:hover{
       color: $accent-color;
@@ -2119,7 +2150,7 @@ footer.theme-footer{
   }
 }
 
-.filter-value {
+.filter-menu-container .filter-value {
   @include flex();
   margin-right: 25px;
   .wrapper .checkbox{
@@ -2138,7 +2169,7 @@ footer.theme-footer{
     top: 0;
     left: 0;
     background: transparent;
-    border:1px solid #ddd;
+    border:thin solid #ddd;
   }
   .wrapper .checkbox:after {
     opacity: 0;
@@ -2185,15 +2216,87 @@ footer.theme-footer{
   }
 }
 
+@include max-query(1150px){
+  .breadcrumb-column{
+    display: none;
+  }
+  .filter-menu-container{
+    #filter-menu{
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      left: 0;
+    }
+    .filter-cat-heading{
+      border: thin solid $border-color;
+      background-color: $bg-main;
+      max-width: 100%;
+      margin-bottom: 0px;
+      border-bottom: none;
+    }
+    .filter-options{
+      flex-flow: row wrap;
+      justify-content: center;
+      li{
+        width: 100%;
+      }
+      li:last-child{
+        border-bottom: thin solid $border-color;
+      }
+    }
+    .filter-options li.active .filter-values{
+      position: static;
+      display: block;
+      background-color: $bg-main;
+    }
+    .filter-value{
+      margin-left: 20px;
+      @include flex();
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.banner-row{
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.banner-column{
+  position: relative;
+  h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: $bg-main;
+    font-size: 2.625rem;
+    @include prefix(transform, translate(-50%, -50%));
+  }
+  img{
+    width: 100%;
+  }
+  @include max-query($s){
+    img{
+      display: none;
+    }
+    h1{
+      text-align: center;
+      position: static;
+      color: $font-color;
+      @include prefix(transform, none);
+    }
+  }
+}
+
 .select-wrapper::after{
-display: inline-block;
-content: "\f107";
-color: $font-color;
-position: absolute;
-font-family: FontAwesome;
-top: 50%;
-right: 10px;
-@include prefix(transform, translateY(-50%));
+  display: inline-block;
+  content: "\f107";
+  color: $font-color;
+  position: absolute;
+  font-family: FontAwesome;
+  top: 50%;
+  right: 10px;
+  @include prefix(transform, translateY(-50%));
 }
 #sort-by{
   width: 100%;
@@ -2203,6 +2306,51 @@ right: 10px;
   border: thin solid $border-color;
   @include lato-bold(.75rem);
   min-width: 160px;
+  @include max-query(800px){
+    min-width: initial;
+  }
+}
+.breadcrumb{
+  margin: 0px;
+}
+.breadcrumb .em{
+  @include lato-bold(0.875rem);
+}
+
+.breadcrumb a{
+  @include lato-reg(0.875rem);
+}
+.align-center{
+  @include flex();
+  flex-flow: row wrap;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.showingIndex{
+  display: inline-block;
+  margin-right: 20px;
+}
+.pagination-load-more{
+  display: none;
+  text-transform: uppercase;
+  @include lato-bold(1.125rem);
+  border: thin solid $border-color;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+}
+@include max-query(800px){
+  .showingIndex{
+    display: block;
+    text-align: center;
+    margin-bottom: 33px;
+  }
+  .pagination-load-more{
+    @include flex();
+    max-width: 80%;
+    margin: 0 auto;
+    margin-bottom: 90px;
+  }
 }
 
 /* Helpers ===================================================================*/

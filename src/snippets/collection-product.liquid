@@ -22,6 +22,13 @@
 {% endif %}
 {% endfor %}
 
+{% assign rollover = false %}
+{% for image in product.images %}
+{% if forloop.length > 1 %}
+  {% assign rollover = true %}
+{% endif %}
+{% endfor %}
+
 <div class="{{ column_width }} collection-product {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %} {% if newArrival %} isNew {% endif %}"
      data-product-id="{{ product.id }}"
      data-product-price="{{ product.price }}">
@@ -30,7 +37,13 @@
   {% endif %}
   <div class="image-container">
     <a href="{{ product.url | within: collection }}">
-      <img srcset="{{ product.featured_image.src | img_url: 'x960' }} 2x" src="{{ product.featured_image.src | img_url: 'x960' }}" alt="{{ product.featured_image.alt | escape }}">
+    {% if rollover %}
+    {% for image in product.images offset: 1 %}
+      <img class="product-image rollover" srcset="{{image.src | img_url: 'x960' }} 2x" src="{{image.src | img_url: 'x960' }}" alt="{{image.alt | escape }}">
+      {% break %}
+    {% endfor %}
+    {% endif %}
+    <img class="product-image {% if rollover %}hasRollover{% endif %}" srcset="{{ product.featured_image.src | img_url: 'x960' }} 2x" src="{{ product.featured_image.src | img_url: 'x960' }}" alt="{{ product.featured_image.alt | escape }}">
     </a>
     <div class="quick-add">
       <div class="label">{{'product.add_to_cart' | t }}</div>

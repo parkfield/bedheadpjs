@@ -1,24 +1,35 @@
 <!-- /templates/collection.liquid -->
 
-{% paginate collection.products by 12 %}
+{% for block in section.blocks %}
+{% if block.type == 'banner' %}
+{% if block.settings.collection == collection.handle %}
+{% assign banner = block.settings.banner %}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% assign paginate_by = section.settings.paginate_by | plus: 0 %}
+{% assign paginate_by = 15 %}
+{% paginate collection.products by paginate_by %}
+{% assign column_width = 'column l3 m4 s6' %}
 
-{% assign column_width = 'column l4 m6 s12' %}
-
+<header>
+  <div class="banner-row">
+    <div class="banner-column">
+      <img src="{{banner | img_url:'master'}}" alt="{{banner.alt}}">
+      <h1>{{ collection.title }}</h1>
+    </div>
+  </div>
+</header>
 <div class="container xl" data-section-type="collection">
   <header>
-    <div class="row">
-      <div class="column l12 m12 s12">
-        <h1>{{ collection.title }}</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column l3 m3 s3">
+    <div class="row align-center">
+      <div class="column l3 m3 s3 breadcrumb-column">
         {% include 'theme-breadcrumbs' %}
       </div>
       <div class="column l6 m6 s6">
         {% include 'collection-filter' %}
       </div>
-      <div class="column l3 m12 s3">
+      <div class="column l3 m6 s6 l-right m-right s-right">
         <label for="sort-by" class="hidden">{{ 'collection.sort.title' | t }}</label>
         <div class="select-wrapper">
           <select name="sort-by" id="sort-by">
@@ -37,11 +48,13 @@
       </div>
     {% endif %}
   </header>
+  {% comment %}
   <p>
     <span>{{ 'collection.view.title' | t }}</span>
     <a title="View by 12 products" class="change-view" data-view="12">12</a>
     <a title="View by 24 products" class="change-view" data-view="24">24</a>
   </p>
+  {% endcomment %}
 </div>
 
 <div class="container l">
@@ -65,11 +78,8 @@
 </div>
 
 {% if paginate.pages > 1 %}
-  <div class="container l">
-    <hr>
-    <div class="pagination">
-      {{ paginate | default_pagination }}
-    </div>
+  <div class="container xl l-right m-right s-center">
+    {% include 'pagination' %}
   </div>
 {% endif %}
 
@@ -96,8 +106,28 @@
 {% schema %}
   {
     "name": "Collection Page",
-    "class": "homepage-featured-collection",
+    "class": "collection-page",
     "settings": [
+      {
+         "type":      "select",
+         "id":        "paginate_by",
+         "label":     "Number of Products Per Page",
+         "options": [
+           {
+             "value": "25",
+             "label": "25"
+           },
+           {
+             "value": "50",
+             "label": "50"
+           }
+         ],
+         "default":   "50"
+      },
+      {
+        "type":"header",
+        "content":"Collection Banners"
+      },
       {
         "type": "paragraph",
         "content":"To add a banner to the collection. Add a banner block with an image and the collection you want to assign that image to"

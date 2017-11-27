@@ -19,6 +19,9 @@
 .collection-product .image-container{
   position: relative;
   overflow: hidden;
+  .product-image.rollover{
+    display: none;
+  }
   .quick-add{
     position: absolute;
     width: 100%;
@@ -54,6 +57,12 @@
   &:hover{
     .quick-add{
       bottom: 0;
+    }
+    .product-image.hasRollover{
+      display: none;
+    }
+    .product-image.rollover{
+      display: block;
     }
   }
 }
