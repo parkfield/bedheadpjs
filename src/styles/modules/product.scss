@@ -42,4 +42,16 @@
     margin-right: auto;
     font-size: .875rem;
   }
+  .text-column #Quantity{
+    height: 50px;
+    max-width: 280px;
+    border: thin solid $border-color;
+    color: $font-color;
+    background-color: $bg-main;
+    font-size: .875rem;
+    padding-left: 19px;
+  }
+  .text-column button[type="submit"]{
+    max-width: 280px;
+  }
 }

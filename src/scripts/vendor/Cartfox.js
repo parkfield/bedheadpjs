@@ -440,7 +440,7 @@ var Cart = function () {
       function add(e) {
         e.preventDefault();
         var id = jQuery('select[name=id]').val();
-        var quantity = Number(jQuery('input[name=quantity]').val());
+        var quantity = Number(jQuery('select[name=quantity]').val());
         var properties = {};
         if (jQuery('input[name*=properties]').length > 0) {
 

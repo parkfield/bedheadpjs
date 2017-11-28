@@ -41,7 +41,6 @@
       </div>
 
       <div class="column l6 m6 s12 text-column">
-
         <h1 itemprop="name">{{ product.title }}</h1>
         <div class="style-number">Style No.<span id="styleNumber">{{product.selected_or_first_available_variant.sku}}</span></div>
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -94,28 +93,23 @@
 
             <label for="Quantity" class="clearfix">{{ 'product.quantity' | t }}:</label>
             <div class="quantity-adjust">
-              <select name="quantity" id="Quantity" data-cart-quantity="1">
+              {% comment %}
+                <a class="adjust" data-change="-1">&#8211;</a>
+                 <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
+                <a class="adjust" data-change="1">&#43;</a>
+              {% endcomment %}
+              <select name="quantity" id="Quantity">
                 {% for i in (1..5) %}
                 <option value="{{i}}">{{i}}</option>
                 {% endfor %}
               </select>
-              {% comment %}
-              <a class="adjust" data-change="-1">&#8211;</a>
-               <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
-              <a class="adjust" data-change="1">&#43;</a>
-              {% endcomment %}
             </div>
             {% if sold_out %}
               <button type="submit" name="add" data-add-to-cart disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
               </button>
             {% else %}
-              {% comment %}
               <button type="submit" name="add" data-add-to-cart>
-                <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
-              </button>
-              {% endcomment %}
-              <button id="AddToCart" type="submit" name="add" data-quick-add="{{product.selected_or_first_available_variant.id}}" data-quick-add-qty="1">
                 <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
               </button>
             {% endif %}
@@ -123,30 +117,37 @@
 
         </div>
 
-        <div class="rte" itemprop="description">
-          {{ product.description }}
-        </div>
-
         <h4 class="margin-top">{{ 'social.share.title' | t }}</h4>
         {% include 'social-sharing' %}
 
-        {% if collection %}
-          {% if collection.previous_product or collection.next_product %}
-            <p>
-              {% if collection.previous_product %}
-                <span class="left">
-                  {{ 'product.previous_product' | t | link_to: collection.previous_product }}
-                </span>
-              {% endif %}
-              {% if collection.next_product %}
-                <span class="right">
-                  {{ 'product.next_product' | t | link_to: collection.next_product }}
-                </span>
-              {% endif %}
-            </p>
-          {% endif %}
-        {% endif %}
-
+      </div>
+    </div>
+    <div class="row no-margin">
+      <div class="column l3 m3 s12">
+        <h5>Product Detail</h5>
+        <div class="rte" itemprop="description">
+          {{ product.description }}
+        </div>
+      </div>
+      <div class="column l3 m3 s12">
+        <h5>Product Care</h5>
+        <div class="rte" itemprop="description">
+          <p>Reverse Garment Before Washing.   Machine Wash Cold, Gentle Cycle.  Do Not Bleach.  Air Dry.</p>
+        </div>
+      </div>
+      <div class="column l3 m3 s12">
+        <h5>Satisfaction Guarantee</h5>
+        <div class="rte" itemprop="description">
+          <p>If any reason you are not in love with your BedHead purchase, we will gladly exchange your pajama or refund your money within 30 days of purchase.</p>
+        </div>
+      </div>
+      <div class="column l3 m3 s12">
+        <h5>Need Help?</h5>
+        <div class="rte" itemprop="description">
+          <p>
+            To speak with a representative, simply call us Toll-Free at 1.888.523.3432. Our offices are open Monday-Friday 8:30-5:00 Pacific Standard Time. Please note: We are closed on most major holidays and on weekends.
+          </p>
+        </div>
       </div>
     </div>
   </div>
