@@ -71,11 +71,22 @@
   }
 }
 .align-center.reduced-margin{
-  margin-top: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 .active-filters{
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  height: 1px;
+  &:after{
+    position: absolute;
+    left: 0;
+    content:'';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $border-color;
+    margin-top: 30px;
+  }
 }
 .showingIndex{
   display: inline-block;

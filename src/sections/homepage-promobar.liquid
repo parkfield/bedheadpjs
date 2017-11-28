@@ -1,5 +1,5 @@
 <!-- sections/products.liquid -->
-{% if section.settings.enable_section %}
+{% if settings.enable_promobar_section %}
 <div class="text-content">
   <img src="{{section.settings.image | img_url:'master'}}" alt="{{section.settings.image.alt}}">
   <p>{{section.settings.text}}</p>
@@ -16,12 +16,6 @@
     "name": "Promobar",
     "class": "homepage-promobar",
     "settings": [
-      {
-        "type":"checkbox",
-        "id":"enable_section",
-        "label":"Enable Promobar",
-        "default":true
-      },
       {
         "type": "header",
         "content": "Text Content"

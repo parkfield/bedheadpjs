@@ -20,6 +20,55 @@ $(document).on('click', '#ProductThumbs img', function(event) {
   concrete.Images.switchImage($('#ProductPhoto img')[0], $(this, event.target)[0]);
 })
 
+if($(window).width() < 601){
+  $('#ProductThumbs ul').slick({
+    arrows: false,
+    adaptiveHeight: true
+  });
+}
+
+var descriptionHeight = $('.description-row').height() + 135;
+$('.description-row').css('max-height','250px');
+
+$('.description-row .show-more').click(function(){
+  var currentHeight = $('.description-row').css('max-height');
+  if(currentHeight == '250px'){
+    $('.description-row').css('max-height', descriptionHeight+'px');
+    $(this).text('Show Less');
+    $('.description-row').addClass('active');
+  }else{
+    $('.description-row').css('max-height', '250px');
+    $(this).text('Show More');
+    $('.description-row').removeClass('active');
+  }
+});
+
+//Size Guides
+$('#SizeGuideTrigger').click(function(){
+  $('body').addClass('fixed');
+  $('.size-chart-wrapper, .size-chart').addClass('active');
+});
+
+$('.size-chart-wrapper').click(function(){
+  $('body').removeClass('fixed');
+  $('.size-chart-wrapper, .size-chart').removeClass('active');
+});
+$('#SizeGuideTrigger').trigger('click');
+
+$('.unit-controls .unit-control').click(function(){
+  function cmToIn(cm){
+    return cm*0.39370;
+  }
+  function inToCm(inches){
+    return inches/0.39370;
+  }
+  var convertArray = ['Bust','Waist','Hips'];
+  if($(this).attr('data-unit')=='metric'){
+    console.log('metric');
+  }else{
+    console.log('imperial');
+  }
+});
 </script>
 
 <script type="application/json" id="ProductJson">

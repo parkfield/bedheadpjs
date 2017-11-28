@@ -10,6 +10,11 @@ body {
   background-color: $colorBackground;
   font: 16px/21px sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.fixed{
+  position: fixed;
 }
 
 img {

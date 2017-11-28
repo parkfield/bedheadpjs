@@ -9,7 +9,7 @@ categories = [color, brand, voltage]
 {% if template contains 'collection' and collection.all_tags.size > 0 %}
   {% assign categories = '' %}
   {% for tag in collection.all_tags%}
-  {% unless tag contains 'related' or tag contains 'UPC' %}
+  {% unless tag contains 'related' or tag contains 'UPC' or tag contains 'sizechart' %}
     {% if tag contains '_' %}
       {% assign tagCat = tag | split: '_' | first | handleize %}
       {% unless categories contains tagCat %}

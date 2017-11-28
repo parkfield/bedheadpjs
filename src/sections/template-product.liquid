@@ -11,6 +11,16 @@
   {% assign sold_out = false %}
 {% endif %}
 
+{% assign noReturns = false %}
+{% for tag in product.tags %}
+{% if tag == 'noReturns' %}
+  {% assign noReturns = true %}
+{% endif %}
+{% if tag contains 'sizechart' %}
+  {% assign sizechart = tag | split:'_' | last %}
+{% endif %}
+{% endfor %}
+
 <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
 <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
@@ -23,24 +33,25 @@
       {% include 'theme-breadcrumbs' %}
       </div>
     </div>
-    <div class="row no-margin">
+    <div class="row form-row">
       <div class="column l6 m6 s12 images-column">
         {% if product.images.size > 1 %}
           <div id="ProductThumbs" class="row collapse">
             <ul>
             {% for image in product.images %}
-              <li><img src="{{ image.src | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}></li>
+              <li><img src="{{ image.src | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}></li>
             {% endfor %}
             </ul>
+            {% include 'social-sharing' %}
           </div>
         {% endif %}
 
         <div id="ProductPhoto">
-          <img src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+          <img src="{{ product.featured_image | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
         </div>
       </div>
 
-      <div class="column l6 m6 s12 text-column">
+      <div class="column l6 m6 s12 s-center text-column">
         <h1 itemprop="name">{{ product.title }}</h1>
         <div class="style-number">Style No.<span id="styleNumber">{{product.selected_or_first_available_variant.sku}}</span></div>
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -63,9 +74,14 @@
 
             {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
               {% for option in product.options_with_values %}
+                <div class="label-container">
                 <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
                   {{ option.name }}:
                 </label>
+                {% unless sizechart == blank %}
+                <button type="button" id="SizeGuideTrigger">Size Guide</button>
+                {% endunless %}
+                </div>
                 <select class="single-option-selector" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
                   {% for value in option.values %}
                     <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
@@ -117,47 +133,145 @@
 
         </div>
 
-        <h4 class="margin-top">{{ 'social.share.title' | t }}</h4>
-        {% include 'social-sharing' %}
-
       </div>
     </div>
-    <div class="row no-margin">
+    <div class="row description-row">
       <div class="column l3 m3 s12">
-        <h5>Product Detail</h5>
+        <h5>{{section.settings.column_1_heading}}</h5>
         <div class="rte" itemprop="description">
           {{ product.description }}
         </div>
       </div>
       <div class="column l3 m3 s12">
-        <h5>Product Care</h5>
+        <h5>{{section.settings.column_2_heading}}</h5>
         <div class="rte" itemprop="description">
           <p>Reverse Garment Before Washing.   Machine Wash Cold, Gentle Cycle.  Do Not Bleach.  Air Dry.</p>
         </div>
       </div>
+      {% unless noReturns %}
       <div class="column l3 m3 s12">
-        <h5>Satisfaction Guarantee</h5>
+        <h5>{{section.settings.column_3_heading}}</h5>
         <div class="rte" itemprop="description">
-          <p>If any reason you are not in love with your BedHead purchase, we will gladly exchange your pajama or refund your money within 30 days of purchase.</p>
+          {{section.settings.column_3_body}}
         </div>
       </div>
+      {% else %}
       <div class="column l3 m3 s12">
-        <h5>Need Help?</h5>
+        <h5>{{section.settings.column_3_alt_heading}}</h5>
         <div class="rte" itemprop="description">
-          <p>
-            To speak with a representative, simply call us Toll-Free at 1.888.523.3432. Our offices are open Monday-Friday 8:30-5:00 Pacific Standard Time. Please note: We are closed on most major holidays and on weekends.
-          </p>
+          {{section.settings.column_3_alt_body}}
         </div>
+      </div>
+      {% endunless %}
+      <div class="column l3 m3 s12">
+        <h5>{{section.settings.column_4_heading}}</h5>
+        <div class="rte" itemprop="description">
+          {{section.settings.column_4_body}}
+        </div>
+      </div>
+      <div class="show-more-container">
+        <button class="show-more">Show More</button>
       </div>
     </div>
   </div>
+  <div class="container l">
+    <div class="row related-products">
+      <div class="column l12 m12 s12">
+        <h3>{{'product.related' | t }}</h3>
+      </div>
+      {% assign column_width = 'column l3 m3 s6' %}
+      {% for collection in product.collections %}
+      {% if collection.all_products_count > 4 %}
+        {% for product in collection.products limit: 4 %}
+            {% include 'collection-product' %}
+        {% endfor %}
+        {% break %}
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 </div>
-
+{% unless sizechart == blank %}
+{% include 'size-chart' %}
+{% endunless %}
 {% schema %}
   {
     "name": "Product Page",
     "class": "product-page",
     "settings": [
+      {
+        "type":"header",
+        "content":"Product Column Text"
+      },
+      {
+        "type":"header",
+        "content":"Column 1"
+      },
+      {
+        "type":"text",
+        "label":"Heading",
+        "id":"column_1_heading",
+        "default":"Product Detail"
+      },
+      {
+        "type":"paragraph",
+        "content":"Body Content taken from product description"
+      },
+      {
+        "type":"header",
+        "content":"Column 2"
+      },
+      {
+        "type":"text",
+        "label":"Heading",
+        "id":"column_2_heading",
+        "default":"Product Care"
+      },
+      {
+        "type":"header",
+        "content":"Column 3"
+      },
+      {
+        "type":"paragraph",
+        "content":"If product is tagged with 'noReturns', column 3 will use the alternate heading and body"
+      },
+      {
+        "type":"text",
+        "label":"Heading",
+        "id":"column_3_heading",
+        "default":"Satisfaction Guarantee"
+      },
+      {
+        "type":"richtext",
+        "id":"column_3_body",
+        "label":"Body"
+      },
+      {
+        "type":"text",
+        "label":"Alternate Heading",
+        "id":"column_3_alt_heading",
+        "default":"Return Policy"
+      },
+      {
+        "type":"richtext",
+        "id":"column_3_alt_body",
+        "label":"Alternate Body"
+      },
+      {
+        "type":"header",
+        "content":"Column 4"
+      },
+      {
+        "type":"text",
+        "label":"Heading",
+        "id":"column_4_heading",
+        "default":"Need Help?"
+      },
+      {
+        "type":"richtext",
+        "id":"column_4_body",
+        "label":"Body"
+      }
     ]
   }
 {% endschema %}

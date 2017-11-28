@@ -448,6 +448,11 @@ body {
   background-color: $colorBackground;
   font: 16px/21px sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.fixed{
+  position: fixed;
 }
 
 img {
@@ -1129,11 +1134,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   }
 }
 
-
-.social-sharing {
-  margin-bottom: $gutter;
-}
 .button.share {
+  margin: 0 auto;
   padding: 0 $gutter/4;
   height: $gutter/1.5;
   line-height: ($gutter/1.5 - $borderWeight*2);
@@ -1184,7 +1186,52 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     }
   }
 }
-
+.social-sharing .button.share{
+  width: 50px;
+  height: 25px;
+  @include flex();
+  align-items: center;
+  justify-content: center;
+}
+.social-sharing{
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.share-container{
+  width: 100%;
+  text-align: center;
+  h4{
+    text-transform: uppercase;
+    @include lato-bold(.875rem);
+  }
+  button{
+    margin: 0 auto;
+    min-width: initial;
+    width: auto;
+    border: none;
+    background-color: transparent;
+    height: 25px;
+    font-size: 1.5rem;
+    svg{
+      height: 25px;
+      width: 25px;
+      fill: $font-color;
+    }
+    &:hover{
+      svg{fill: $accent-color;}
+      color: $accent-color;
+    }
+  }
+  &:hover, &:focus, &:active{
+    .social-sharing{
+      max-height: initial;
+      opacity: 1;
+    }
+  }
+}
 /* SVG Icons =================================================================*/
 
 // Don't forget to comrpress your icons! https://jakearchibald.github.io/svgomg/
@@ -1220,61 +1267,6 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 /* Product ===================================================================*/
 
-.template-product {
-  .main-content{
-    max-width: 960px;
-  }
-  .images-column #ProductPhoto img{
-    width: 100%;
-  }
-  .text-column h1{
-    font-size: 2rem;
-    margin-bottom: 15px;
-  }
-  .text-column .style-number{
-    @include heading-dash();
-    @include lato-reg(0.875rem);
-    &:after{
-      left: 0;
-      margin-top: 12px;
-      transform: none;
-      height: 1px;
-      background: #979797;
-    }
-  }
-  .text-column #ProductPrice{
-    margin-top: 18px;
-    margin-bottom: 32px;
-    @include lato-reg(1.5rem);
-  }
-  .text-column label{
-    display: block;
-    margin-bottom: 8px;
-    font-size: .875rem;
-  }
-  .text-column .single-option-selector{
-    padding-left: 19px;
-    background-color: $bg-main;
-    border: thin solid $border-color;
-    color: $font-color;
-    height: 50px;
-    max-width: 280px;
-    margin-right: auto;
-    font-size: .875rem;
-  }
-  .text-column #Quantity{
-    height: 50px;
-    max-width: 280px;
-    border: thin solid $border-color;
-    color: $font-color;
-    background-color: $bg-main;
-    font-size: .875rem;
-    padding-left: 19px;
-  }
-  .text-column button[type="submit"]{
-    max-width: 280px;
-  }
-}
 
 .pagination{
   display: inline-block;
@@ -2190,10 +2182,12 @@ footer.theme-footer{
 .collection-page .currentTags{
   color: #a1a4a6;
   display: inline-block;
-  margin-right: 30px;
+  margin-right: 15px;
+  font-size: .875rem;
 }
 .collection-page .reset-filter{
   display: inline-block;
+  @include lato-bold(.875rem);
 }
 .filter-menu-container{
   .mobile-filter-trigger{
@@ -2484,11 +2478,22 @@ footer.theme-footer{
   }
 }
 .align-center.reduced-margin{
-  margin-top: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 .active-filters{
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  height: 1px;
+  &:after{
+    position: absolute;
+    left: 0;
+    content:'';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $border-color;
+    margin-top: 30px;
+  }
 }
 .showingIndex{
   display: inline-block;
@@ -2527,10 +2532,19 @@ footer.theme-footer{
 }
 
 .product-page{
+  .main-content{
+    max-width: 960px;
+  }
+
   .images-column{
     @include flex();
     #ProductThumbs{
       width: 25%;
+      @include flex();
+      flex-flow: row wrap;
+    }
+    .share-container{
+      align-self: flex-end;
     }
     #ProductThumbs img{
       max-height: 115px;
@@ -2539,7 +2553,277 @@ footer.theme-footer{
       width: 75%;
     }
   }
+
+  .images-column #ProductPhoto img{
+    width: 100%;
+  }
+  .text-column h1{
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  .text-column .style-number{
+    @include heading-dash();
+    @include lato-reg(0.875rem);
+    &:after{
+      left: 0;
+      margin-top: 12px;
+      transform: none;
+      height: 1px;
+      background: #979797;
+    }
+  }
+  .text-column #ProductPrice{
+    margin-top: 18px;
+    margin-bottom: 32px;
+    @include lato-reg(1.5rem);
+  }
+  .text-column .label-container{
+    max-width: 280px;
+    margin-right: 0;
+    @include flex();
+    justify-content: space-between;
+  }
+  .text-column label{
+    display: block;
+    margin-bottom: 8px;
+    @include lato-reg(.875rem);
+  }
+  .text-column #SizeGuideTrigger{
+    @include lato-reg(.875rem);
+    text-decoration: underline;
+    background-color: transparent;
+    color: $font-color;
+    border: none;
+    text-transform: capitalize;
+    min-height: initial;
+    min-width: initial;
+    height: auto;
+    width: auto;
+    padding: 0px;
+    &:hover{
+      color: $accent-color;
+    }
+  }
+  .text-column .single-option-selector{
+    padding-left: 19px;
+    background-color: $bg-main;
+    border: thin solid $border-color;
+    color: $font-color;
+    height: 50px;
+    max-width: 280px;
+    margin-right: auto;
+    font-size: .875rem;
+  }
+  .text-column #Quantity{
+    height: 50px;
+    max-width: 280px;
+    border: thin solid $border-color;
+    color: $font-color;
+    background-color: $bg-main;
+    font-size: .875rem;
+    padding-left: 19px;
+  }
+  .text-column button[type="submit"]{
+    max-width: 280px;
+  }
+  .form-row{
+    margin-bottom: 60px;
+  }
+  .description-row{
+    position: relative;
+  }
+  .description-row .show-more-container{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 135px;
+    background: rgba($bg-main, .8);
+    display: none;
+    button{
+      background: $bg-main;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-color: $accent-color;
+      color: $font-color;
+      @include prefix(transform, translate(-50%,-50%));
+      &:hover, &:active{
+        background: $accent-color;
+        color: $bg-main;
+      }
+    }
+  }
+  .description-row h5{
+    margin-bottom: 30px;
+    @include lato-bold(0.875rem);
+  }
+  .related-products{
+    @include flex();
+    flex-flow: row wrap;
+    width: 100%;
+    margin: 0 auto;
+    h3{
+      text-align: center;
+      @include heading-dash();
+      margin-bottom: 70px;
+    }
+  }
+  @include max-query($s){
+    .images-column{
+      #ProductPhoto{
+        display: none;
+      }
+      #ProductThumbs{
+        width: 100%;
+      }
+      #ProductThumbs img{
+        width: 100%;
+        max-height: initial;
+      }
+    }
+    .text-column{
+      label{
+        text-align: left;
+      }
+      .style-number:after{
+        left: 50%;
+        @include prefix(transform, translateX(-50%));
+      }
+      #Quantity, .single-option-selector, button[type="submit"]{
+        max-width: 100%;
+      }
+    }
+    .description-row{
+      overflow: hidden;
+      transition: max-height .3s;
+      .column:first-child h5{
+        margin-top: 0px;
+      }
+      h5{
+        margin: 30px 0px 15px 0px;        
+      }
+      .show-more-container{
+        display: block;
+      }
+    }
+    .description-row.active{
+      overflow: visible;
+      margin-bottom: 130px;
+      .show-more-container{
+        bottom: -140px;
+      }
+    }
+  }
 }
+
+.product-page{
+  .size-chart-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255, .86);
+    opacity: 0;
+    z-index: -1;
+  }
+
+  .size-chart-wrapper.active{
+    opacity: 1;
+    z-index: 5;
+  }
+
+  .size-chart{
+    width: 420px;
+    z-index: -1;
+    opacity: 0;
+    background: $bg-main;
+    position: fixed;
+    right: -420px;
+    top: 0;
+    bottom: 0;
+    box-shadow: 0px 2px 34px rgba(0, 0, 0, 0.125283);
+    transition: right .3s;
+  }
+
+  .size-chart.active{
+    z-index: 6;
+    opacity: 1;
+    right: 0px;
+  }
+}
+.size-chart{
+  overflow: scroll;
+}
+.size-chart .content{
+  padding: 25px 30px;
+}
+.size-chart .content h3{
+  @include lato-bold(1.125rem);
+  margin-bottom: 8px;
+}
+.size-chart .content p{
+  margin-bottom: 25px;
+  @include lato-reg(.875rem);
+  color: #90939A;
+}
+.size-chart .content .unit-controls{
+  @include flex();
+  margin-bottom: 35px;
+  button{
+    min-width: initial;
+    min-height: initial;
+    background-color: transparent;
+    border-color: $border-color;
+    border-radius: 0px;
+    height: 55px;
+    width: 55px;
+    color: $border-color;   
+    &:hover{
+      color: $font-color;
+      border-color: $border-color;
+    } 
+  }
+  button.selected{
+    background: $font-color;
+    color: $font-color-light;
+    border-color: $font-color;
+  }
+  .metric{
+    border-right: none;
+  }
+  .imperial{
+    border-left: none;
+  }
+}
+
+.size-chart table td{
+  height: 50px;
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+.size-chart table td{
+  border: thin solid $border-color;
+  border-bottom: none;
+  border-top: none;
+  @include lato-reg(.875rem);
+}
+
+.size-chart table tr:nth-child(2n+1){
+  background: $bg-light;
+}
+
+.size-chart table tr:first-child{
+  background: $font-color;
+  color: $border-color;
+}
+
+.size-chart table tr:last-child{
+  border-bottom: thin solid $border-color;
+}
+
+
 /* Helpers ===================================================================*/
 // Alignment Helpers
 .left {

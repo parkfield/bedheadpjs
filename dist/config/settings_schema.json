@@ -47,6 +47,17 @@
     ]
   },
   {
+    "name":"Promobar",
+    "settings":[
+      {
+        "type":"checkbox",
+        "id":"enable_promobar_section",
+        "label":"Enable Promobar",
+        "default":true
+      }
+    ]
+  },
+  {
     "name": "Header",
     "settings": [
       {

@@ -174,7 +174,8 @@
     "next_product": "Next",
     "unavailable": "Sold out",
     "sold_out": "Sold out",
-    "new":"New"
+    "new":"New",
+    "related":"You May Also Like"
   },
   "home_page": {
     "title": "Home"
