@@ -2540,11 +2540,17 @@ footer.theme-footer{
     @include flex();
     #ProductThumbs{
       width: 25%;
-      @include flex();
-      flex-flow: row wrap;
-    }
-    .share-container{
-      align-self: flex-end;
+      .share-container{
+        display: none;
+      }
+      @include min-query($s){
+        @include flex();
+        flex-flow: row wrap;  
+        .share-container{
+          display: block;
+          align-self: flex-end;
+        }      
+      }
     }
     #ProductThumbs img{
       max-height: 115px;
@@ -2682,6 +2688,9 @@ footer.theme-footer{
       }
     }
     .text-column{
+      .label-container{
+        max-width: 100%;
+      }
       label{
         text-align: left;
       }

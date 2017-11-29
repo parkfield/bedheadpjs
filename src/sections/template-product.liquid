@@ -79,7 +79,7 @@
                   {{ option.name }}:
                 </label>
                 {% unless sizechart == blank %}
-                <button type="button" id="SizeGuideTrigger">Size Guide</button>
+                <button type="button" data-page-handle="{{sizechart}}" id="SizeGuideTrigger">Size Guide</button>
                 {% endunless %}
                 </div>
                 <select class="single-option-selector" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">

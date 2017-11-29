@@ -45,30 +45,133 @@ $('.description-row .show-more').click(function(){
 
 //Size Guides
 $('#SizeGuideTrigger').click(function(){
-  $('body').addClass('fixed');
-  $('.size-chart-wrapper, .size-chart').addClass('active');
+  if($(window).width() > 600){
+    $('body').addClass('fixed');
+    $('.size-chart-wrapper, .size-chart').addClass('active');
+    $('.unit-controls .imperial').trigger('click');
+  }else{
+    window.open('/pages/'+$(this).attr('data-page-handle'), '_blank');
+  }
 });
 
 $('.size-chart-wrapper').click(function(){
   $('body').removeClass('fixed');
   $('.size-chart-wrapper, .size-chart').removeClass('active');
 });
-$('#SizeGuideTrigger').trigger('click');
+
 
 $('.unit-controls .unit-control').click(function(){
-  function cmToIn(cm){
-    return cm*0.39370;
-  }
-  function inToCm(inches){
-    return inches/0.39370;
-  }
-  var convertArray = ['Bust','Waist','Hips'];
-  if($(this).attr('data-unit')=='metric'){
-    console.log('metric');
-  }else{
-    console.log('imperial');
+  if(!$(this).hasClass('selected')){
+    var unit = $(this).attr('data-unit');
+    
+    //Handles Button State 
+    if(unit =='metric'){
+      $('.unit-controls .imperial').removeClass('selected');
+    }else{
+      $('.unit-controls .metric').removeClass('selected');
+    }
+    $(this).addClass('selected');
+
+    //Conversion Functions
+    function cmToIn(cm){
+      return Math.round(cm*0.39370);
+    }
+    function inToCm(inches){
+      return Math.round(inches/0.39370);
+    }
+    
+    function lbToKg(lb){
+      return Math.round(10*(lb/2.2046))/10;
+    }
+
+    function kgToLb(kg){
+      return Math.round(10*kg*2.2046)/10;
+    }
+    //Array of which attributes to convert
+    var lengthAttrArray = ['Height', 'Bust','Waist','Hips','Chest','General Inseam'];
+    var weightAttrArray = ['Weight'];
+
+    var lengthColumnPositions = [];
+    var weightColumnsPositions = [];
+
+    //Gets the column position of the column we need to convert the length and appends to the array
+    $('.size-chart tr:first-child td').each(function(index){
+      var currentAttribute = $(this).text();
+      if(lengthAttrArray.indexOf(currentAttribute) > -1){
+        lengthColumnPositions.push(index+1);
+      }
+      if(weightAttrArray.indexOf(currentAttribute) > -1){
+        weightColumnsPositions.push(index+1);
+      }
+    });
+    
+    //Goes through each column and converts each value except for the headings
+    lengthColumnPositions.forEach(function(position){
+      $('.size-chart tr:not(:first-child) td:nth-child('+position+')').each(function(){
+        var currentUnitValue = $(this).text();
+        if(currentUnitValue.indexOf('-') > -1){
+          currentUnitValue = currentUnitValue.split('-');
+          currentUnitValue = currentUnitValue.map(function(value){
+            return parseInt(value);
+          });
+          if(unit =='metric'){
+            $(this).text(inToCm(currentUnitValue[0])+'-'+inToCm(currentUnitValue[1]));
+          }else{
+            $(this).text(cmToIn(currentUnitValue[0])+'-'+cmToIn(currentUnitValue[1]));
+          }          
+        }else{
+          currentUnitValue = parseInt(currentUnitValue);
+          if(unit =='metric'){
+            $(this).text(inToCm(currentUnitValue));
+          }else{
+            $(this).text(cmToIn(currentUnitValue));
+          }
+        }
+      });
+    });
+    //If there is a second table we know it is the womens chart so we will manually target the general inseam column
+    var tables = $('table');
+    if(tables.length > 1){
+      $('.size-chart table:last-child tr:not(:first-child) td:nth-child(2)').each(function(){
+        var currentUnitValue = $(this).text();
+        currentUnitValue = currentUnitValue.split('-');
+        currentUnitValue = currentUnitValue.map(function(value){
+          return parseInt(value);
+        });
+        if(unit =='metric'){
+          $(this).text(inToCm(currentUnitValue[0])+'-'+inToCm(currentUnitValue[1]));
+        }else{
+          $(this).text(cmToIn(currentUnitValue[0])+'-'+cmToIn(currentUnitValue[1]));
+        }          
+      });
+    }
+
+    weightColumnsPositions.forEach(function(position){
+      $('.size-chart tr:not(:first-child) td:nth-child('+position+')').each(function(){
+        var currentUnitValue = $(this).text();
+        if(currentUnitValue.indexOf('-') > -1){
+          currentUnitValue = currentUnitValue.split('-');
+          currentUnitValue = currentUnitValue.map(function(value){
+            return parseInt(value);
+          });
+          if(unit =='metric'){
+            $(this).text(lbToKg(currentUnitValue[0])+'-'+lbToKg(currentUnitValue[1]));
+          }else{
+            $(this).text(kgToLb(currentUnitValue[0])+'-'+kgToLb(currentUnitValue[1]));
+          }          
+        }else{
+          currentUnitValue = parseInt(currentUnitValue);
+          if(unit =='metric'){
+            $(this).text(lbToKg(currentUnitValue));
+          }else{
+            $(this).text(kgToLb(currentUnitValue));
+          }
+        }
+      });
+    });
   }
 });
+
 </script>
 
 <script type="application/json" id="ProductJson">
