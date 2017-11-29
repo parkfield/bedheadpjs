@@ -153,6 +153,9 @@
   @include max-query($s){
     .images-column{
       #ProductPhoto{
+        width: 100%;
+      }
+      #ProductPhoto.hasThumbs{
         display: none;
       }
       #ProductThumbs{

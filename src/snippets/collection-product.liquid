@@ -59,7 +59,7 @@
         {% if variant.available %}
         {% assign quickAvailable = true %}
         {% endif %}
-        <a data-quick-add="{{variant.id}}">{% include 'collection-product-variant-title' %}</a>
+        <a data-quick-add="{{variant.id}}" data-quick-add-qty="1">{% include 'collection-product-variant-title' %}</a>
         {% endfor %}
       </div>
     </div>

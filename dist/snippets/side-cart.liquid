@@ -6,103 +6,168 @@
    - Handlebars
 {% endcomment %}
 
-<div id="SideCart" class="popup overlay">
+<form id="PopupCart" class="popup overlay" name="checkout" action="/cart" method="post" novalidate>
   <div class="popup-inner">
     <div class="popup-content left">
-      <div class="h4">{{ 'cart.title' | t }}</div>
+      <div class="h4">Your Cart</div>
       <div class="items" data-item-container>
         {% for item in cart.items %}
           <div class="item">
-            <p>
-              <a href="{{ item.url }}">{{ item.title }}</a>
-            </p>
-            <div class="row cart-item">
-              <div class="column l6 m6 s6">
-                {% if item.total_discount > 0 %}
-                  <p class="no-margin">
-                    <strong>{% if item.line_price != 0 %}{{ item.line_price | money_with_currency  }}{% else %}Free{% endif %}</strong>
-                    <span> </span>
-                    <s class="small">{{ item.original_line_price | money_with_currency }}</s>
-                  </p>
-                  {% for discount in item.discounts %}
-                    <small class="no-margin">{{ discount.title }}</small><br>
-                  {% endfor %}
-                {% else %}
-                  <p class="no-margin">
-                    <strong>{{ item.line_price | money_with_currency }}</strong>
-                  </p>
-                {% endif %}
-                <p><small><a href="#" data-remove-item data-item-id="{{ item.id }}">Remove</a></small></p>
-              </div>
-              <div class="column l6 m6 s6 right">
-                <div class="quantity-adjust">
-                  <a class="adjust minusOne" data-minus-one>&#8722;</a>
-                  <span class="quantity" data-item-quantity data-item-id="{{ item.id }}">{{ item.quantity }}</span>
-                  <a class="adjust plusOne" data-plus-one>&#43;</a>
+            <div class="image-container">  
+              <img src="{{ item.image | img_url:'master' }}">
+            </div>
+            <div class="description-container">
+              {% assign item_title = item.title | split: '-'%}
+              <a class="product-link" href="{{ item.url }}">
+                <span class="title">{{ item.product.title }}</span><br>
+                <span class="variant">{{ item.variant.title }}</span>
+              </a>
+              <div class="quantity-container">
+                <div class="cart-quantity">
+                  <div class="quantity-adjust">
+                    <a class="adjust minusOne" data-minus-one onclick="checkRemoveMinus(this)">&#8722;</a>
+                    <span class="quantity" data-item-quantity data-item-id="{{ item.id }}">{{ item.quantity }}</span>
+                    <a class="adjust plusOne" data-plus-one>&#43;</a>
+                  </div>
                 </div>
+                {% comment %}
+                <div class="column l6 m6 s6 right remove"><a onclick="checkRemove()" href="#" data-remove-item data-item-id="{{ item.id }}">Remove</a></div>
+                {% endcomment %}
               </div>
             </div>
+            <div class="price-container">
+              {% if item.total_discount > 0 %}
+                <div class="no-margin">
+                  <p>{% if item.line_price != 0 %}{{ item.line_price | money  }}{% else %}Free{% endif %}</p>
+                  <span> </span>
+                  <s class="small">{{ item.original_line_price | money}}</s>
+                </div>
+                {% for discount in item.discounts %}
+                  <small class="no-margin">{{ discount.title }}</small><br>
+                {% endfor %}
+              {% else %}
+                <div class="no-margin">
+                  <p>{{ item.line_price | money }}</p>
+                </div>
+              {% endif %}
+            </div>
           </div>
-        {% else %}
-          <p>Your cart is empty!</p>
-        {% endfor %}
+        {% endfor  %}
       </div>
-      <hr>
-      <p><small>{{ 'cart.shipping_at_checkout' | t }}</small></p>
-      <div class="row cart-item">
-        <div class="column l6 m6 s6">
-          <a href="/cart" aria-label="{{ 'cart.view_cart' | t }}">{{ 'cart.view_cart' | t }}</a>
+      <div class="subtotal-container">
+        <hr class="line-break" />
+        <div class="total-price" >
+          <div>{{ 'cart.subtotal' | t }}</div> <div data-cart-total>{{ cart.total_price | money_with_currency }}</div>
         </div>
-        <div class="column l6 m6 s6 right">
-          <strong>{{ 'cart.total' | t }} <span data-cart-total>{{ cart.total_price | money_with_currency }}</span></strong>
+        <div class="buttons">
+          <a href="#close!" class="btn btn-continue" data-close data-target="#PopupCart.popup" aria-label="{{ 'common.close' | t }}">Continue</a>
+          <button type="submit" name="checkout" class="btn" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</button>
         </div>
       </div>
-      <p class="center"><a href="/cart" class="button wide" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</a></p>
-      <a href="#close" class="popup-close" data-close data-target="#PopupCart.popup" aria-label="{{ 'common.close' | t }}">{{ 'common.close' | t }}</a>
+      <div class="empty-cart-content">
+        <h2>Your cart is empty.</h2>
+        <p class="center">
+          <a href="#close!" class="btn btn-continue" data-close data-target="#PopupCart.popup" aria-label="{{ 'common.close' | t }}">Continue</a>
+        </p>
+      </div>
+
+      <a href="#close!" class="popup-close" data-close data-target="#PopupCart.popup" aria-label="{{ 'common.close' | t }}">{% include 'social-icons', social:'close' %}</a>
     </div>
   </div>
+
   {% raw %}
   <script data-cart-template type="text/x-handlebars-template">
     <div class="item">
-      <p>
-        <a href="{{lineItem.url}}">{{lineItem.title}}</a>
-      </p>
-      <div class="row cart-item">
-        <div class="column l6 m6 s6">
-          {{#if lineItem.total_discount}}
-            <!-- <s>{{formatMoney lineItem.original_line_price}}</s> -->
-            <p class="no-margin">
-              <strong>
-                {{#if lineItem.line_price}}
-                 {{formatMoney lineItem.line_price}}
-                {{else}}
-                  Free
-                {{/if}}
-              </strong>
-              <span> </span>
-              <s class="small">{{formatMoney lineItem.original_line_price}}</s>
-            </p>
-            {{#each lineItem.discounts}}
-               <small class="no-margin">{{this.title}}</small><br>
-            {{/each}}
-            <!-- <small class="no-margin">{{lineItem.discounts}}</small> -->
-          {{else}}
-            <p class="no-margin">
-              <strong>{{formatMoney lineItem.line_price}}</strong>
-            </p>
-          {{/if}}
-          <p><small><a href="#" data-remove-item data-item-id="{{lineItem.id}}">Remove</a></small></p>
-        </div>
-        <div class="column l6 m6 s6 right">
-          <div class="quantity-adjust">
-            <a class="adjust" data-minus-one>&#8722;</a>
-            <span class="quantity" data-item-quantity data-item-id="{{lineItem.id}}">{{ lineItem.quantity }}</span>
-            <a class="adjust" data-plus-one>&#43;</a>
+      <div class="image-container">
+        <img src="{{ lineItem.image }}">
+      </div>
+      <div class="description-container">
+        <a class="product-link" href="{{ lineItem.url }}">
+          <span class="title">{{ lineItem.product_title }}</span><br>
+          <span class="variant">{{ lineItem.variant_title }}</span>
+        </a>
+
+        <div class="quantity-container">
+          <div class="cart-quantity">
+            <div class="quantity-adjust">
+              <a class="adjust" data-minus-one onclick="checkRemoveMinus(this)">&#8722;</a>
+              <span class="quantity" data-item-quantity data-item-id="{{lineItem.id}}">{{ lineItem.quantity }}</span>
+              <a class="adjust" data-plus-one>&#43;</a>
+            </div>
           </div>
         </div>
+          <!--<div class="column l6 m6 s6 right remove"><a href="#" data-remove-item data-item-id="{{lineItem.id}}" onclick="checkRemove()">Remove</a></div>-->
+      </div>
+      <div class="price-container">
+        {{#if lineItem.total_discount}}
+          <div class="no-margin">
+            <p>
+              {{#if lineItem.line_price}}
+               ${{formatMoney lineItem.line_price}}
+              {{else}}
+                Free
+              {{/if}}
+            </p>
+            <s class="small">${{formatMoney lineItem.original_line_price}} </s>
+          </div>
+          {{#each lineItem.discounts}}
+             <small class="no-margin">{{this.title}}</small><br>
+          {{/each}}
+        {{else}}
+          <div class="no-margin">
+            <p>${{formatMoney lineItem.line_price}} </p>
+          </div>
+        {{/if}}
       </div>
     </div>
   </script>
   {% endraw %}
-</div>
 
+</form>
+
+
+<script>
+  var cartPopup = new Focus('#PopupCart.popup');
+  //when adding through collections
+  $('button[name="add"]').click(function(){
+    if($('#PopupCart .items .item').length > -1){
+      $('#PopupCart .empty-cart-content').hide();
+      $('#PopupCart .subtotal-container').show();
+
+    }
+  });
+  //when clicking jewelry box
+  $('#CartLink').click(function(){
+    if($('#PopupCart .items .item').length > 0){
+      $('#PopupCart .empty-cart-content').hide();
+      $('#PopupCart .subtotal-container').show();  
+      //Jibin is a genius  
+      $('.h4').show();
+      $('.items').show();
+      $('.subtotal-container').show();
+      $('.register').hide();
+      $('.loginhere').hide();
+    }else{
+
+      $('#PopupCart .subtotal-container').hide();
+    }
+  });
+
+  function checkRemove(){
+    console.log($('#PopupCart .items .item').length);
+    if($('#PopupCart .items .item').length < 2){
+      $('#PopupCart .empty-cart-content').show();
+      $('#PopupCart .subtotal-container').hide();
+    }
+  }
+  function checkRemoveMinus(button){
+    if($('#PopupCart .items .item').length < 2 && $(button).next()[0].innerHTML == 1){
+      $('#PopupCart .empty-cart-content').show();
+      $('#PopupCart .subtotal-container').hide();
+    }
+  }
+
+  $('.money').prepend('$');
+
+
+</script>

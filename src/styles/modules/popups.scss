@@ -41,7 +41,7 @@
       white-space: nowrap;
       @include overlay();
       @include prefixer(transition-delay, 0.3s, webkit moz spec);
-      @include prefixer(transform, translateY(-$gutter/2), webkit moz ms spec);
+      //@include prefixer(transform, translateY(-$gutter/2), webkit moz ms spec);
       @include transition();
     }
     .popup-content {

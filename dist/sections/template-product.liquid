@@ -36,6 +36,7 @@
     <div class="row form-row">
       <div class="column l6 m6 s12 images-column">
         {% if product.images.size > 1 %}
+          {% assign hasThumbs = true %}
           <div id="ProductThumbs" class="row collapse">
             <ul>
             {% for image in product.images %}
@@ -46,7 +47,7 @@
           </div>
         {% endif %}
 
-        <div id="ProductPhoto">
+        <div id="ProductPhoto" {% if hasThumbs %}class="hasThumbs"{% endif %}>
           <img src="{{ product.featured_image | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
         </div>
       </div>
