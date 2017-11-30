@@ -1,7 +1,6 @@
 <!-- templates/cart.liquid -->
-
+<div class="cart-page">
 {% if cart.item_count > 0 %}
-
   <div class="container l">
     <h1>{{ 'cart.title' | t }}</h1>
   </div>
@@ -9,29 +8,31 @@
   <form id="CartPage" action="/cart" method="post" novalidate>
     <div class="container l s-hide">
       <div class="row l-table m-table" id="CartHeader">
-        <div class="column l5 m5">{{ 'cart.product' | t }}</div>
-        <div class="column l3 m2">{{ 'cart.price' | t }}</div>
-        <div class="column l2 m3">{{ 'cart.quantity' | t }}</div>
-        <div class="column l2 m2 l-right m-right">{{ 'cart.subtotal' | t }}</div>
+        <div class="column l2 m2">{{ 'cart.product' | t }}</div>
+        <div class="column l4 m4">{{ 'cart.description' | t }}</div>
+        <div class="column l2 m2 center">{{ 'cart.quantity' | t }}</div>
+        <div class="column l2 m2 center">{{ 'cart.price' | t }}</div>
+        <div class="column l2 m2 l-right m-right">{{ 'cart.unit_total' | t }}</div>
       </div>
     </div>
 
-    <div class="container l">
+    <div class="container l" data-item-container>
       {% for item in cart.items %}
-        <div class="row l-table m-table">
-          <div class="column l1 m2 s12 v-top">
+        <div class="item row l-table m-table">
+          <div class="column l2 m2 s12 v-top">
             <a href="{{ item.url | within: collections.all }}">
+              <div class="image" style="background-image: url('{{ item | img_url: '200x' }}');"></div>
               <img class="product_image" src="{{ item | img_url: '200x' }}" alt="{{ item.title | escape }}">
             </a>
           </div>
-          <div class="column l4 m3 s12 v-top">
+          <div class="column l4 m4 s12 v-top">
             <p>
               <a class="product_title h4" href="{{ item.url }}">
                 {{ item.product.title }}
               </a>
               <span>
                 <a class="variant_title h5" href="{{ item.url }}">
-                  {{ item.variant.title }}
+                  Size: {{ item.variant.title }}
                 </a>
               </span>
               {% comment %}
@@ -58,37 +59,36 @@
               {% endif %}
             </p>
           </div>
-          <div class="column l3 m2 s-hide v-top">
-            {{ item.price | money_with_currency }}
-          </div>
-          <div class="column l2 m3 s12 v-top">
-            <div class="row table collapse">
-              <div class="column l12 m12 s6 v-middle">
-                <div class="quantity-adjust no-margin">
-                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}" class="adjust" id="minusOne" data-change="-1">&#8211;</a>
-                  <input class="quantity cart_quantity" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" pattern="[0-9]*">
-                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}" class="adjust" id="plusOne" data-change="1">&#43;</a>
-                </div>
-              </div>
-              <div class="column l6 v-middle s-show right">
-                {% if item.total_discount > 0 %}
-                  <s>{{ item.original_line_price | money_with_currency }}</s>
-                  <p class="no-margin">{{ item.message }}</p>
-                {% else %}
-                  <p class="no-margin"><strong>{{ item.line_price | money_with_currency }}</strong></p>
-                {% endif %}<br>
-                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>
-              </div>
+          <div class="column l2 m3 s6 v-top center">
+            <div class="quantity-adjust no-margin">
+              <a class="adjust minusOne" data-minus-one onclick="checkRemoveMinus(this)">&#8722;</a>
+              <span class="quantity" data-item-quantity data-item-id="{{ item.id }}">{{ item.quantity }}</span>
+              <a class="adjust plusOne" data-plus-one>&#43;</a>
             </div>
+          </div>
+          <div class="column l2 m2 s-hide v-top center">
+            <div class="unit-price">{{ item.price | money }}</div>
+          </div>
+          <div class="column l3 v-top s-show right">
+            {% if item.total_discount > 0 %}
+              <s>{{ item.original_line_price | money }}</s>
+              <p class="no-margin">{{ item.message }}</p>
+            {% else %}
+              <p class="no-margin">{{ item.line_price | money }}</p>
+            {% endif %}<br>
+            <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>-->
           </div>
           <div class="column l2 m2 right v-top s-hide">
             {% if item.total_discount > 0 %}
-              <s>{{ item.original_line_price | money_with_currency }}</s>
-              <p class="no-margin">{{ item.message }}</p>
+              <s>{{ item.original_line_price | money }}</s>
+              <p class="units-price">{{ item.message }}</p>
+              <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>-->
             {% else %}
-              <p class="no-margin"><strong>{{ item.line_price | money_with_currency }}</strong></p>
+              <div class="units-price">
+              <p>{{ item.line_price | money }}</p>
+              <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>-->
+              </div>
             {% endif %}<br>
-            <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>
           </div>
         </div>
       {% endfor %}
@@ -97,23 +97,21 @@
     <div class="container l">
       <div class="row no-margin">
         <div class="column l6 m6 s12">
+          {% if settings.freeshipping != blank %}
+            <p id="shippingNotice"></p>
+          {% endif %}
           {% if settings.cart_notes_enable %}
             <label for="CartSpecialInstructions">{{ 'cart.note' | t }}</label>
             <textarea class="wide" name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
           {% endif %}
         </div>
         <div class="column l6 m6 s12 l-right m-right">
-
           <p>
             <span class="cart-total-heading">{{ 'cart.total' | t }}</span>
-            <span class="h3">{{ cart.total_price | money_with_currency }}</span>
+            <span id="SubTotal" class="h3" data-cart-total>{{ cart.total_price | money }}</span>
           </p>
-
-
-
           <p><em>{{ 'cart.shipping_at_checkout' | t }}</em></p>
 
-          <button type="submit" name="update">{{ 'cart.update' | t }}</button>
           <button type="submit" name="checkout">{{ 'cart.checkout' | t }}</button>
 
           {% if additional_checkout_buttons %}
@@ -128,10 +126,109 @@
   </form>
 
 {% else %}
-
   <div class="container l">
     <h2>{{ 'cart.title' | t }}</h2>
     <p class="h4">{{ 'cart.empty' | t }}</p>
   </div>
-
 {% endif %}
+</div>
+
+{% raw %}
+<script data-cart-template type="text/x-handlebars-template">
+  <div class="row item l-table m-table">
+    <div class="column l2 m2 s12 v-top">
+      <a href="{{ lineItem.url }}">
+        <div class="image" style="background-image: url('{{ lineItem.image }}');"></div>
+        <img class="product_image" src="{{ lineItem.image }}" alt="{{ lineItem.image.alt }}">
+      </a>
+    </div>
+    <div class="column l4 m4 s12 v-top">
+      <p>
+        <a class="product_title h4" href="{{ lineItem.url }}">
+          {{ lineItem.product_title }}
+        </a>
+        <span>
+          <a class="variant_title h5" href="{{ lineItem.url }}">
+            Size: {{ lineItem.variant_title }}
+          </a>
+        </span>
+      </p>
+    </div>
+    <div class="column l2 m2 s6 v-top center">
+      <div class="quantity-adjust no-margin">
+        <a class="adjust minusOne" data-minus-one onclick="checkRemoveMinus(this)">&#8722;</a>
+        <span class="quantity" data-item-quantity data-item-id="{{ lineItem.id }}">{{ lineItem.quantity }}</span>
+        <a class="adjust plusOne" data-plus-one>&#43;</a>
+      </div>
+    </div>
+    <div class="column l2 m2 s-hide v-top center">
+      <div class="unit-price">${{formatMoney lineItem.price}}</div>
+    </div>
+    <div class="column l2 v-top right">
+      <div class="price-container">
+      {{#if lineItem.total_discount}}
+        <div class="no-margin">
+          <p>
+            {{#if lineItem.line_price}}
+             ${{formatMoney lineItem.line_price}}
+            {{else}}
+              Free
+            {{/if}}
+          </p>
+          <s class="small">${{formatMoney lineItem.original_line_price}} </s>
+        </div>
+        {{#each lineItem.discounts}}
+           <small class="no-margin">{{this.title}}</small><br>
+        {{/each}}
+      {{else}}
+        <div class="units-price">
+          <p>${{formatMoney lineItem.line_price}} </p>
+          <!--<a href="#" data-remove-item data-item-id="{{lineItem.id}}"><small>Remove</small></a> -->
+        </div>
+      {{/if}}
+      </div>
+    </div>
+  </div>
+</script>
+  {% endraw %}
+
+<style>
+  .theme-header{border-bottom: thin solid {{settings.border_color}};}
+</style>
+
+<script>
+  //when clicking jewelry box
+  function calculateFreeShipping(){
+    {% if settings.freeshipping != blank %}
+    var subtotal = $('#SubTotal').text().replace('$','');
+    var minumum = parseInt('{{settings.freeshipping}}');
+    if(subtotal.indexOf('.')>-1){
+      subtotal = parseInt(subtotal.split('.')[0]);
+    }
+    var difference = minumum - subtotal;
+
+    if(difference > 0){
+      $('#shippingNotice').text("You're only $"+difference+" away from FREE shipping");
+    }else{
+      $('#shippingNotice').text('You are eligible for FREE shipping');
+    }
+    {% endif %}
+  }
+  function startShippingCheck(){
+    if($('#CartPage .item').length > 0){
+      $('#shippingNotice').show();
+      calculateFreeShipping();
+    }else{
+      $('#shippingNotice').hide();
+      calculateFreeShipping();
+    }
+  }
+
+$(document).on('cartfox:requestComplete', function(event, cart, error){
+  startShippingCheck();
+});
+
+$(document).ready(function(){
+  startShippingCheck();
+});
+</script>

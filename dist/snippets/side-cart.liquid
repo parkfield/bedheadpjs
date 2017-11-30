@@ -5,7 +5,7 @@
   Dependencies:
    - Handlebars
 {% endcomment %}
-
+{% unless template == 'cart' %}
 <form id="PopupCart" class="popup overlay" name="checkout" action="/cart" method="post" novalidate>
   <div class="popup-inner">
     <div class="popup-content">
@@ -59,7 +59,7 @@
       <hr class="line-break emptyHide" />
       <div class="subtotal-container emptyHide">
         <div class="total-price" >
-          <div>{{ 'cart.subtotal' | t }}</div> <div data-cart-total>{{ cart.total_price | money }}</div>
+          <div>{{ 'cart.subtotal' | t }}</div> <div id="SubTotal" data-cart-total>{{ cart.total_price | money }}</div>
         </div>
       </div>
       <hr class="line-break emptyHide" />
@@ -131,6 +131,7 @@
   {% endraw %}
 
 </form>
+{% endunless %}
 
 
 <script>
@@ -144,13 +145,33 @@
     }
   });
   //when clicking jewelry box
+  function calculateFreeShipping(){
+    {% if settings.freeshipping != blank %}
+    var subtotal = $('#SubTotal').text().replace('$','');
+    var minumum = parseInt('{{settings.freeshipping}}');
+    if(subtotal.indexOf('.')>-1){
+      subtotal = parseInt(subtotal.split('.')[0]);
+    }
+    var difference = minumum - subtotal;
+
+    if(difference > 0){
+      $('#shippingNotice').text("You're only $"+difference+" away from FREE shipping");
+    }else{
+      $('#shippingNotice').text('You are eligible for FREE shipping');
+    }
+    {% endif %}
+  }
+
   $('#CartLink').click(function(){
     if($('#PopupCart .items .item').length > 0){
       $('#PopupCart .empty-cart-content').hide();
       $('#PopupCart .emptyHide').show();
+      $('#shippingNotice').show();
+      calculateFreeShipping();
     }else{
       $('#PopupCart .emptyHide').hide();
       $('#PopupCart .empty-cart-content').show();
+      $('#shippingNotice').hide();
     }
   });
 

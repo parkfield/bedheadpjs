@@ -1,3 +1,9 @@
+@include max-query(850px){
+  .theme-nav-main-container{
+    display: none;
+  }  
+}
+
 .theme-header{
   position: relative;
   opacity: 1;

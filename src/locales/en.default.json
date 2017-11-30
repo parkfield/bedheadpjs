@@ -114,11 +114,13 @@
     }
   },
   "cart": {
-    "title": "Cart",
+    "title": "Shopping Cart",
+    "description":"Description",
     "view_cart": "View Cart",
     "product": "Product",
     "price": "Price",
     "quantity": "Quantity",
+    "unit_total":"Unit Total",
     "subtotal": "Subtotal",
     "checkout": "Checkout",
     "update": "Update",

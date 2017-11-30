@@ -84,8 +84,12 @@ MIT License
           if($('#PopupCart .items .item').length > 0){
             $('#PopupCart .empty-cart-content').hide();
             $('#PopupCart .emptyHide').show();
+            $('#shippingNotice').show();
+            calculateFreeShipping();
           }else{
             $('#PopupCart .emptyHide').hide();
+            $('#shippingNotice').hide();
+            calculateFreeShipping();
           }
         {% endunless %}
       }

@@ -11,6 +11,12 @@
     "name": "Colors",
     "settings": [
       {
+        "type": "color",
+        "id": "border_color",
+        "label": "Border Color",
+        "default": "#A1A4AA"
+      },     
+      {
         "type": "header",
         "content": "General colors"
       },
@@ -104,14 +110,14 @@
     ]
   },
   {
-    "name": "Cart page",
+    "name": "Cart",
     "settings": [
       {
         "type":"text",
         "id":"freeshipping",
         "label":"Minimum Free Shipping Value",
         "default":"175",
-        "info":"Enter '175' for minimum $175 purchase for free shipping"
+        "info":"Enter '175' for minimum $175 purchase for free shipping. Leave blank to hide"
       },
       {
         "type": "checkbox",

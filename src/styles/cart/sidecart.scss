@@ -105,4 +105,8 @@ $cart-width: 335px;
       margin-top: 30px;
     }
   }
+  #shippingNotice{
+    margin-top: 20px;
+    @include lato-reg-italic(.875rem);
+  }
 }

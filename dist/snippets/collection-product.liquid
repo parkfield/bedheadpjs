@@ -69,10 +69,13 @@
     <a href="{{ product.url | within: collection }}" class="product-title">{{ product.title }}</a><br>
     {% if on_sale %}
       {% if product.price_varies %}
+      {% comment %}
         {{ 'product.on_sale_from_html' | t: price: sale_price }}
       {% else %}
         <strong>{{ 'product.on_sale_html' | t: price: sale_price }}</strong>
+      {% endcomment %}
       {% endif %}
+      {{sale_price}}
     {% else %}
       {% if product.price_varies %}
         {% assign price = product.price | money %}

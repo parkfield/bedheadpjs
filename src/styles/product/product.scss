@@ -54,9 +54,11 @@
       background: #979797;
     }
   }
-  .text-column #ProductPrice{
+  .price-container{
     margin-top: 18px;
     margin-bottom: 32px;
+  }
+  .text-column #ProductPrice{
     @include lato-reg(1.5rem);
   }
   .text-column .label-container{

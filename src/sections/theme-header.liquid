@@ -67,14 +67,14 @@
           </a>
         {% endif %}
 
-        <a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
+        <a href="/cart" id="CartLink" {% unless template =='cart' %}data-trigger="popup" data-target="#PopupCart.popup" {% endunless %}aria-controls="Cart" aria-expanded="false" class="v-middle">
           <img src="{{'icons8-paid.png' | asset_img_url:'master'}}" alt="">
           <span data-cart-item-count>{{ cart.item_count }}</span>
         </a>
       </div>
     </div>
 
-    <div class="row l-table m-table s-hide theme-nav-main-container">
+    <div class="row l-table theme-nav-main-container">
       <div class="column l12 s12">
         {% include 'theme-nav-main' %}
       </div>
