@@ -8,7 +8,7 @@ $cart-width: 335px;
   box-shadow: 0px 2px 34px rgba(0, 0, 0, 0.125283);
   bottom: 0;
   z-index: 6;
-  padding: 16px 25px;
+  padding: 16px 0px;
   height: 100%;
   transition: right .3s;
 }
@@ -37,6 +37,7 @@ $cart-width: 335px;
 #PopupCart{
   .item{
     @include flex();
+    margin-bottom: 10px;
     justify-content: space-between;
   }
   .image-container img{
@@ -71,6 +72,13 @@ $cart-width: 335px;
   .total-price{
     @include flex();
     justify-content: space-between;
+    align-items: center;
+    div:first-child{
+      @include lato-reg(.875rem);
+    }
+    div:last-child{
+      @include lato-bold(1.25rem);
+    }
   }
   .buttons{
     margin-top: 18px;
@@ -87,5 +95,14 @@ $cart-width: 335px;
   }
   .btn-continue{
     background-color: $border-color;
+  }
+  .contain, .subtotal-container{
+    padding: 0px 20px;
+  }
+
+  .empty-cart-content{
+    .center{
+      margin-top: 30px;
+    }
   }
 }

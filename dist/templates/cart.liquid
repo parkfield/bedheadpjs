@@ -109,12 +109,7 @@
             <span class="h3">{{ cart.total_price | money_with_currency }}</span>
           </p>
 
-          {% if cart.total_discount > 0 %}
-            <h3><s>{{ cart.original_total_price | money_with_currency }}</s></h3>
-            <p>
-              {{ 'cart.savings' | t }} <span><em>{{ cart.total_discounts | money_with_currency }}</em></span>
-            </p>
-          {% endif %}
+
 
           <p><em>{{ 'cart.shipping_at_checkout' | t }}</em></p>
 

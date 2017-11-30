@@ -107,6 +107,13 @@
     "name": "Cart page",
     "settings": [
       {
+        "type":"text",
+        "id":"freeshipping",
+        "label":"Minimum Free Shipping Value",
+        "default":"175",
+        "info":"Enter '175' for minimum $175 purchase for free shipping"
+      },
+      {
         "type": "checkbox",
         "id": "cart_notes_enable",
         "label": "Enable cart notes"
