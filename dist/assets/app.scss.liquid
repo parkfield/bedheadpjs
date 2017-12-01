@@ -34,7 +34,8 @@ $bg-light: #F7F7F7;
 $border-color: {{ settings.border_color }};
 $footer-link: #A1A4AA;
 $bad-status: #d9534f;
-
+//Mobile Nav
+$mobile-alternate-bg: #F8F8F9;
 //Collection Product
 $quick-add-label: white;
 $quick-add-active: white;
@@ -303,6 +304,13 @@ $iconLinecap: sqaure;
 }
 
 
+@font-face {
+  font-family: 'Lato';
+  src: url(' {{ 'Lato-SemiBold.ttf' | asset_url }} ') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
 @mixin roboto-reg($font-size){
   font-family: 'Roboto', sans-serif;
   font-size: $font-size;
@@ -325,7 +333,7 @@ $iconLinecap: sqaure;
   font-family: 'Lato', sans-serif;
   font-size: $font-size;
   font-style:normal;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @mixin lato-bold($font-size){
@@ -672,16 +680,17 @@ button::-moz-focus-inner {
 .errors{
   padding: $gutter/3.5;
   margin: $gutter/2 auto;
-  color: lighten($colorHighlight, 50%);
+  color: $bad-status;
   background-color: transparent;
   li {
+    color: $bad-status;
     margin-bottom: $gutter/3;
     &:last-of-type {
       margin-bottom: 0;
     }
   }
   a {
-    color: lighten($colorHighlight, 50%);
+    color: $bad-status;
   }
 }
 
@@ -883,7 +892,7 @@ form#address_form_new {
   select,
   button, .button {
     width: 100%;
-    margin-bottom: $gutter/2;
+    margin-bottom: $gutter;
   }
   label, input[type="checkbox"] {
     margin-bottom: $gutter/5;
@@ -1306,8 +1315,16 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 
 /* Homepage ==================================== */
-.homepage-promobar{
-
+.desktop-promobar{
+  @include max-query(850px){
+    display: none;
+  }
+}
+.mobile-promobar{
+  display: none;
+  @include max-query(850px){
+    display: block;
+  }
 }
 .homepage-promobar .text-content{
   @include flex();
@@ -1343,6 +1360,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   opacity: 1;
   transition: opacity .3s, top .5s;
   padding: 42px 0px 22px 0px;
+  border-bottom: 1px solid $border-color;
   @include max-query($m){
     padding: 20px 10px;
   }
@@ -1373,6 +1391,50 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .theme-header .icons-row{
   #MobileNavToggle{
     display: none;
+    height: 30px;
+    width: 30px;
+  }
+  #MobileNavToggle .line{
+    width: 100%;
+    height: 3px;
+    display: block;
+    position: relative;
+    background-color: $font-color;
+    &:after, &:before{
+      content:'';
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $font-color;
+      position: absolute;
+    }
+    &:after{
+      top: 10px;
+      width: 80%;
+    }
+    &:before{
+      top: 20px;
+      width: 60%;
+    }
+  }
+  #MobileNavToggle .line, 
+  #MobileNavToggle .line::after,
+  #MobileNavToggle .line::before{
+    transition: transform .5s ease-in-out, top .5s ease-in-out;
+  }
+
+  #MobileNavToggle.active{
+    .line{
+      transform: rotate(45deg);
+    }
+    .line::after{
+      width: 100%;
+      top: 0;
+      transform: rotate(90deg);
+    }
+    .line::before{
+      opacity: 0;
+    }
   }
   .desktop-search-icon{
     display: inline-block;
@@ -1574,8 +1636,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .theme-nav-main {
   text-align: center;
   .nav-link {
-    font-size: 1.1rem;
-    font-weight: $fontBold;
+    @include lato-semibold(.875rem);
     margin-right: $gutter/3;
     padding-bottom: 40px;
     text-transform: uppercase;
@@ -1685,12 +1746,120 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 
 
-.theme-nav-toggled{
+.shifter{
+  @include prefix(transform, translateX(0%));
+  transition: transform .3s;
+}
+.shifter.shifted{
+  @include prefix(transform, translateX(80%));
+  @include min-query(500px){
+    @include prefix(transform, translateX(450px));
+  }
+}
+
+.theme-nav-toggled.from-left, .theme-nav-toggled.from-right{
+  width: 80%;
   transition: left .3s;
+  @include min-query(500px){
+    width: 450px;
+  }
 }
 
 .theme-nav-toggled.active{
-  left: 335px;
+  left: 80%;
+  box-shadow: 0px 2px 34px rgba(0, 0, 0, 0.125283);
+  @include min-query(500px){
+    left: 450px;
+  }
+}
+
+.theme-nav-toggled{
+  overflow: scroll;
+  padding: 0px;
+  background: $bg-main;
+  border-right: thin solid $border-color;
+  a, span{
+    color: $font-color;
+    text-transform: uppercase;
+    @include lato-semibold(1rem);
+  };
+}
+
+.theme-nav-toggled{
+  .search-container{
+    background-color: $mobile-alternate-bg;
+    padding: 13px 20px 13px 10px;
+    border-bottom: thin solid $border-color;
+  }
+  .search-container form[action="/search"]{
+    width: 100%;
+    position: relative;
+    input{
+      margin-bottom: 0px;
+      height: 30px;
+      border-radius: 30px;
+      width: 100%;
+      background-color: $bg-main;
+      @include lato-reg(.875rem);
+      color: $font-color;
+      @include placeholder{
+        color: $font-color;
+      }
+    }
+    button{
+      display: block;
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      @include prefix(transform, translateY(-50%));
+      min-width: initial;
+      padding: 0px;
+      height: auto;
+      right: 10px;
+      svg{
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+  .dropdown .dropdown-heading, .non_dropdown a{
+    display: block;
+    border-bottom: thin solid $border-color;
+    padding: 7px 10px;
+  }
+  .dropdown-heading{
+    position: relative;
+    &:after{
+      content:'\f105';
+      font-family: FontAwesome;
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      @include prefix(transform, translateY(-50%));
+    }
+  }
+  .dropdown-heading.active{
+    background: $mobile-alternate-bg;
+    &:after{
+      content:'\f104';
+    }
+  }
+  .dropdown_menu li{
+    border-bottom: thin solid $border-color;
+    a{
+      padding: 7px 10px;
+      display: block;
+    }
+  }
+  .mobile-subnav{
+    background: $mobile-alternate-bg;
+    .dropdown_menu{
+      background-color: $bg-main;
+    }
+  }
 }
 .homepage-hero{
   position: relative;
@@ -3115,6 +3284,108 @@ $cart-width: 335px;
   #shippingNotice{
     margin-top: 20px;
     @include lato-reg-italic(.875rem);
+  }
+}
+/* Page */
+.page-sizechart h1{
+  position: relative;
+  @include heading-dash();
+  &:after{
+    left: 0;
+    @include prefix(transform, none);
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+}
+.page-faq{
+  width: 980px;
+  margin-top: 60px;
+  @include s(){
+    margin-top: 30px;
+  }
+  h1{
+    font-size: 2rem;
+    @include heading-dash();
+    &:after{
+      margin-top: 20px;
+      margin-bottom: 40px;
+      @include prefix(transform, none);
+      left: 0;
+    }
+  }
+  h3{
+    border-top: thin solid #D8D9DB;
+    padding: 10px 0px;
+    text-transform: uppercase;
+  }
+  .content h3:first-child{
+    border-top: none;
+  }
+  h3, p, div, a{
+    @include lato-reg(.875rem);
+  }
+  .tab{
+    overflow: hidden;
+    transition: max-height .3s;
+    max-height: 0;
+  }
+  .tab.active{
+    margin-bottom: 10px;
+  }
+}
+
+/* Account */
+.login-register-page{
+  margin-top: 60px;
+  @include s(){
+    margin-top: 30px;
+  }
+  h1{
+    font-size: 2rem;
+    @include heading-dash();
+    &:after{
+      margin-top: 20px;
+      margin-bottom: 12px;
+      @include prefix(transform, none);
+      left: 0;
+    }
+  }
+  .subheading{
+    font-size: .875rem;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    display: block;
+  }
+  label{
+    display: none;
+  }
+  form{
+    width: 100%;
+  }
+  input{
+    max-width: 360px;
+    font-size: .875rem;
+    height: 50px;
+    color: $font-color;
+    margin-bottom: 20px;
+    @include placeholder{
+      color: $font-color;
+    }
+  }
+  input[type="submit"]{
+    font-size: 0.75rem;
+  }
+  form[action="/account/recover"]{
+    display: none;
+  }
+  @include s(){
+    .column.l6:last-child{
+      margin-top: 30px;
+    }  
+    input{
+      width: 100%;
+      max-width: 100%;
+    }
   }
 }
 /* Helpers ===================================================================*/

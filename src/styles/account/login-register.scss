@@ -1,0 +1,53 @@
+.login-register-page{
+  margin-top: 60px;
+  @include s(){
+    margin-top: 30px;
+  }
+  h1{
+    font-size: 2rem;
+    @include heading-dash();
+    &:after{
+      margin-top: 20px;
+      margin-bottom: 12px;
+      @include prefix(transform, none);
+      left: 0;
+    }
+  }
+  .subheading{
+    font-size: .875rem;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    display: block;
+  }
+  label{
+    display: none;
+  }
+  form{
+    width: 100%;
+  }
+  input{
+    max-width: 360px;
+    font-size: .875rem;
+    height: 50px;
+    color: $font-color;
+    margin-bottom: 20px;
+    @include placeholder{
+      color: $font-color;
+    }
+  }
+  input[type="submit"]{
+    font-size: 0.75rem;
+  }
+  form[action="/account/recover"]{
+    display: none;
+  }
+  @include s(){
+    .column.l6:last-child{
+      margin-top: 30px;
+    }  
+    input{
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}

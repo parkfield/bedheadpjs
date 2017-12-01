@@ -61,17 +61,23 @@ MIT License
 </head>
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix != null %} suffix-{{ template.suffix }}{% endif %}" itemscope itemtype="http://schema.org/WebSite">
-  {% section 'homepage-promobar' %}
-  {% section 'theme-header' %}
   {% include 'theme-nav-toggled' %}
-  <main id="MainContent" role="main">
-    {{ content_for_layout }}
-  </main>
-  {% section 'homepage-newsletter' %}
-  {% section 'theme-footer' %}
-  {% include 'side-cart' %}
-  {% include 'popup-error' %}
-
+  <div class="shifter">
+    <div class="desktop-promobar">
+    {% section 'homepage-promobar' %}
+    </div>
+    {% section 'theme-header' %}
+    <div class="mobile-promobar">
+    {% section 'homepage-promobar' %}
+    </div>
+    <main id="MainContent" role="main">
+      {{ content_for_layout }}
+    </main>
+    {% section 'homepage-newsletter' %}
+    {% section 'theme-footer' %}
+    {% include 'side-cart' %}
+    {% include 'popup-error' %}
+  </div>
   <script type="text/javascript">
     // Cart error handling
     $(document).on('cartfox:requestComplete', function(event, cart, error) {

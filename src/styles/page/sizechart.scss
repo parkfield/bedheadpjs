@@ -1,0 +1,10 @@
+.page-sizechart h1{
+  position: relative;
+  @include heading-dash();
+  &:after{
+    left: 0;
+    @include prefix(transform, none);
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+}

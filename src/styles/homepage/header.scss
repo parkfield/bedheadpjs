@@ -9,6 +9,7 @@
   opacity: 1;
   transition: opacity .3s, top .5s;
   padding: 42px 0px 22px 0px;
+  border-bottom: 1px solid $border-color;
   @include max-query($m){
     padding: 20px 10px;
   }
@@ -39,6 +40,50 @@
 .theme-header .icons-row{
   #MobileNavToggle{
     display: none;
+    height: 30px;
+    width: 30px;
+  }
+  #MobileNavToggle .line{
+    width: 100%;
+    height: 3px;
+    display: block;
+    position: relative;
+    background-color: $font-color;
+    &:after, &:before{
+      content:'';
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $font-color;
+      position: absolute;
+    }
+    &:after{
+      top: 10px;
+      width: 80%;
+    }
+    &:before{
+      top: 20px;
+      width: 60%;
+    }
+  }
+  #MobileNavToggle .line, 
+  #MobileNavToggle .line::after,
+  #MobileNavToggle .line::before{
+    transition: transform .5s ease-in-out, top .5s ease-in-out;
+  }
+
+  #MobileNavToggle.active{
+    .line{
+      transform: rotate(45deg);
+    }
+    .line::after{
+      width: 100%;
+      top: 0;
+      transform: rotate(90deg);
+    }
+    .line::before{
+      opacity: 0;
+    }
   }
   .desktop-search-icon{
     display: inline-block;

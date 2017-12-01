@@ -2,8 +2,7 @@
 .theme-nav-main {
   text-align: center;
   .nav-link {
-    font-size: 1.1rem;
-    font-weight: $fontBold;
+    @include lato-semibold(.875rem);
     margin-right: $gutter/3;
     padding-bottom: 40px;
     text-transform: uppercase;

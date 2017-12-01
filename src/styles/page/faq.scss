@@ -1,0 +1,36 @@
+.page-faq{
+  width: 980px;
+  margin-top: 60px;
+  @include s(){
+    margin-top: 30px;
+  }
+  h1{
+    font-size: 2rem;
+    @include heading-dash();
+    &:after{
+      margin-top: 20px;
+      margin-bottom: 40px;
+      @include prefix(transform, none);
+      left: 0;
+    }
+  }
+  h3{
+    border-top: thin solid #D8D9DB;
+    padding: 10px 0px;
+    text-transform: uppercase;
+  }
+  .content h3:first-child{
+    border-top: none;
+  }
+  h3, p, div, a{
+    @include lato-reg(.875rem);
+  }
+  .tab{
+    overflow: hidden;
+    transition: max-height .3s;
+    max-height: 0;
+  }
+  .tab.active{
+    margin-bottom: 10px;
+  }
+}

@@ -1,10 +1,9 @@
 <!-- snippets/form-login.liquid -->
 
 <div id="LoginForm">
+  <h1>{{'account.login' | t }}</h1>
+  <span class="subheading">{{'account.login_subheading' | t }}</span>
   {% form 'customer_login' %}
-
-    <p>{{ 'account.no_account' | t }} {{ 'account.create_account' | t | customer_register_link }}</p>
-
     {{ form.errors | default_errors }}
 
     <label for="CustomerEmail" class="clearfix">{{ 'form.email' | t }}</label>
@@ -14,15 +13,24 @@
       <input type="password" value="" name="customer[password]" id="CustomerPassword" {% if form.errors contains 'password' %}class="error"{% endif %} placeholder="{{ 'account.password' | t }}">
     {% endif %}
 
-    <input type="submit" class="wide" value="{{ 'account.sign_in' | t }}">
+    <input class="btn" type="submit" class="wide" value="{{ 'account.sign_in' | t }}">
 
     <p>
-      <p><a href="{{ shop.url }}">{{ 'form.cancel' | t }}</a></p>
-
       {% if form.password_needed %}
-        <br><a href="/account/login?view=recover">{{ 'account.forgot_password' | t }}</a>
+        <br><a href="#forgotPassword">{{ 'account.forgot_password' | t }}</a>
       {% endif %}
     </p>
 
   {% endform %}
 </div>
+
+{% form 'recover_customer_password' %}
+
+{{ form.errors | default_errors }}
+
+<label for="customer_email">Email Address</label>
+<input type="email" name="email" placeholder="Email" />
+
+<input type="submit" value="Submit" />
+
+{% endform %}

@@ -221,16 +221,17 @@ button::-moz-focus-inner {
 .errors{
   padding: $gutter/3.5;
   margin: $gutter/2 auto;
-  color: lighten($colorHighlight, 50%);
+  color: $bad-status;
   background-color: transparent;
   li {
+    color: $bad-status;
     margin-bottom: $gutter/3;
     &:last-of-type {
       margin-bottom: 0;
     }
   }
   a {
-    color: lighten($colorHighlight, 50%);
+    color: $bad-status;
   }
 }
 

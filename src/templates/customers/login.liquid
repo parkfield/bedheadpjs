@@ -1,9 +1,14 @@
 <!-- /templates/customers/login.liquid -->
 
-<div class="container l center">
-
-  {% include 'form-login' %}
-
+<div class="login-register-page container m">
+  <div class="row">
+    <div class="column l6 m6 s12">
+      {% include 'form-login' %}
+    </div>
+    <div class="column l6 m6 s12">
+      {% include 'form-register' %}
+    </div>
+  </div>
   {% if shop.checkout.guest_login %}
     <hr>
     <h2>{{ 'form.guest_title' | t }}</h2>

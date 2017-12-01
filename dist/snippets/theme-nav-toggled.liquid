@@ -1,7 +1,10 @@
 <!-- /snippets/theme-nav-toggled.liquid -->
 
-<nav class="theme-nav-toggled from-left active" id="NavToggled" role="navigation">
+<nav class="theme-nav-toggled from-left" id="NavToggled" role="navigation">
   <div class="inner">
+    <div class="search-container">
+      {% include 'form-search' %}
+    </div>
     <ul>
       {% for link in linklists.main-menu.links %}
         {% assign child_list_handle = link.title | handleize %}
@@ -25,27 +28,63 @@
         {% endif %}
       {% endfor %}
     </ul>
-    <a href="#close" class="nav-toggled-close" aria-label="{{ 'common.close' | t }}">{{ 'common.close' | t }}</a>
+    <ul class="mobile-subnav">
+      {% if customer %}
+      <li class="non_dropdown">
+        <a class="nav-link" href="/account">{{'nav.account' | t }}</a>
+      </li>
+      {% else %}
+      <li class="non_dropdown">
+        <a class="nav-link" href="/account/login">{{'nav.login' | t }}</a>
+      </li>
+      {% endif %}
+      <li class="non_dropdown">
+        <a href="/cart" class="nav-link">{{'nav.cart' | t }}</a>
+      </li>
+      {% for i in (1..3) %}
+        {% assign sub_menu_key = 'sub_menu_' | append: i %}
+        {% assign sub_menu_setting = settings[sub_menu_key] %}
+        {% if sub_menu_setting != blank %}
+          {% assign sub_menu = linklists[sub_menu_setting] %}
+          <li class="dropdown" aria-haspopup="true">
+            <span class="dropdown-heading">{{sub_menu.title}}</span>
+            <ul class="dropdown_menu hidden">
+            {% for link in sub_menu.links %}
+              <li><a href="{{link.url}}">{{link.title}}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+      {% endfor %}
+      {% if settings.sub_menu_contact != blank %}
+      <li class="non_dropdown">
+        <a href="{{settings.sub_menu_contact}}" class="nav-link">{{'nav.contact' | t }}</a>
+      </li>
+      {% endif %}
+    </ul>
   </div>
 </nav>
 
 <script>
+$(document).ready(function(){
   //Opens Menu
   $('#MobileNavToggle').click(function(){
-    $('#NavToggled').addClass('active');
-  });
-
-  //Resets Menu when closed
-  $('.nav-toggled-close').click(function(){
-    $('#NavToggled').removeClass('active');
-    $('#NavToggled .inner').fadeOut(200,function(){
-      $('#NavToggled .dropdown-heading.active').each(function(){
-        $(this).removeClass('active');
-        $(this).next().addClass('hidden');
-        $('#NavToggled .dropdown, #NavToggled .non_dropdown').removeClass('hidden');
+    if($(this).hasClass('active')){
+      $(this).removeClass('active');
+      $('#NavToggled').removeClass('active');
+      $('#NavToggled .inner').fadeOut(200,function(){
+        $('#NavToggled .dropdown-heading.active').each(function(){
+          $(this).removeClass('active');
+          $(this).next().addClass('hidden');
+          $('#NavToggled .dropdown, #NavToggled .non_dropdown').removeClass('hidden');
+        });
         $('#NavToggled .inner').fadeIn();
       });
-    });
+      $('.shifter').removeClass('shifted');      
+    }else{
+      $('#NavToggled').addClass('active');
+      $('.shifter').addClass('shifted');   
+      $(this).addClass('active');   
+    }
   });
 
   //Handles Logic for opening sub-menus
@@ -68,4 +107,5 @@
       });
     }
   });
+});
 </script>

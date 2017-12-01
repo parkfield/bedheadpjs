@@ -110,6 +110,35 @@
     ]
   },
   {
+    "name":"Mobile Nav",
+    "settings":[
+      {
+        "type":"header",
+        "content":"Sub Menu"
+      },
+      {
+        "type":"link_list",
+        "id":"sub_menu_1",
+        "label":"Sub Menu 1"
+      },
+      {
+        "type":"link_list",
+        "id":"sub_menu_2",
+        "label":"Sub Menu 2"
+      },
+      {
+        "type":"link_list",
+        "id":"sub_menu_3",
+        "label":"Sub Menu 3"
+      },
+      {
+        "type":"url",
+        "id":"sub_menu_contact",
+        "label":"Contact Us Link"
+      }
+    ]
+  },
+  {
     "name": "Cart",
     "settings": [
       {

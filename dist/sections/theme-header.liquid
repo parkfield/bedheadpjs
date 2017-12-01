@@ -32,7 +32,9 @@
           </div>
         {% endif %}
         <a href="#!" id="MobileNavToggle">
-          <img  src="{{'ic_hamburger_menu.png' | asset_img_url:'master'}}" alt="Navigation">
+          {% comment %}<img  src="{{'ic_hamburger_menu.png' | asset_img_url:'master'}}" alt="Navigation">
+          {% endcomment %}
+          <span class="line"></span>
         </a>
       </div>
       <div class="column l8 m8 s7 l-center m-center s-center logo-column">
@@ -64,7 +66,7 @@
             <img src="{{'icons8-guest.png' | asset_img_url:'master'}}" alt="">
           </a>
         {% else %}
-          <a href="/account">
+          <a href="/account/login">
             <img src="{{'icons8-guest.png' | asset_img_url:'master'}}" alt="">
           </a>
         {% endif %}

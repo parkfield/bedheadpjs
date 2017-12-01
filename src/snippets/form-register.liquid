@@ -1,11 +1,10 @@
 <!-- snippets/form-register.liquid -->
 
-<div id="RegisterForm" class="center{% if ajax_register %} ajaxForm{% endif %}">
-
-  <p>{{ 'account.already_registered' | t }} {{ 'account.login' | t | customer_login_link }}</p>
+<div id="RegisterForm">
+  <h1>{{'account.create_account' | t }}</h1>
+  <span class="subheading">{{'account.register_subheading' | t }}</span>
 
   {% form 'create_customer' %}
-
     {{ form.errors | default_errors }}
 
     <label for="FirstName" class="clearfix left">{{ 'account.first_name' | t }}</label>
@@ -20,9 +19,7 @@
     <label for="CreatePassword" class="clearfix left">{{ 'account.password' | t }}</label>
     <input type="password" name="customer[password]" id="CreatePassword" {% if form.errors contains 'password' %}class="error"{% endif %} placeholder="{{ 'account.password' | t }}">
 
-    <input type="submit" value="{{ 'account.register' | t }}">
-
-    <p><a href="{{ shop.url }}">{{ 'form.cancel' | t }}</a></p>
+    <input class="btn" type="submit" value="{{ 'account.register' | t }}">
 
   {% endform %}
 

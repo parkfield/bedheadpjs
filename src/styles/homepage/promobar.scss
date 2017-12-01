@@ -1,5 +1,13 @@
-.homepage-promobar{
-
+.desktop-promobar{
+  @include max-query(850px){
+    display: none;
+  }
+}
+.mobile-promobar{
+  display: none;
+  @include max-query(850px){
+    display: block;
+  }
 }
 .homepage-promobar .text-content{
   @include flex();
