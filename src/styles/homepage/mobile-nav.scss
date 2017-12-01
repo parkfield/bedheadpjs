@@ -1,0 +1,7 @@
+.theme-nav-toggled{
+  transition: left .3s;
+}
+
+.theme-nav-toggled.active{
+  left: 335px;
+}

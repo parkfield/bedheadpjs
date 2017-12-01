@@ -31,7 +31,9 @@
             {% include 'icon' with 'search' %}
           </div>
         {% endif %}
-          <img id="MobileNavToggle" src="{{'ic_hamburger_menu.png' | asset_img_url:'master'}}" alt="Navigation">
+        <a href="#!" id="MobileNavToggle">
+          <img  src="{{'ic_hamburger_menu.png' | asset_img_url:'master'}}" alt="Navigation">
+        </a>
       </div>
       <div class="column l8 m8 s7 l-center m-center s-center logo-column">
         {% if template == 'index' %}

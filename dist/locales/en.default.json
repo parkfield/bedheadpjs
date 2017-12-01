@@ -116,6 +116,7 @@
   "cart": {
     "title": "Shopping Cart",
     "description":"Description",
+    "continue":"Continue Shopping",
     "view_cart": "View Cart",
     "product": "Product",
     "price": "Price",
