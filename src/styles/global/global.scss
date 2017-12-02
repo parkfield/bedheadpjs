@@ -238,7 +238,7 @@ button::-moz-focus-inner {
 .note{
   padding: $gutter/3.5;
   margin: $gutter/2 auto;
-  color: lighten($accent-color, 50%);
+  color: $accent-color;
   background-color: transparent;
   li {
     margin-bottom: $gutter/3;

@@ -75,9 +75,9 @@ MIT License
     </main>
     {% section 'homepage-newsletter' %}
     {% section 'theme-footer' %}
-    {% include 'side-cart' %}
-    {% include 'popup-error' %}
   </div>
+  {% include 'side-cart' %}
+  {% include 'popup-error' %}
   <script type="text/javascript">
     // Cart error handling
     $(document).on('cartfox:requestComplete', function(event, cart, error) {

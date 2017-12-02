@@ -1,13 +1,16 @@
-.shifter{
-  @include prefix(transform, translateX(0%));
-  transition: transform .3s;
-}
-.shifter.shifted{
-  @include prefix(transform, translateX(80%));
-  @include min-query(500px){
-    @include prefix(transform, translateX(450px));
+@include max-query(850px){
+  .shifter{
+    @include prefix(transform, translateX(0%));
+    transition: transform .3s;
   }
+  .shifter.shifted{
+    @include prefix(transform, translateX(80%));
+    @include min-query(500px){
+      @include prefix(transform, translateX(450px));
+    }
+  }  
 }
+
 
 .theme-nav-toggled.from-left, .theme-nav-toggled.from-right{
   width: 80%;

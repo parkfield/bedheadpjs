@@ -11,9 +11,9 @@ var i;
 
 for (i = 0; i < acc.length; i++) {
   acc[i].onclick = function() {
-    $('h3, .tab').removeClass('active');
+    $('.content h3, .tab').removeClass('active');
     this.classList.toggle("active");
-    $('h3, .tab').removeAttr('style');
+    $('.content h3, .tab').removeAttr('style');
     var panel = this.nextElementSibling;
     panel.classList.toggle('active');
     if (panel.style.maxHeight){

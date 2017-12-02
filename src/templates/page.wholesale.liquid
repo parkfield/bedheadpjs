@@ -1,0 +1,104 @@
+<div class="container page-wholesale m">
+  <div class="content">
+    <h1>{{ page.title }}</h1>
+    {{page.content}}
+    <div class="row">
+      {% form 'contact' %}
+      <div class="column l6 m6 s12">
+          {% if form.posted_successfully? %}
+            <p class="note form-success">
+              {{ 'form.contact.success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+          <label for="ContactFormStoreName" class="clearfix">Store Name</label>
+          <input type="text" id="ContactFormStoreName" name="contact[store-name]" placeholder="Store Name" autocapitalize="words" value="">
+
+          <label for="ContactFormName" class="clearfix">Contact Name</label>
+          <input type="text" id="ContactFormName" name="contact[Name]" placeholder="Contact Name" autocapitalize="words" value="">
+
+          <label for="ContactFormEmail" class="clearfix">{{ 'form.email' | t }}</label>
+          <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="{{ 'form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+
+          {% assign name_attr = 'form.phone' | t | handleize %}
+          <label for="ContactFormPhone" class="clearfix">{{ 'form.phone' | t }}</label>
+          <input type="tel" id="ContactFormPhone" name="contact[{{ name_attr }}]" placeholder="{{ 'form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+      </div>
+      <div class="column l6 m6 s12">
+        <label for="ContactFormAddress" class="clearfix">Contact Address</label>
+        <input type="text" id="ContactFormAddress" name="contact[Address]" placeholder="Address" autocapitalize="words" value="">
+
+
+        <label for="ContactFormCity" class="clearfix">Contact City</label>
+        <input type="text" id="ContactFormCity" name="contact[City]" placeholder="City" autocapitalize="words" value="">
+
+        <div class="state-zip">
+        <div class="select-wrap">
+        <select id="ContactFormState" name="contact[State]">
+          <option value="" disabled selected>STATE</option>
+          <option value="AL">AL</option>
+          <option value="AK">AK</option>
+          <option value="AR">AR</option>  
+          <option value="AZ">AZ</option>
+          <option value="CA">CA</option>
+          <option value="CO">CO</option>
+          <option value="CT">CT</option>
+          <option value="DC">DC</option>
+          <option value="DE">DE</option>
+          <option value="FL">FL</option>
+          <option value="GA">GA</option>
+          <option value="HI">HI</option>
+          <option value="IA">IA</option>  
+          <option value="ID">ID</option>
+          <option value="IL">IL</option>
+          <option value="IN">IN</option>
+          <option value="KS">KS</option>
+          <option value="KY">KY</option>
+          <option value="LA">LA</option>
+          <option value="MA">MA</option>
+          <option value="MD">MD</option>
+          <option value="ME">ME</option>
+          <option value="MI">MI</option>
+          <option value="MN">MN</option>
+          <option value="MO">MO</option>  
+          <option value="MS">MS</option>
+          <option value="MT">MT</option>
+          <option value="NC">NC</option>  
+          <option value="NE">NE</option>
+          <option value="NH">NH</option>
+          <option value="NJ">NJ</option>
+          <option value="NM">NM</option>      
+          <option value="NV">NV</option>
+          <option value="NY">NY</option>
+          <option value="ND">ND</option>
+          <option value="OH">OH</option>
+          <option value="OK">OK</option>
+          <option value="OR">OR</option>
+          <option value="PA">PA</option>
+          <option value="RI">RI</option>
+          <option value="SC">SC</option>
+          <option value="SD">SD</option>
+          <option value="TN">TN</option>
+          <option value="TX">TX</option>
+          <option value="UT">UT</option>
+          <option value="VT">VT</option>
+          <option value="VA">VA</option>
+          <option value="WA">WA</option>
+          <option value="WI">WI</option>  
+          <option value="WV">WV</option>
+          <option value="WY">WY</option>
+        </select>
+        </div>
+        <label for="ContactFormZip" class="clearfix">Zip</label>
+        <input type="text" id="ContactFormZip" name="contact[Zip]" placeholder="Zipcode" autocapitalize="words" value="">
+        </div>
+        <label for="ContactFormMessage" class="clearfix">{{ 'form.message' | t }}</label>
+        <textarea rows="10" id="ContactFormMessage" name="contact[Message]" placeholder="{{ 'form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+        <input type="submit" value="{{ 'form.send' | t }}">
+      </div>
+      {% endform %}
+    </div>
+  </div>
+</div>

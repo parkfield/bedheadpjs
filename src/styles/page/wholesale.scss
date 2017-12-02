@@ -1,0 +1,95 @@
+.page-wholesale{
+  h1{
+    margin-top: 66px;
+    @include heading-dash();
+    font-size: 2rem;
+    &:after{
+      left: 0;
+      @include prefix(transform, none);
+      margin-bottom: 12px;
+      margin-top: 20px;
+    }
+  }
+  a{
+    text-decoration: underline;
+  }
+  label{
+    display: none;
+  }
+  form{
+    margin-top: 50px;
+  }
+  input, select{
+    height: 50px;
+    @include lato-reg(.875rem);
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  select{
+    width: auto;
+    max-width: initial;
+    background-color: transparent;
+    color: $font-color;
+    border-color: $border-color;
+    text-transform: uppercase;
+  }
+  input{
+    @include placeholder{
+      color: $font-color;
+      text-transform: uppercase;
+    }
+  }
+
+  textarea{
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: .875rem;
+    @include placeholder{
+      text-transform: uppercase;
+    }
+  }
+  input, select, .state-zip, textarea{
+    max-width: 350px;
+    @include s(){
+      max-width: 100%;
+    }
+  }
+
+  .state-zip{
+    width: 100%;
+    @include inline-flex();
+  }
+
+  .state-zip .select-wrap{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    &:after{
+      position: absolute;
+      content:'\f107';
+      font-family: FontAwesome;
+      display: inline-block;
+      top: 50%;
+      @include prefix(transform, translateY(-50%));
+      right: 10px;
+    }
+  }
+  
+  @include s(){
+    .state-zip input[name="contact[Zip]"]{
+      width: 100%;
+      margin-bottom: 0px;
+    }   
+  }
+
+
+  select{
+    width: 120px;
+    margin-bottom: 0px;
+  }
+  
+  input[type="submit"]{
+    color: $font-color;
+  }
+}

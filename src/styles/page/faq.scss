@@ -18,8 +18,42 @@
     border-top: thin solid #D8D9DB;
     padding: 10px 0px;
     text-transform: uppercase;
+    transition: color .3s;
+    position: relative;
+    &:after{
+      content:'+';
+      border: 1px solid black;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      width:20px;
+      height: 20px;
+      border-radius: 10px;
+      @include flex();
+      align-items: center;
+      justify-content: center;
+      @include prefix(transform, translateY(-50%));
+      right: 20px;
+      transition: border-color .3s;
+    }
+    &:hover{
+      cursor: pointer;
+      color: $accent-color;
+      &:after{
+        border-color: $accent-color
+      }
+    }
+    @include s(){
+      padding-right: 30px;
+      &:after{
+        right: 10px;
+      }
+    }
   }
-  .content h3:first-child{
+  h3.active::after{
+    content:'-';
+  }
+  .content h3:first-of-type{
     border-top: none;
   }
   h3, p, div, a{

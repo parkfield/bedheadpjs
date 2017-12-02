@@ -245,10 +245,22 @@ $iconLinecap: sqaure;
 
 
 @mixin placeholder {
-  &.placeholder { @content; }
-  &:-moz-placeholder { @content; }
-  &::-moz-placeholder { @content; }
-  &::-webkit-input-placeholder { @content; }
+  &.placeholder { 
+    @content; 
+    opacity: 1;
+  }
+  &:-moz-placeholder { 
+    @content; 
+    opacity: 1;
+  }
+  &::-moz-placeholder {
+   @content; 
+   opacity: 1;
+ }
+  &::-webkit-input-placeholder { 
+    @content; 
+    opacity: 1;
+  }
 }
 
 // Fonts
@@ -697,7 +709,7 @@ button::-moz-focus-inner {
 .note{
   padding: $gutter/3.5;
   margin: $gutter/2 auto;
-  color: lighten($accent-color, 50%);
+  color: $accent-color;
   background-color: transparent;
   li {
     margin-bottom: $gutter/3;
@@ -1746,16 +1758,19 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 
 
-.shifter{
-  @include prefix(transform, translateX(0%));
-  transition: transform .3s;
-}
-.shifter.shifted{
-  @include prefix(transform, translateX(80%));
-  @include min-query(500px){
-    @include prefix(transform, translateX(450px));
+@include max-query(850px){
+  .shifter{
+    @include prefix(transform, translateX(0%));
+    transition: transform .3s;
   }
+  .shifter.shifted{
+    @include prefix(transform, translateX(80%));
+    @include min-query(500px){
+      @include prefix(transform, translateX(450px));
+    }
+  }  
 }
+
 
 .theme-nav-toggled.from-left, .theme-nav-toggled.from-right{
   width: 80%;
@@ -3317,8 +3332,42 @@ $cart-width: 335px;
     border-top: thin solid #D8D9DB;
     padding: 10px 0px;
     text-transform: uppercase;
+    transition: color .3s;
+    position: relative;
+    &:after{
+      content:'+';
+      border: 1px solid black;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      width:20px;
+      height: 20px;
+      border-radius: 10px;
+      @include flex();
+      align-items: center;
+      justify-content: center;
+      @include prefix(transform, translateY(-50%));
+      right: 20px;
+      transition: border-color .3s;
+    }
+    &:hover{
+      cursor: pointer;
+      color: $accent-color;
+      &:after{
+        border-color: $accent-color
+      }
+    }
+    @include s(){
+      padding-right: 30px;
+      &:after{
+        right: 10px;
+      }
+    }
   }
-  .content h3:first-child{
+  h3.active::after{
+    content:'-';
+  }
+  .content h3:first-of-type{
     border-top: none;
   }
   h3, p, div, a{
@@ -3331,6 +3380,102 @@ $cart-width: 335px;
   }
   .tab.active{
     margin-bottom: 10px;
+  }
+}
+
+.page-wholesale{
+  h1{
+    margin-top: 66px;
+    @include heading-dash();
+    font-size: 2rem;
+    &:after{
+      left: 0;
+      @include prefix(transform, none);
+      margin-bottom: 12px;
+      margin-top: 20px;
+    }
+  }
+  a{
+    text-decoration: underline;
+  }
+  label{
+    display: none;
+  }
+  form{
+    margin-top: 50px;
+  }
+  input, select{
+    height: 50px;
+    @include lato-reg(.875rem);
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  select{
+    width: auto;
+    max-width: initial;
+    background-color: transparent;
+    color: $font-color;
+    border-color: $border-color;
+    text-transform: uppercase;
+  }
+  input{
+    @include placeholder{
+      color: $font-color;
+      text-transform: uppercase;
+    }
+  }
+
+  textarea{
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: .875rem;
+    @include placeholder{
+      text-transform: uppercase;
+    }
+  }
+  input, select, .state-zip, textarea{
+    max-width: 350px;
+    @include s(){
+      max-width: 100%;
+    }
+  }
+
+  .state-zip{
+    width: 100%;
+    @include inline-flex();
+  }
+
+  .state-zip .select-wrap{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    &:after{
+      position: absolute;
+      content:'\f107';
+      font-family: FontAwesome;
+      display: inline-block;
+      top: 50%;
+      @include prefix(transform, translateY(-50%));
+      right: 10px;
+    }
+  }
+  
+  @include s(){
+    .state-zip input[name="contact[Zip]"]{
+      width: 100%;
+      margin-bottom: 0px;
+    }   
+  }
+
+
+  select{
+    width: 120px;
+    margin-bottom: 0px;
+  }
+  
+  input[type="submit"]{
+    color: $font-color;
   }
 }
 
