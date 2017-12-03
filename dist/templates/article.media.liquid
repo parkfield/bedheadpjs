@@ -1,0 +1,49 @@
+<!-- /templates/article.liquid -->
+
+{% for tag in article.tags %}
+{% if tag contains 'product' %}
+{% assign product_handle = tag | split:'_' | last %}
+{% assign product = all_products[product_handle ] %}
+{% endif %}
+{% endfor %}
+<div class="media-article">
+  <div class="container l">
+    <div class="row">
+      {% include 'theme-breadcrumbs' %}
+      <article class="column l12 m12 s12" itemscope itemtype="http://schema.org/Article">
+
+        <header>
+          <h1><img src="{{article.image | img_url:'master'}}" alt="{{article.image.alt}}"></h1>
+        </header>
+        <div class="row">
+        <div class="column l6 m6 s12 image-column">
+          <img src="" id="articleImage">
+        </div>
+        <div class="column l6 m6 s12">
+          <div class="rte" itemprop="articleBody">
+            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | | time_tag: format: 'month_year'}}</time>
+            <div class="article-content">{{ article.content }}</div>
+            <span class="products-heading">Products(s) Mentioned:</span>
+            {% for tag in article.tags %}
+            {% if tag contains 'product' %}
+            {% assign product_handle = tag | split:'_' | last %}
+            {% assign product = all_products[product_handle ] %}
+            <div class="product">
+              <div class="title">{{product.title}}</div>
+              <a href="{{product.url}}" class="btn">View Product</a>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>        
+        </div>
+      </div>
+      </article>
+    </div>
+  </div>
+</div>
+<script>
+  var mainImage = $('.rte img').first();
+  mainImage.hide();
+  var mainImageSrc = mainImage.attr('src');
+  $('#articleImage').attr('src',mainImageSrc);
+</script>

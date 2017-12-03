@@ -1,0 +1,9 @@
+<div class="media-article-listing">
+  <a href="{{article.url}}">
+    <img src="{{article.image | img_url:'master'}}" alt="{{article.image.alt}}">
+  </a>
+  <a href="{{article.url}}">
+    <span class="time">{{article.published_at | time_tag: format: 'month_year'}}</span>
+    <p class="excerpt">{{article.excerpt}}</p>
+  </a>
+</div>

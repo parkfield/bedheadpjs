@@ -25,7 +25,7 @@
         {% else %}
         <span>{{ blog.title }}</span>
         {% endif %}
-      {% elsif template == 'article' %}
+      {% elsif template contains 'article' %}
         <span aria-hidden="true">&rsaquo;</span>
         {{ blog.title | link_to: blog.url }}
         <span aria-hidden="true">&rsaquo;</span>

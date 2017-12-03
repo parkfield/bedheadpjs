@@ -1,0 +1,59 @@
+.media-article .container.l{
+  width: 880px;
+}
+
+.media-article{
+  .breadcrumb{
+    margin-top: 36px;
+  }
+  header{
+    text-align: center;
+    margin: 30px 0px;
+    img{
+      vertical-align: middle;
+    }
+  }
+  @include s(){
+    .breadcrumb{
+      display: none;
+    }
+  }
+  p, .title, a, .article-content{
+    @include lato-reg(1rem);
+  }
+  time{
+    display: block;
+    margin-bottom: 15px;
+  }
+  .article-content{
+    margin-bottom: 30px;
+  }
+  .products-heading{
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    display: block;
+  }
+  .title{
+    @include lato-bold(1.25rem);
+    margin-bottom: 40px;
+  }
+  a.btn{
+    max-width: 215px;
+    min-width: initial;
+    width: 100%;
+  }
+  .column.l6:first-child{
+    padding-right: 20px;
+    @include s(){
+      margin-bottom: 40px;
+      padding-right: 10px;
+    }
+  }
+  .column.l6:last-child{
+    padding-left: 20px;
+    @include s(){
+      padding-left: 10px;
+    }
+  }
+
+}

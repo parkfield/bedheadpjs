@@ -1,96 +1,105 @@
-<div class="image rellax" data-rellax-speed=".5" style="background-image: url('{{section.settings.image | img_url:'master'}}');" alt="{{section.settings.image.alt}}');">
-  <div class="text-container rellax" data-rellax-speed="1.1">
-  <div data-aos="fade-up" data-aos-anchor-placement="top-center"  data-aos-offset="-300">
-
-    <h2>
-      {{section.settings.heading_line1}}<br>
-      {{section.settings.heading_line2}}<br>
-      {{section.settings.heading_line3}}
-    </h2>
-    <a class="btn" href="{{section.settings.button_url}}">{{section.settings.button_text}}</a>
-  </div>
+{% paginate blog.articles by 16 %}
+<div class="container xl">
+  <div class="media-banner">
+    <div class="image">
+      <div class="overlay">
+      </div>
+      <h1>{{section.settings.title}}</h1>
+    </div>
   </div>
 </div>
-
+<div class="container xl">
+<div class="row">
+{% for article in blog.articles %}
+  <div class="column l4 m4 s6">
+    {% include 'media-article-listing' %}
+  </div>
+{% endfor %}
+</div>
+</div>
+<div class="container xl s-center m-center l-center">
+{% if paginate.pages > 1 %}
+  {% include 'pagination' %}
+{% endif %}
+</div>
+{% endpaginate %}
 <style>
-  .homepage-image-banner  .text-container h2{
-    color:  {{section.settings.color}};
+  .theme-header{
+    border: none;
   }
-  
-  .homepage-image-banner .image{
+  .media-banner h1{
+    color:  {{section.settings.title_color}};
+  }
+
+  .media-banner .image{
+    background-image: url('{{section.settings.banner_image | img_url:'master'}}');
     padding-top:{{section.settings.desktop_padding_top}}%;
     background-position: {{section.settings.desktop_horizontal_position}}% 50%;
   }
+  .blog-media .media-banner .overlay{
+    {% unless section.settings.opacity == 100 %}
+    opacity: .{{section.settings.opacity}};
+    {% else %}
+    opacity: 1;
+    {% endunless %}
+  }
   @media screen and (max-width: 850px){
-    .homepage-image-banner .image{
+    .media-banner .image{
+      background-image: url('{{section.settings.banner_image_mobile | img_url:'master'}}');
       padding-top:{{section.settings.mobile_padding_top}}%;
       background-position: {{section.settings.mobile_horizontal_position}}% 50%;
     }
   }
 
   @media screen and (max-width: 600px){
-    .homepage-image-banner .image{
-      padding-top:{{section.settings.mobile_padding_top | plus: 80 }}%;
+    .media-banner .image{
+      padding-top:{{section.settings.mobile_padding_top }}%;
       background-position: {{section.settings.mobile_horizontal_position}}% 50%;
     }
   }
 </style>
 {% schema %}
   {
-    "name": "Image Banner",
-    "class": "homepage-image-banner",
+    "name": "Blog",
+    "class": "blog-media",
     "settings": [
       {
         "type":"header",
-        "content":"Text Block Settings"
+        "content":"Text Settings"
       },
       {
-        "type":"text",
-        "id":"heading_line1",
-        "label":"Heading Line 1"
-      },
-      {
-        "type":"text",
-        "id":"heading_line2",
-        "label":"Heading Line 2"
-      },
-      {
-        "type":"text",
-        "id":"heading_line3",
-        "label":"Heading Line 3"
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Media & Press"
       },
       {
         "type":"color",
-        "id":"color",
-        "label":"Text Color",
-        "default":"#333e48"
+        "id":"title_color",
+        "label":"Heading Color"
       },
       {
         "type":"header",
-        "content":"Button Settings"
+        "content":"Overlay Settings"
       },
       {
-        "type":"text",
-        "id":"button_text",
-        "label":"Text"
-      },
-      {
-        "type":"url",
-        "id":"button_url",
-        "label":"Link"
-      },
-      {
-        "type":"header",
-        "content":"Image Settings"
-      },
-      {
-        "type": "image_picker",
-        "id":"image",
-        "label":"Image"
+          "type":      "range",
+          "id":        "opacity",
+          "min":       0,
+          "max":        100,
+          "step":       5,
+          "unit":       "%",
+          "label":     "Opacity",
+          "default":   10
       },
       {
         "type":"header",
         "content":"Desktop Image Settings"
+      },
+      {
+        "id": "banner_image",
+        "type": "image_picker",
+        "label": "Banner Image"
       },
       {
           "type":   "range",
@@ -100,7 +109,7 @@
           "step":      1,
           "unit":      "%",
           "label":     "Desktop Image Height",
-          "default":   49
+          "default":   22
       },
       {
           "type":   "range",
@@ -118,14 +127,19 @@
         "content":"Mobile Image Settings"
       },
       {
+        "id": "banner_image_mobile",
+        "type": "image_picker",
+        "label": "Banner Image"
+      },
+      {
           "type":   "range",
           "id":     "mobile_padding_top",
-          "min":       50,
-          "max":       150,
+          "min":       20,
+          "max":       100,
           "step":      1,
           "unit":      "%",
           "label":     "Mobile Image Height",
-          "default":   135
+          "default":   100
       },
       {
           "type":   "range",
@@ -137,12 +151,6 @@
           "label":     "Mobile Horizontal Position",
           "default":   35,
           "info":"Changes the horizontal position of the image, if the entire image isn't shown"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Image Banner",
-        "category": "Homepage"
       }
     ]
   }

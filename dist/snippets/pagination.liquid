@@ -1,3 +1,4 @@
+{% if template contains 'collection' %}
 <span class="showingIndex">
   {% assign previousCount = paginate.current_page | minus: 1 %}
   {% unless paginate.current_page == paginate.pages %}
@@ -6,6 +7,7 @@
     Showing {{paginate.items}} of {{paginate.items}}
   {% endunless %}
 </span>
+{% endif %}
 {% assign current_page = paginate.current_page %}
 <div class="pagination">
   <i class="fa fa-angle-left" aria-hidden="true"></i>

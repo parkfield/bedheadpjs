@@ -1,0 +1,77 @@
+.blog-media{
+  .media-banner .image{
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 1px;
+    position: relative;
+    margin-bottom: 66px;
+  }
+
+  .media-banner .overlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+  }
+
+  .media-banner h1{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include prefix(transform, translate(-50%, -50%));
+    @include s(){
+      font-size: 2rem;
+    }
+  }
+
+  .media-article-listing{
+    text-align: center;
+    position: relative;
+    img{
+      margin-bottom: 44px;
+    }
+    .time{
+      display: block;
+    }
+    a, p{
+      max-width: 309px;
+      margin: 0 auto;
+      line-height: 24px;
+      @include lato-reg(1rem);
+    }
+    @include s(){
+      padding: 0px 10px;
+      a,p{
+        font-size: .875rem;
+      }
+    }
+  }
+  .column.l4.m4.s6{
+    position: relative;
+    margin-bottom: 100px;
+  }
+  .column.l4.m4.s6:after{
+    display: block;
+    content:'';
+    position: absolute;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: black;
+    top: 30px;
+    max-height: 160px;
+  }
+  .column.l4.m4.s6:nth-child(3n+3):after{
+    display: none;
+  }
+  @include s(){
+    .column.l4.m4.s6:nth-child(3n+3):after{
+      display: block;
+    }
+    .column.l4.m4.s6:nth-child(even):after{
+      display: none;
+    }
+  }
+}
