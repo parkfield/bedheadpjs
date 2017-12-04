@@ -2305,6 +2305,8 @@ footer.theme-footer{
   display: block;
 }
 #newsletter-popup{
+  border: 5px solid $accent-color;
+  overflow: hidden;
   display: none;
   position: fixed;
   z-index: 21;
@@ -2324,7 +2326,6 @@ footer.theme-footer{
   }
 }
 #newsletter-wrapper{
-  overflow: hidden;
   display: none;
   z-index: 20;
   position: fixed;
@@ -3297,6 +3298,16 @@ footer.theme-footer{
   .mobile-wrap{
     padding: 0px;
   }
+  .recommended-container{
+    width: 1300px;
+    margin-top: 70px; 
+    h3{
+      @include heading-dash();
+      &:after{
+        margin-bottom: 70px;
+      }
+    }
+  }
   @include s(){
     .product_title, .variant_title, p{
       font-size: 1rem;
@@ -3676,6 +3687,11 @@ $cart-width: 335px;
   }
   .text-container{
     padding: 50px 20px;
+  }
+}
+.shipping-returns-page{
+  h1{
+    font-size: 2rem;
   }
 }
 /* Blog */

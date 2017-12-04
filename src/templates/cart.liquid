@@ -125,7 +125,19 @@
       </div>
     </div>
   </form>
-
+<div class="container xl recommended-container">
+  <div class="row">
+    <div class="column l12 m12 s12 s-center m-center l-center">
+      <h3>{{'cart.recommended' | t }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    {% assign column_width = 'column l3 m3 s6' %}
+    {% for product in collections['best-selling'].products limit: 4%}
+      {% include 'collection-product' %}
+    {% endfor %}
+  </div>
+</div>
 {% else %}
   <div class="container l">
     <h2>{{ 'cart.title' | t }}</h2>
@@ -168,7 +180,7 @@
     <div class="column l2 m2 s-hide v-top center">
       <div class="unit-price">${{formatMoney lineItem.price}}</div>
     </div>
-    <div class="column l2 v-top right s-show">
+    <div class="column l2 v-top right">
       <div class="price-container">
       {{#if lineItem.total_discount}}
         <div class="no-margin">

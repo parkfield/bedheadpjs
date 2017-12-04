@@ -105,6 +105,16 @@
   .mobile-wrap{
     padding: 0px;
   }
+  .recommended-container{
+    width: 1300px;
+    margin-top: 70px; 
+    h3{
+      @include heading-dash();
+      &:after{
+        margin-bottom: 70px;
+      }
+    }
+  }
   @include s(){
     .product_title, .variant_title, p{
       font-size: 1rem;

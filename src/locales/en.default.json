@@ -133,6 +133,7 @@
     "remove_item": "Remove",
     "empty": "Your cart is empty :(",
     "note": "Customer Notes",
+    "recommended":"Customers Also Bought",
     "count": {
       "one": "item",
       "other": "items"
