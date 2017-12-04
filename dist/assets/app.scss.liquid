@@ -486,6 +486,7 @@ body {
 
 body.fixed{
   position: fixed;
+  width: 100%;
 }
 
 img {
@@ -1661,6 +1662,15 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     position: relative;
     .nav-link{
       padding-bottom: 0px;
+      .wrap{
+        @include flex();
+        justify-content: center;
+        flex-flow: row wrap;
+        span{
+          display: block;
+          width: 100%;
+        }
+      }
     }
     .dropdown_menu_container {
       display: block;
@@ -1678,7 +1688,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
         top: 180px;
       }
       @include min-query(1280px){
-        top: 225px;
+        top: 193px;
       }
 
     }

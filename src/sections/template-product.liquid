@@ -12,12 +12,17 @@
 {% endif %}
 
 {% assign noReturns = false %}
+{% assign engravable = false %}
+
 {% for tag in product.tags %}
 {% if tag == 'noReturns' %}
   {% assign noReturns = true %}
 {% endif %}
 {% if tag contains 'sizechart' %}
   {% assign sizechart = tag | split:'_' | last %}
+{% endif %}
+{% if tag == 'engravable' %}
+  {% assign engravable = true %}
 {% endif %}
 {% endfor %}
 
@@ -121,6 +126,9 @@
                 {% endfor %}
               </select>
             </div>
+            {% if engravable %}
+            <input type="text" id="engraving" name="properties[Engraving]">
+            {% endif %}
             {% if sold_out %}
               <button type="submit" name="add" data-add-to-cart disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
@@ -200,6 +208,22 @@
     "name": "Product Page",
     "class": "product-page",
     "settings": [
+      {
+        "type":"header",
+        "content":"Product Tagging Info"
+      },
+      {
+        "type":"paragraph",
+        "content":"Add tag 'noReturns' to show text that the product is not returnable"
+      },
+      {
+        "type":"paragraph",
+        "content":"Add tag 'engravable' to show engraving settings"
+      },
+      {
+        "type":"paragraph",
+        "content":"Add tag 'sizechart_(handle of size chart page)' to show engraving settings. Ex: 'sizechart_womens-size-chart'"
+      },
       {
         "type":"header",
         "content":"Product Column Text"

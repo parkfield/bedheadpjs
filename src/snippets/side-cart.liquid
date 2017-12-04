@@ -22,6 +22,25 @@
                 <a class="product-link" href="{{ item.url }}">
                   <span class="title">{{ item.product.title }}</span><br>
                   <span class="variant">{{ item.variant.title }}</span>
+                  {% assign propertySize = item.properties | size %}
+                  {% if propertySize > 0 %}
+                  <div class="variant">
+                    {% for property in item.properties %}
+                      {% assign first_character_in_key = property.first | truncate: 1, '' %}
+                      {% unless property.last == blank or first_character_in_key == '_' %}
+                        {{ property.first }}:
+                        {% comment %}
+                          Check if there was an uploaded file associated
+                        {% endcomment %}
+                        {% if property.last contains '/uploads/' %}
+                          <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                        {% else %}
+                          {{ property.last }}
+                        {% endif %}
+                      {% endunless %}
+                    {% endfor %}
+                  </div>
+                  {% endif %}
                 </a>
                 <div class="quantity-container">
                   <div class="cart-quantity">
@@ -92,6 +111,9 @@
         <a class="product-link" href="{{ lineItem.url }}">
           <span class="title">{{ lineItem.product_title }}</span><br>
           <span class="variant">{{ lineItem.variant_title }}</span>
+          {{#each lineItem.properties}}
+          <div class="variant">Engraving: {{ this }}</div>
+          {{/each}}
         </a>
 
         <div class="quantity-container">

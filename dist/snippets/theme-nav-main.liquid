@@ -26,7 +26,10 @@
                 {% endif %}
                 {% if linkImage != blank %}
                 <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">
+                  <div class="wrap">
                   <img src="{{linkImage | img_url:'master'}}" alt="{{linkImage.alt}}">
+                  <span>{{childlink.title}}</span>
+                </div>
                 </a>
                 {% else %}
                 <a href="{{ childlink.url }}" class="nav-link{% if childlink.active %} active{% endif %}">{{childlink.handle}}</a>
