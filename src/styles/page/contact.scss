@@ -1,0 +1,15 @@
+.contact-page{
+  h1{
+    margin-top: 70px;
+    position: relative;
+    @include heading-dash();
+    &:after{
+      left: 0;
+      @include prefix(transform, none);
+      margin-bottom: 21px;
+    }
+  }
+  .rte{
+    a,p{font-size: 1.875rem;}
+  }
+}

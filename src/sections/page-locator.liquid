@@ -1,0 +1,51 @@
+<!-- /templates/page.liquid -->
+
+<div class="container l">
+  <div class="text-image">
+    <div class="image-container">
+      <img class="main-image" src="{{section.settings.banner_image | img_url:'master'}}" alt="">
+    </div>
+    <div class="text-container">
+      <img src="{{section.settings.tiny_image | img_url:'master'}}" alt="{{section.settings.banner_image.alt}}">
+      <h1>
+        {{section.settings.heading}}
+      </h1>
+      <p>{{section.settings.body}}</p>
+    </div>
+
+  </div>
+  <div class="rte">
+    {{ page.content }}
+  </div>
+
+</div>
+{% schema %}
+  {
+    "name": "Store Locator Page",
+    "class":"page-locator",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "banner_image",
+        "label": "Banner Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "tiny_image",
+        "label": "Tiny Heading Image"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Banner Heading",
+        "default": "Flagship Store"
+      },
+      {
+        "type":"richtext",
+        "id":"body",
+        "label":"Banner Body"
+      }
+    ]
+  }
+{% endschema %}
+
