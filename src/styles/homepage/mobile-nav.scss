@@ -1,9 +1,9 @@
 @include max-query(850px){
-  .shifter{
+  .shifter, .theme-header.shifted{
     @include prefix(transform, translateX(0%));
     transition: transform .3s;
   }
-  .shifter.shifted{
+  .shifter.shifted, .theme-header.shifted{
     @include prefix(transform, translateX(80%));
     @include min-query(500px){
       @include prefix(transform, translateX(450px));

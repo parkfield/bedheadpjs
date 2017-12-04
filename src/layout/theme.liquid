@@ -62,11 +62,11 @@ MIT License
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if template.suffix != null %} suffix-{{ template.suffix }}{% endif %}" itemscope itemtype="http://schema.org/WebSite">
   {% include 'theme-nav-toggled' %}
-  <div class="shifter">
-    <div class="desktop-promobar">
+  <div class="desktop-promobar">
     {% section 'homepage-promobar' %}
-    </div>
-    {% section 'theme-header' %}
+  </div>
+  {% section 'theme-header' %}
+  <div class="shifter">
     <div class="mobile-promobar">
     {% section 'homepage-promobar' %}
     </div>
@@ -76,6 +76,7 @@ MIT License
     {% section 'homepage-newsletter' %}
     {% section 'theme-footer' %}
   </div>
+  {% include 'email-popup' %}
   {% include 'side-cart' %}
   {% include 'popup-error' %}
   <script type="text/javascript">

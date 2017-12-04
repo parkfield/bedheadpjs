@@ -31,6 +31,7 @@
 // =require vendor/slick.min.js
 // =require vendor/aos.js
 // =require vendor/rellax.min.js
+// =require vendor/js.cookie.js
 
 // Attempts to preserve comments that likely contain licensing information,
 // even if the comment does not have directives such as `@license` or `/*!`.

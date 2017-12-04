@@ -1,0 +1,122 @@
+<div id="newsletter-wrapper"></div>
+<div id="newsletter-popup">
+  <div class="close"><a href="#">{% include 'social-icons', social:'close' %}</a></div>
+  <div class="popup-content">
+    <div class="image-container">
+      <img src="{{section.settings.image | img_url:'master'}}" alt="{{section.settings.image.alt}}">
+    </div>
+    <div class="text-container">
+      <div class="content">
+        <span class="h1">{{section.settings.heading}}</span>
+        <p>{{section.settings.body}}</p>
+        {% include 'section-subscribe-form' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+//Check whether to show newsletter or not
+{% if section.settings.enable_popup %}
+$(document).ready(function(){
+  setTimeout(function(){
+    var subscribed = Cookies.get('newsletter-subscribed');
+    var temp = Cookies.get('newsletter-popup-timeout');
+    console.log(subscribed);
+    console.log(temp);
+    if(subscribed == false || subscribed == undefined){
+      if(temp==false || temp == undefined){
+        $('#newsletter-popup, #newsletter-wrapper').addClass('active');
+      }
+    }
+  }, 1000);
+  //{{section.settings.delay}}
+
+  //Close Newsletter Popup
+  $('#newsletter-wrapper, #newsletter-popup .close').click(function(e){
+    e.preventDefault();
+    $('#newsletter-wrapper, #newsletter-popup').removeClass('active');
+    var subscribed = Cookies.get('newsletter-subscribed');
+    if(subscribed==false || subscribed == undefined){
+      Cookies.set('newsletter-popup-timeout', true, { expires: {{section.settings.expiration}} });
+    }
+  });
+});
+{% endif %}
+</script>
+{% schema %}
+{
+  "name": "Newsletter Popup",
+  "class":"homepage-newsletter-popup",
+  "settings":[
+    {
+      "type":"header",
+      "content":"General Settings"
+    },
+    {
+      "id":"enable_popup",
+      "type":"checkbox",
+      "label":"Enable Popup",
+      "default":true
+    },
+    {
+      "type":"image_picker",
+      "id":"image",
+      "label":"Image"
+    },
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id":"body",
+      "type":"textarea",
+      "label":"Body"
+    },
+    {
+      "type":      "select",
+      "id":        "delay",
+      "label":     "Time before showing popup",
+      "options": [
+        {
+          "value": "10000",
+          "label": "After 10 Seconds"
+        },
+        {
+          "value": "20000",
+          "label": "After 20 seconds"
+        },
+        {
+          "value": "30000",
+          "label": "After 30 seconds"
+        }
+      ],
+      "info":"Timer Resets if User Changes Pages",
+      "default":   "10000"
+    },
+    {
+      "type":      "select",
+      "id":        "expiration",
+      "label":     "Re-show Popup",
+      "options": [
+        {
+          "value": "3",
+          "label": "After 3 Days"
+        },
+        {
+          "value": "7",
+          "label": "After a Week"
+        },
+        {
+          "value": "14",
+          "label": "After 2 Weeks"
+        }
+      ],
+      "info":"If user doesn't fill out their email, when is the next time they should see the popup",
+      "default":   "7"
+    }
+  ]
+}
+{% endschema %}

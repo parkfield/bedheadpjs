@@ -64,11 +64,11 @@ footer.theme-footer{
     }
   }
   .copyright-container{
-    display: none;
-    font-size: 1.125rem;
+    font-size: .875rem;
     color: $footer-link;
+    margin-top: 25px;
     @include s(){
-      display: block;
+      font-size: 1.125rem;
     }
   }
 }

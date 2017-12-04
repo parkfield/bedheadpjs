@@ -1,0 +1,130 @@
+#newsletter-popup.active, #newsletter-wrapper.active{
+  display: block;
+}
+#newsletter-popup{
+  display: none;
+  position: fixed;
+  z-index: 21;
+  top: 50%;
+  left: 50%;
+  height: 456px;
+  width: 811px;
+  @include prefix(transform, translate(-50%, -50%));
+}
+#newsletter-popup .close{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  svg{
+    height: 15px;
+    width: 15px;
+  }
+}
+#newsletter-wrapper{
+  overflow: hidden;
+  display: none;
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+#newsletter-popup .popup-content{
+  @include flex();
+  .image-container{
+    width: 40%;
+    img{
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+  .text-container{
+    width: 60%;
+    background-color: $bg-main;
+    padding: 0px 30px;
+    @include flex();
+    align-items: center;
+    justify-content: center;
+  }
+  .text-container .content{
+    max-width: 410px;
+    margin: 0 auto;
+  }
+  .text-container .h1{
+    font-size: 3.4375rem; 
+  }
+  .text-container p{
+    font-size: 1.125rem;
+    margin-bottom: 30px;
+  }
+  .contact-form{
+    @include flex();
+  }
+  .contact-form input{
+    height: 50px;
+    max-width: 250px;
+    font-size: 0.875rem;
+    @include placeholder{
+      color: $font-color;
+    }
+  }
+  .contact-form input[type="submit"]{
+    color: $font-color;
+    min-width: initial;
+    font-size: 0.75rem;
+  }
+}
+@include max-query(900px){
+  #newsletter-popup{
+    width: 85%;
+  }
+  #newsletter-popup .popup-content .text-container{
+    padding: 50px 20px;
+    .h1{
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+    p{
+      font-size: 1rem;
+    }
+  }
+}
+@include max-query(720px){
+  #newsletter-popup{
+    width: 90%;
+    max-width: 360px;
+    height: auto;
+  }
+  #newsletter-popup .popup-content .image-container{
+    display: none;
+  }
+  #newsletter-popup .popup-content .text-container{
+    width: 100%;
+    padding: 50px 20px;
+    .h1{
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+    p{
+      font-size: 1rem;
+    }
+  }
+  #newsletter-popup .popup-content .contact-form{
+    flex-flow: row wrap;
+  }
+}
+
+@include max-query(600px){
+  #newsletter-popup{
+    width: 90%;
+  }
+  #newsletter-popup .popup-content .contact-form input{
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+}

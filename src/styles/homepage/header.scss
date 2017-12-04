@@ -258,7 +258,11 @@
       position: absolute;
       right: 0;
       top: 50%;
+      width: auto;
       @include prefix(transform, translateY(-50%));
+      #CartLink{
+        margin: 0px 15px;
+      }
     }
   }
   .search-container.active{
@@ -270,11 +274,11 @@
       top: 40px;
     }
   }
-@include max-query(1200px){
-  .nav-link{
-    font-size: .9rem;
+  @include max-query(1200px){
+    .nav-link{
+      font-size: .9rem;
+    }
   }
-}
   @include max-query(850px){
     .theme-nav-main-container, .theme-nav-main-sticky{
       display: none;

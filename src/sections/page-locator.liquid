@@ -1,18 +1,19 @@
 <!-- /templates/page.liquid -->
 
-<div class="container l">
+<div class="container xl banner-container">
   <div class="text-image">
-    <div class="image-container">
+    <div class="image-column">
       <img class="main-image" src="{{section.settings.banner_image | img_url:'master'}}" alt="">
     </div>
-    <div class="text-container">
-      <img src="{{section.settings.tiny_image | img_url:'master'}}" alt="{{section.settings.banner_image.alt}}">
-      <h1>
-        {{section.settings.heading}}
-      </h1>
-      <p>{{section.settings.body}}</p>
+    <div class="text-column">
+      <div class="text-container">
+        <img src="{{section.settings.tiny_image | img_url:'master'}}" alt="{{section.settings.banner_image.alt}}">
+        <h1>
+          {{section.settings.heading}}
+        </h1>
+        <p>{{section.settings.body}}</p>
+      </div>
     </div>
-
   </div>
   <div class="rte">
     {{ page.content }}
