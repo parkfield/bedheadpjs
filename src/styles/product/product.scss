@@ -94,13 +94,33 @@
     border: thin solid $border-color;
     color: $font-color;
     height: 50px;
-    max-width: 280px;
     margin-right: auto;
     font-size: .875rem;
   }
+  .text-column .option-wrap{
+    position: relative;
+    margin-bottom: 20px;
+    max-width: 280px;
+    @include s(){
+      max-width: 100%;
+    }
+    &:after{
+      display: inline-block;
+      content: "\f107";
+      color: $font-color;
+      position: absolute;
+      font-family: FontAwesome;
+      top: 50%;
+      right: 10px;
+      @include prefix(transform, translateY(-50%));
+    }
+  }
+  .text-column form#AddToCartForm .single-option-selector,
+  .text-column form#AddToCartForm #Quantity,{
+    margin-bottom: 0px;
+  }
   .text-column #Quantity{
     height: 50px;
-    max-width: 280px;
     border: thin solid $border-color;
     color: $font-color;
     background-color: $bg-main;

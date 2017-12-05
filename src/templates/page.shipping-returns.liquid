@@ -1,33 +1,35 @@
 <!-- /templates/page.liquid -->
-<div class="container m shipping-returns-page">
+<div class="container shipping-returns-page">
 
   <h1>{{ page.title }}</h1>
   <div class="row">
-    <div class="column l3 m3 s12">
-      <nav>
-        <ul>
-          <li><a href="#ordering-shipping">Ordering & Shipping</a></li>
-          <li><a href="#payment-options">Payment Options</a></li>
-          <li><a href="#sales-tax">Sales Tax</a></li>
-          <li><a href="#shipping">Shipping</a></li>
-          <li><a href="#international-orders">International Orders</a></li>
-          <li><a href="#shipping-time">Shipping Time</a></li>
-          <li><a href="#delivery-time">Delivery Time</a></li>
-          <li><a href="#credit-card-approval">Credit Card Approval</a></li>
-          <li><a href="#shipping-status">Shipping Status</a></li>
-        </ul>
-        <ul>
-          <li><a href="#returns-exchanges">Return & Exchange</a></li>
-          <li><a href="#processing-time">Processing Time</a></li>
-          <li><a href="#damaged">Damaged/Defective/<br>Incorrect Items</a></li>
-          <li><a href="#price-adjustment">Price Adjustment</a></li>
-        </ul>
-      </nav>
+    <div class="column l3 m3 s12 navigation">
+      {{pages['returns-exchanges-nav'].content}}
     </div>
-    <div class="column l9 m9 s12">
+    <div class="column l9 m9 s12 main-content">
+      <div class="mobilenav">
+        <div class="selected">Ordering & Shipping</div>
+        {{pages['returns-exchanges-nav'].content}}
+      </div>
       <div class="rte">
         {{ page.content }}
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    var mobilenav = $('.shipping-returns-page .mobilenav');
+    var selectedOption = $('.shipping-returns-page .mobilenav .selected');
+
+    $('.shipping-returns-page .mobilenav .selected').click(function(){
+      mobilenav.addClass('active');
+    });
+    $('.shipping-returns-page .mobilenav a').click(function(){
+      mobilenav.removeClass('active');
+      selectedOption.text($(this).text());
+    });
+
+  });
+</script>

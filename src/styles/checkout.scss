@@ -1,0 +1,145 @@
+$accent-color: #A0DAE8;
+$font-color: #333E48;
+
+@mixin flex() {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@font-face {
+  font-family: 'Lato';
+  src: url(' {{ 'Lato-SemiBold.ttf' | asset_url }} ') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin roboto-reg($font-size){
+  font-family: 'Roboto', sans-serif;
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: 400;
+}
+@mixin lato-light($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 300;
+}
+@mixin lato-reg($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 400;
+}
+@mixin lato-semibold($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 600;
+}
+
+@mixin lato-bold($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 700;
+}
+
+@mixin lato-reg-italic($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style: italic;
+  font-weight: 400;
+}
+
+@mixin lato-bold-italic($font-size){
+  font-family: 'Lato', sans-serif;
+  font-size: $font-size;
+  font-style: italic;
+  font-weight: 700;
+}
+
+@mixin play-bold($font-size){
+  font-family: 'Playfair Display', serif;
+  font-size: $font-size;
+  font-style:normal;
+  font-weight: 700;
+}
+
+@mixin max-query($resolution){
+  @media screen and (max-width: $resolution){
+    @content;
+  }
+}
+@mixin placeholder {
+  &.placeholder { 
+    @content; 
+    opacity: 1;
+  }
+  &:-moz-placeholder { 
+    @content; 
+    opacity: 1;
+  }
+  &::-moz-placeholder {
+   @content; 
+   opacity: 1;
+ }
+  &::-webkit-input-placeholder { 
+    @content; 
+    opacity: 1;
+  }
+}
+.logo-container{
+  max-width: 100%;
+  float: left;
+  background-color: $accent-color;
+  width: 100%;
+  padding: 50px 0px;
+  img{
+    max-width: 188px;
+    margin: 0 auto;
+  }
+}
+
+.desktop-logo-container{
+  @include max-query(1000px){
+    display: none;
+  } 
+}
+.mobile-banner{
+  padding: 0px;
+}
+.mobile-logo-wrap{
+  max-width: 100%;
+  padding: 0px;
+}
+h2{
+  @include lato-bold(.875rem);
+  text-transform: uppercase;
+}
+.breadcrumb__link{
+  @include lato-reg(.875rem);
+  text-transform: uppercase;
+}
+.field__label, .floating-labels .field__label{
+  @include lato-reg(0.75rem);
+  text-transform: uppercase;
+}
+.field__input{
+  color: $font-color !important;
+  @include placeholder{
+    text-transform: uppercase !important; 
+    @include lato-reg(0.75rem);
+  }
+}
+
+input[type="checkbox"], input, button{
+  border-radius: 0px !important;
+}

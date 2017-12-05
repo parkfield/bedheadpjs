@@ -2972,13 +2972,33 @@ footer.theme-footer{
     border: thin solid $border-color;
     color: $font-color;
     height: 50px;
-    max-width: 280px;
     margin-right: auto;
     font-size: .875rem;
   }
+  .text-column .option-wrap{
+    position: relative;
+    margin-bottom: 20px;
+    max-width: 280px;
+    @include s(){
+      max-width: 100%;
+    }
+    &:after{
+      display: inline-block;
+      content: "\f107";
+      color: $font-color;
+      position: absolute;
+      font-family: FontAwesome;
+      top: 50%;
+      right: 10px;
+      @include prefix(transform, translateY(-50%));
+    }
+  }
+  .text-column form#AddToCartForm .single-option-selector,
+  .text-column form#AddToCartForm #Quantity,{
+    margin-bottom: 0px;
+  }
   .text-column #Quantity{
     height: 50px;
-    max-width: 280px;
     border: thin solid $border-color;
     color: $font-color;
     background-color: $bg-main;
@@ -3195,8 +3215,11 @@ footer.theme-footer{
   .container.l{
     width: 940px;
   }
-  h1{
-    margin-top: 60px;
+  h1, h2{
+    margin-top: 70px;
+    @include s(){
+      margin-top: 50px;
+    }
     @include heading-dash();
     text-align: center;
     font-size: 2rem;
@@ -3204,6 +3227,9 @@ footer.theme-footer{
       margin-top: 23px;
       margin-bottom: 46px;
     }
+  }
+  p.h4{
+    text-align: center;
   }
   #CartHeader{
     text-transform: uppercase;
@@ -3540,7 +3566,10 @@ $cart-width: 335px;
 
 .page-wholesale{
   h1{
-    margin-top: 66px;
+    margin-top: 70px;
+    @include s(){
+      margin-top: 50px;
+    }
     @include heading-dash();
     font-size: 2rem;
     &:after{
@@ -3636,6 +3665,9 @@ $cart-width: 335px;
 .contact-page{
   h1{
     margin-top: 70px;
+    @include s(){
+      margin-top: 50px;
+    }
     position: relative;
     @include heading-dash();
     &:after{
@@ -3646,6 +3678,9 @@ $cart-width: 335px;
   }
   .rte{
     a,p{font-size: 1.875rem;}
+    @include s(){
+      a,p{font-size: 1rem;}
+    }
   }
 }
 .page-locator .text-image{
@@ -3691,15 +3726,27 @@ $cart-width: 335px;
 }
 .shipping-returns-page{
   position: relative;
-  nav{
-    position: sticky;
-    top: 20px;
-    bottom: 20px;
+  width: 950px;
+  .row{
+    @include flex();
+    flex-flow: row wrap;
+  }
+  .main-content{
+    @include flex();
+    flex-flow: row wrap;
+    justify-content: flex-end;
+  }
+  .rte{
+    width: 630px;
+    max-width: 100%;
   }
   h1{
     font-size: 2rem;
     @include heading-dash();
     margin-top: 70px;
+    @include s(){
+      margin-top: 50px;
+    }
     &:after{
       left: 0;
       @include prefix(transform, none);
@@ -3717,7 +3764,7 @@ $cart-width: 335px;
     margin-bottom: 15px;
   }
   a{
-    color: $accent-color;
+    color: #0C6DFF;
   }
   th{
     @include lato-semibold(.875rem);
@@ -3733,6 +3780,99 @@ $cart-width: 335px;
       position: relative;
       top: -120px;
       visibility: hidden;
+  }
+
+  nav{
+    position: sticky;
+    top: 100px;
+    bottom: 20px;
+  }
+  nav ul{
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  nav ul li:not(:first-child){
+    margin-left: 20px;
+  }
+
+  nav ul li a{
+    text-transform: uppercase;
+    color: $font-color;
+    font-size: .875rem;
+    text-decoration: underline;
+    &:hover{
+      font-weight: bold;
+    }
+  }
+  .mobilenav{
+    display: none;
+    margin-bottom: 20px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #A1A4AA;
+    box-sizing: border-box;
+    padding-left: 20px;
+    position: relative;
+    .selected{
+      @include flex();
+      align-items: center;
+      @include lato-reg(.875rem);
+      height: 40px;
+      width: 100%;
+      text-transform: uppercase;
+    }
+    &:after{
+      display: inline-block;
+      content: "\f107";
+      color: $font-color;
+      position: absolute;
+      font-family: FontAwesome;
+      top: 8px;
+      right: 10px;
+    }
+    nav{
+      display: none;
+    }
+    ul{
+      margin-bottom: 0px;
+    }
+    ul li:not(:first-child){
+      margin-left: 0px;
+    }
+    ul li{
+      margin-bottom: 10px;
+    }
+    ul li a{
+      text-decoration: none;
+    }
+  }
+  .mobilenav.active{
+    padding: 50px;
+    box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.131567);
+    &:after{
+      content:'\f106';
+    }
+    .selected{
+      display: none;
+    }
+    nav{
+      display: block;
+    }
+    @include s(){
+      padding: 8px 20px;
+    }
+  }
+  @include max-query(800px){
+    .main-content, .rte{
+      width: 100%;
+    }
+    .navigation{
+      display: none;
+    }
+    .mobilenav{
+      display: block;
+    }
   }
 }
 /* Blog */

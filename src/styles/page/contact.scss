@@ -1,6 +1,9 @@
 .contact-page{
   h1{
     margin-top: 70px;
+    @include s(){
+      margin-top: 50px;
+    }
     position: relative;
     @include heading-dash();
     &:after{
@@ -11,5 +14,8 @@
   }
   .rte{
     a,p{font-size: 1.875rem;}
+    @include s(){
+      a,p{font-size: 1rem;}
+    }
   }
 }

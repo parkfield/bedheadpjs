@@ -1,14 +1,26 @@
 .shipping-returns-page{
   position: relative;
-  nav{
-    position: sticky;
-    top: 20px;
-    bottom: 20px;
+  width: 950px;
+  .row{
+    @include flex();
+    flex-flow: row wrap;
+  }
+  .main-content{
+    @include flex();
+    flex-flow: row wrap;
+    justify-content: flex-end;
+  }
+  .rte{
+    width: 630px;
+    max-width: 100%;
   }
   h1{
     font-size: 2rem;
     @include heading-dash();
     margin-top: 70px;
+    @include s(){
+      margin-top: 50px;
+    }
     &:after{
       left: 0;
       @include prefix(transform, none);
@@ -26,7 +38,7 @@
     margin-bottom: 15px;
   }
   a{
-    color: $accent-color;
+    color: #0C6DFF;
   }
   th{
     @include lato-semibold(.875rem);
@@ -42,5 +54,98 @@
       position: relative;
       top: -120px;
       visibility: hidden;
+  }
+
+  nav{
+    position: sticky;
+    top: 100px;
+    bottom: 20px;
+  }
+  nav ul{
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  nav ul li:not(:first-child){
+    margin-left: 20px;
+  }
+
+  nav ul li a{
+    text-transform: uppercase;
+    color: $font-color;
+    font-size: .875rem;
+    text-decoration: underline;
+    &:hover{
+      font-weight: bold;
+    }
+  }
+  .mobilenav{
+    display: none;
+    margin-bottom: 20px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #A1A4AA;
+    box-sizing: border-box;
+    padding-left: 20px;
+    position: relative;
+    .selected{
+      @include flex();
+      align-items: center;
+      @include lato-reg(.875rem);
+      height: 40px;
+      width: 100%;
+      text-transform: uppercase;
+    }
+    &:after{
+      display: inline-block;
+      content: "\f107";
+      color: $font-color;
+      position: absolute;
+      font-family: FontAwesome;
+      top: 8px;
+      right: 10px;
+    }
+    nav{
+      display: none;
+    }
+    ul{
+      margin-bottom: 0px;
+    }
+    ul li:not(:first-child){
+      margin-left: 0px;
+    }
+    ul li{
+      margin-bottom: 10px;
+    }
+    ul li a{
+      text-decoration: none;
+    }
+  }
+  .mobilenav.active{
+    padding: 50px;
+    box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.131567);
+    &:after{
+      content:'\f106';
+    }
+    .selected{
+      display: none;
+    }
+    nav{
+      display: block;
+    }
+    @include s(){
+      padding: 8px 20px;
+    }
+  }
+  @include max-query(800px){
+    .main-content, .rte{
+      width: 100%;
+    }
+    .navigation{
+      display: none;
+    }
+    .mobilenav{
+      display: block;
+    }
   }
 }

@@ -88,11 +88,13 @@
                 <button type="button" data-page-handle="{{sizechart}}" id="SizeGuideTrigger">Size Guide</button>
                 {% endunless %}
                 </div>
+                <div class="option-wrap">
                 <select class="single-option-selector" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
                   {% for value in option.values %}
                     <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
                   {% endfor %}
                 </select>
+                </div>
               {% endfor %}
             {% endunless %}
 
@@ -114,6 +116,7 @@
 
 
             <label for="Quantity" class="clearfix">{{ 'product.quantity' | t }}:</label>
+            <div class="option-wrap">
             <div class="quantity-adjust">
               {% comment %}
                 <a class="adjust" data-change="-1">&#8211;</a>
@@ -125,6 +128,7 @@
                 <option value="{{i}}">{{i}}</option>
                 {% endfor %}
               </select>
+            </div>
             </div>
             {% if engravable %}
             <input type="text" id="engraving" name="properties[Engraving]">
