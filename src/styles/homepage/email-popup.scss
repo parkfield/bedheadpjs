@@ -7,7 +7,7 @@
   display: none;
   position: fixed;
   z-index: 21;
-  top: 50%;
+  top: 50% !important;
   left: 50%;
   height: 456px;
   width: 811px;
@@ -26,7 +26,7 @@
   display: none;
   z-index: 20;
   position: fixed;
-  top: 0;
+  top: 0 !important;
   right: 0;
   left: 0;
   bottom: 0;

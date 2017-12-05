@@ -2310,7 +2310,7 @@ footer.theme-footer{
   display: none;
   position: fixed;
   z-index: 21;
-  top: 50%;
+  top: 50% !important;
   left: 50%;
   height: 456px;
   width: 811px;
@@ -2329,7 +2329,7 @@ footer.theme-footer{
   display: none;
   z-index: 20;
   position: fixed;
-  top: 0;
+  top: 0 !important;
   right: 0;
   left: 0;
   bottom: 0;
@@ -3690,8 +3690,49 @@ $cart-width: 335px;
   }
 }
 .shipping-returns-page{
+  position: relative;
+  nav{
+    position: sticky;
+    top: 20px;
+    bottom: 20px;
+  }
   h1{
     font-size: 2rem;
+    @include heading-dash();
+    margin-top: 70px;
+    &:after{
+      left: 0;
+      @include prefix(transform, none);
+      margin-top: 15px;
+      margin-bottom: 30px;
+    }
+  }
+  h2, h3, h4{
+    @include lato-semibold(1rem);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  p, td{
+    @include lato-reg(.875rem);
+    margin-bottom: 15px;
+  }
+  a{
+    color: $accent-color;
+  }
+  th{
+    @include lato-semibold(.875rem);
+    text-align: left;
+  }
+  table{
+    margin-bottom: 15px;
+  }
+  tbody{
+    line-height: 2.8;
+  }
+  a.anchor {
+      position: relative;
+      top: -120px;
+      visibility: hidden;
   }
 }
 /* Blog */
