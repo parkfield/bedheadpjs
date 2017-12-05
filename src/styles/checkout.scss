@@ -21,56 +21,56 @@ $font-color: #333E48;
 }
 
 @mixin roboto-reg($font-size){
-  font-family: 'Roboto', sans-serif;
-  font-size: $font-size;
-  font-style: normal;
-  font-weight: 400;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: $font-size !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
 }
 @mixin lato-light($font-size){
-  font-family: 'Lato', sans-serif;
-  font-size: $font-size;
-  font-style:normal;
-  font-weight: 300;
+  font-family: 'Lato', sans-serif !important;
+  font-size: $font-size !important;
+  font-style:normal !important;
+  font-weight: 300 !important;
 }
 @mixin lato-reg($font-size){
-  font-family: 'Lato', sans-serif;
-  font-size: $font-size;
-  font-style:normal;
-  font-weight: 400;
+  font-family: 'Lato', sans-serif !important;
+  font-size: $font-size !important;
+  font-style:normal !important;
+  font-weight: 400 !important;
 }
 @mixin lato-semibold($font-size){
-  font-family: 'Lato', sans-serif;
-  font-size: $font-size;
-  font-style:normal;
-  font-weight: 600;
+  font-family: 'Lato', sans-serif !important;
+  font-size: $font-size !important;
+  font-style:normal !important;
+  font-weight: 600 !important;
 }
 
 @mixin lato-bold($font-size){
-  font-family: 'Lato', sans-serif;
-  font-size: $font-size;
-  font-style:normal;
-  font-weight: 700;
+  font-family: 'Lato', sans-serif !important;
+  font-size: $font-size !important;
+  font-style:normal !important;
+  font-weight: 700 !important;
 }
 
 @mixin lato-reg-italic($font-size){
-  font-family: 'Lato', sans-serif;
-  font-size: $font-size;
-  font-style: italic;
-  font-weight: 400;
+  font-family: 'Lato', sans-serif !important;
+  font-size: $font-size !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
 }
 
 @mixin lato-bold-italic($font-size){
-  font-family: 'Lato', sans-serif;
-  font-size: $font-size;
-  font-style: italic;
-  font-weight: 700;
+  font-family: 'Lato', sans-serif !important;
+  font-size: $font-size !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
 }
 
 @mixin play-bold($font-size){
-  font-family: 'Playfair Display', serif;
-  font-size: $font-size;
-  font-style:normal;
-  font-weight: 700;
+  font-family: 'Playfair Display', serif !important;
+  font-size: $font-size !important;
+  font-style:normal !important;
+  font-weight: 700 !important;
 }
 
 @mixin max-query($resolution){
@@ -120,14 +120,19 @@ $font-color: #333E48;
   max-width: 100%;
   padding: 0px;
 }
-h2{
+h2.section__title{
+  color: black;
   @include lato-bold(.875rem);
   text-transform: uppercase;
 }
-.breadcrumb__link{
-  @include lato-reg(.875rem);
-  text-transform: uppercase;
+.breadcrumb--center{
+  text-align: left;
 }
+.breadcrumb__link, .breadcrumb__text{
+  @include lato-reg(.875rem);
+  text-transform: uppercase !important;
+}
+
 .field__label, .floating-labels .field__label{
   @include lato-reg(0.75rem);
   text-transform: uppercase;
@@ -139,7 +144,57 @@ h2{
     @include lato-reg(0.75rem);
   }
 }
-
-input[type="checkbox"], input, button{
+.product__description{
+  @include lato-reg(.75rem);
+  text-transform: uppercase;
+}
+.product__description__name.order-summary__emphasis{
+  color: black !important;
+}
+.product__price span{
+  @include lato-bold(.875rem);
+  color: black !important;
+}
+a, .icon-svg--color-accent{
+  color: black !important;
+  &:hover{
+    color: $accent-color !important;
+  }
+}
+input[type="checkbox"], input, button, select{
   border-radius: 0px !important;
+}
+select{
+  text-transform: uppercase !important;
+}
+.total-line-table .total-line__name{
+  @include lato-reg(.875rem);
+  text-transform: uppercase;
+  color: #9B9B9B;
+}
+.total-line__price .order-summary__emphasis{
+  @include lato-bold(.875rem);
+  color: black;
+}
+.total-line .payment-due-label__total{
+  color: black !important;
+  font-size: 1.25rem !important;
+}
+.total-line__price .payment-due__price{
+  font-size: 1.875rem;
+  color: black;
+}
+button[type="submit"][disabled="disabled"]{
+  background-color: #9B9B9B;
+  color: white;
+}
+button[type="submit"]{
+  @include roboto-reg(.75rem);
+  text-transform: uppercase;
+}
+
+.policy-list a{
+  color: black;
+  text-transform: uppercase;
+  @include lato-reg(.875rem);
 }
