@@ -5,8 +5,6 @@
   <span class="subheading">{{'account.register_subheading' | t }}</span>
 
   {% form 'create_customer' %}
-    {{ form.errors | default_errors }}
-
     <label for="FirstName" class="clearfix left">{{ 'account.first_name' | t }}</label>
     <input type="text" name="customer[first_name]" id="FirstName" placeholder="{{ 'account.first_name' | t }}" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus>
 
@@ -18,6 +16,9 @@
 
     <label for="CreatePassword" class="clearfix left">{{ 'account.password' | t }}</label>
     <input type="password" name="customer[password]" id="CreatePassword" {% if form.errors contains 'password' %}class="error"{% endif %} placeholder="{{ 'account.password' | t }}">
+
+    <label for="ConfirmPassword" class="clearfix left">{{ 'account.password_confirmation' | t }}</label>
+    <input type="password" id="ConfirmPassword" {% if form.errors contains 'password' %}class="error"{% endif %} placeholder="{{ 'account.password_confirmation' | t }}">
 
     <input class="btn" type="submit" value="{{ 'account.register' | t }}">
 

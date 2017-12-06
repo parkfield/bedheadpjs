@@ -6,6 +6,9 @@
   .breadcrumb{
     margin-top: 36px;
   }
+  .breadcrumb a{
+    @include lato-light(.875rem);
+  }
   header{
     text-align: center;
     margin: 30px 0px;

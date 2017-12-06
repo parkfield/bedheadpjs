@@ -10,3 +10,98 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $('input[value="Register"]').attr('disabled',true);
+    var checkRegister = {
+      'FirstName':0,
+      'LastName':0,
+      'Email':0,
+      'Password':0,
+      'Confirm':0
+    }
+
+    function checkForm(){
+      var checkTotal = 0;
+      Object.keys(checkRegister).forEach(function(key){
+        checkTotal += checkRegister[key];
+      });
+      if(checkTotal == 5){
+        $('input[value="Register"]').attr('disabled',false);
+      }else{
+        $('input[value="Register"]').attr('disabled',true);
+      }
+    }
+    function checkFirstName(e){
+      checkRegister.FirstName = 0;
+      if(e.target.value.length > 0){
+        checkRegister.FirstName = 1;
+      }
+      checkForm();
+    }
+    function checkLastName(e){
+      checkRegister.LastName = 0;
+      if(e.target.value.length > 0){
+        checkRegister.LastName = 1;
+      }
+      checkForm();
+    }
+    function checkEmail(e){
+      checkRegister.Email = 0;
+      if(e.target.value.length > 0){
+        checkRegister.Email = 1;
+      }
+      checkForm();
+    }
+    function checkCreatePassword(e){
+      checkRegister.Password = 0;
+      if(e.target.value.length > 0){
+        checkRegister.Password = 1;
+      }
+      checkForm();
+    }
+    function checkConfirmPassword(e){
+      checkRegister.Confirm = 0;
+      if(e.target.value == $('#CreatePassword').val()){
+        checkRegister.Confirm = 1;
+      }
+      checkForm();
+    }
+
+    $('#FirstName').keyup(function(e){
+      checkFirstName(e);
+    });
+    $('#FirstName').change(function(e){
+      checkFirstName(e);
+    });
+
+    $('#LastName').keyup(function(e){
+      checkLastName(e);
+    });
+    $('#LastName').change(function(e){
+      checkLastName(e);
+    });
+
+    $('#Email').keyup(function(e){
+      checkEmail(e);
+    });
+    $('#Email').change(function(e){
+      checkEmail(e);
+    });
+
+    $('#CreatePassword').keyup(function(e){
+      checkCreatePassword(e);
+    });
+    $('#CreatePassword').change(function(e){
+      checkCreatePassword(e);
+    });
+
+    $('#ConfirmPassword').keyup(function(e){
+      checkConfirmPassword(e);
+    });
+    $('#ConfirmPassword').change(function(e){
+      checkConfirmPassword(e);
+    });
+  });
+</script>

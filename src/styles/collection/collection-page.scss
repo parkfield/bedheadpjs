@@ -60,7 +60,7 @@
 }
 
 .breadcrumb a{
-  @include lato-reg(0.875rem);
+  @include lato-light(0.875rem);
 }
 .align-center{
   @include flex();

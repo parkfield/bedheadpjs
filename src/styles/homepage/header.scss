@@ -217,7 +217,7 @@
 }
 .theme-header.show{
   opacity: 1;
-  top: 0;
+  top: 0 !important;
 }
 .theme-header.fixed{
   position: fixed;

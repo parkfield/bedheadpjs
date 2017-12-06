@@ -11,16 +11,28 @@ var i;
 
 for (i = 0; i < acc.length; i++) {
   acc[i].onclick = function() {
-    $('.content h3, .tab').removeClass('active');
-    this.classList.toggle("active");
-    $('.content h3, .tab').removeAttr('style');
-    var panel = this.nextElementSibling;
-    panel.classList.toggle('active');
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+    if(this.classList.contains('active')){
+      console.log('has');
+      $('.content h3, .tab').removeClass('active');
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight){
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    }else{
+      $('.content h3, .tab').removeClass('active');
+      this.classList.toggle("active");
+      $('.content h3, .tab').removeAttr('style');
+      var panel = this.nextElementSibling;
+      panel.classList.toggle('active');
+      if (panel.style.maxHeight){
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
     }
+
   }
 }
 </script>

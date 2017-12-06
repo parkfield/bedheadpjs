@@ -94,7 +94,7 @@
     </div>
 
     <div class="container l">
-      <div class="row no-margin">
+      <div class="row no-margin subtotal-row">
         <div class="column l6 m6 s12">
           {% if settings.freeshipping != blank %}
             <p id="shippingNotice"></p>
@@ -104,7 +104,7 @@
             <textarea class="wide" name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
           {% endif %}
         </div>
-        <div class="column l6 m6 s12 l-right m-right">
+        <div class="column l6 m6 s12 l-right m-right subtotal-column">
           <p class="subtotal-container">
             <span class="cart-total-heading">{{ 'cart.subtotal' | t }}</span>
             <span id="SubTotal" class="h3" data-cart-total>{{ cart.total_price | money }}</span>

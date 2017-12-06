@@ -1581,7 +1581,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 .theme-header.show{
   opacity: 1;
-  top: 0;
+  top: 0 !important;
 }
 .theme-header.fixed{
   position: fixed;
@@ -2821,7 +2821,7 @@ footer.theme-footer{
 }
 
 .breadcrumb a{
-  @include lato-reg(0.875rem);
+  @include lato-light(0.875rem);
 }
 .align-center{
   @include flex();
@@ -3226,7 +3226,7 @@ footer.theme-footer{
     width: 940px;
   }
   h1, h2{
-    margin-top: 70px;
+    margin-top: 50px;
     @include s(){
       margin-top: 50px;
     }
@@ -3237,6 +3237,9 @@ footer.theme-footer{
       margin-top: 23px;
       margin-bottom: 46px;
     }
+  }
+  h1{
+    margin-top: 50px;
   }
   p.h4{
     text-align: center;
@@ -3300,10 +3303,23 @@ footer.theme-footer{
     }
     justify-content: flex-end;
   }
+  .subtotal-row{
+    border-top: 1px solid $border-color;
+    padding-top: 20px;
+  }
+  .subtotal-column{
+    @include flex();
+    justify-content: flex-end;
+  }
   .subtotal-container{
     @include flex();
     justify-content: space-between;
     align-items: center;
+    width: 250px;
+    max-width: 100%;
+    @include s(){
+      width: 100%;
+    }
     .cart-total-heading{
       text-transform: uppercase;
       font-size: .875rem;
@@ -3333,6 +3349,9 @@ footer.theme-footer{
     background-color: $border-color;
     border-color: $border-color;
     color: $font-color-light;
+    @include s(){
+      margin-right: 0px;
+    }
   }
   #shippingNotice{
     @include lato-bold-italic(1rem);
@@ -3598,6 +3617,9 @@ $cart-width: 335px;
       margin-top: 20px;
     }
   }
+  p{
+    letter-spacing: 3.57%;
+  }
   a{
     text-decoration: underline;
   }
@@ -3642,7 +3664,11 @@ $cart-width: 335px;
       max-width: 100%;
     }
   }
-
+  .address-column{
+    @include flex();
+    flex-flow: row wrap;
+    justify-content: flex-end;
+  }
   .state-zip{
     width: 100%;
     @include inline-flex();
@@ -3671,6 +3697,19 @@ $cart-width: 335px;
     }   
   }
 
+  @include max-query(340px){
+    .state-zip input[name="contact[Zip]"]{
+      max-width: 186px;
+      margin-bottom: 0px;
+    }   
+  }
+
+  @include max-query(320px){
+    .state-zip input[name="contact[Zip]"]{
+      max-width: 170px;
+      margin-bottom: 0px;
+    }   
+  }
 
   select{
     width: 120px;
@@ -3980,6 +4019,9 @@ $cart-width: 335px;
 .media-article{
   .breadcrumb{
     margin-top: 36px;
+  }
+  .breadcrumb a{
+    @include lato-light(.875rem);
   }
   header{
     text-align: center;
