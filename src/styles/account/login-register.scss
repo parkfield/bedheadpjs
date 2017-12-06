@@ -27,10 +27,10 @@
   }
   input{
     max-width: 360px;
-    font-size: .875rem;
     height: 50px;
     color: $font-color;
     margin-bottom: 20px;
+    @include lato-reg(.875rem);
     @include placeholder{
       color: $font-color;
     }

@@ -34,12 +34,12 @@
     background-color: transparent;
     color: $font-color;
     border-color: $border-color;
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
   input{
     @include placeholder{
       color: $font-color;
-      text-transform: uppercase;
+      text-transform: capitalize;
     }
   }
 
@@ -48,7 +48,7 @@
     margin-bottom: 20px;
     font-size: .875rem;
     @include placeholder{
-      text-transform: uppercase;
+      text-transform: capitalize;
     }
   }
   input, select, .state-zip, textarea{
@@ -94,5 +94,6 @@
   
   input[type="submit"]{
     color: $font-color;
+    text-transform: uppercase;
   }
 }

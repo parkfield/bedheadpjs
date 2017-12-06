@@ -36,7 +36,7 @@
         <div class="state-zip">
         <div class="select-wrap">
         <select id="ContactFormState" name="contact[State]">
-          <option value="" disabled selected>STATE</option>
+          <option value="" disabled selected>State</option>
           <option value="AL">AL</option>
           <option value="AK">AK</option>
           <option value="AR">AR</option>  
@@ -93,10 +93,11 @@
         <label for="ContactFormZip" class="clearfix">Zip</label>
         <input type="text" id="ContactFormZip" name="contact[Zip]" placeholder="Zipcode" autocapitalize="words" value="">
         </div>
+        {% comment %}
         <label for="ContactFormMessage" class="clearfix">{{ 'form.message' | t }}</label>
         <textarea rows="10" id="ContactFormMessage" name="contact[Message]" placeholder="{{ 'form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
-
-        <input type="submit" value="{{ 'form.send' | t }}">
+        {% endcomment %}
+        <input type="submit" value="{{ 'form.submit' | t }}">
       </div>
       {% endform %}
     </div>

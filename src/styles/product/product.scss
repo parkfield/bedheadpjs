@@ -73,6 +73,7 @@
     @include lato-reg(.875rem);
   }
   .text-column #SizeGuideTrigger{
+    margin-bottom: 0px;
     @include lato-reg(.875rem);
     text-decoration: underline;
     background-color: transparent;
@@ -126,6 +127,15 @@
     background-color: $bg-main;
     font-size: .875rem;
     padding-left: 19px;
+  }
+  .text-column #Engraving{
+    height: 50px;
+    max-width: 280px;
+    @include lato-reg(.875rem);
+    padding-left: 19px;
+    @include s(){
+      max-width: 100%;
+    }
   }
   .text-column button[type="submit"]{
     max-width: 280px;
