@@ -14,6 +14,13 @@
     </div>
 </div>
 </div>
+{% if template contains 'collection' or template contains 'product' %}
+<style>
+  .homepage-newsletter{
+    margin-top: 41px;
+  }
+</style>
+{% endif %}
 {% schema %}
   {
     "name": "Newsletter",

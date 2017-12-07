@@ -1343,7 +1343,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   @include flex();
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 13px;
   p{
     text-transform: uppercase;
     @include lato-bold(1rem);
@@ -1372,7 +1372,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   position: relative;
   opacity: 1;
   transition: opacity .3s, top .5s;
-  padding: 42px 0px 22px 0px;
+  padding: 42px 0px 20px 0px;
   border-bottom: 1px solid #D8D9DB;
   @include max-query($m){
     padding: 20px 10px;
@@ -1664,11 +1664,12 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       padding-bottom: 0px;
       .wrap{
         @include flex();
-        justify-content: center;
+        justify-content: flex-start;
         flex-flow: row wrap;
         span{
           display: block;
           width: 100%;
+          max-width: 130px;
         }
       }
     }
@@ -1743,6 +1744,10 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   .slick-slide {
     background-color: transparent;
     margin: 0 20px;
+    margin-left: 0px;
+    .nav-link{
+      margin: 0px;
+    }
     img{
       vertical-align: middle;
     }
@@ -1767,7 +1772,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 }
 .theme-nav-main .dropdown_menu{
-  width: 80%;
+  width: 78%;
   margin: 0 auto;
 }
 
@@ -1954,7 +1959,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     width: auto;
     height: auto;
     top: 50%;
-    left: 52px;
+    left: 36px;
     border-radius: 2px;
     @include prefix(transform, translate(-50% , -50%));
   }
@@ -1974,8 +1979,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   min-height: 1px;
 }
 .homepage-hero .main-text{
-  font-size: 3rem;
-  line-height: 3rem;
+  font-size: 2.625rem;
+  line-height: 2.625rem;
   position: relative;
   &:after{
     content:"";
@@ -1991,7 +1996,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .homepage-hero .sub-text{
   margin-top: 21px;
   margin-bottom: 24px;
-  font-size: 1.875rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
 }
 
@@ -2145,7 +2150,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     }
   }
   .images{
-    margin-top: 70px;
+    margin-top: 50px;
     @include max-query($s){
       margin-top: 40px;
     }
@@ -2436,7 +2441,7 @@ footer.theme-footer{
 .collection-product{
   position: relative;
   padding: 0 20px;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   @include s(){
     padding: 0px 10px;
   }
@@ -2484,7 +2489,7 @@ footer.theme-footer{
       color: $quick-add-label;
     }
     .variants{
-      margin: 20px;
+      margin: 16px;
       text-align: center;
     }
     a{
@@ -2759,6 +2764,11 @@ footer.theme-footer{
     }
   }
 }
+.collection-page{
+  .container.l{
+    width: 1319px;
+  }
+}
 .banner-row{
   max-width: 1440px;
   margin: 0 auto;
@@ -2801,12 +2811,13 @@ footer.theme-footer{
   @include prefix(transform, translateY(-50%));
 }
 #sort-by{
+  text-transform: uppercase;
   width: 100%;
   height: 50px;
   background: transparent;
   color: $font-color;
   border: thin solid $border-color;
-  @include lato-bold(.75rem);
+  @include lato-semibold(.75rem);
   min-width: 160px;
   @include max-query(800px){
     min-width: initial;
@@ -2908,9 +2919,10 @@ footer.theme-footer{
     }
     #ProductThumbs img{
       max-height: 115px;
+      margin-bottom: 25px;
     }
     #ProductPhoto{
-      width: 75%;
+      width: 70%;
     }
   }
 
@@ -2944,11 +2956,17 @@ footer.theme-footer{
     margin-right: 0;
     @include flex();
     justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
   }
-  .text-column label{
+  .text-column form#AddToCartForm label{
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     @include lato-reg(.875rem);
+    margin-bottom: 10px;
+  }
+  .text-column form#AddToCartForm .label-container label{
+    margin-bottom: 0px;
   }
   .text-column #SizeGuideTrigger{
     margin-bottom: 0px;
@@ -2990,8 +3008,11 @@ footer.theme-footer{
       position: absolute;
       font-family: FontAwesome;
       top: 50%;
-      right: 10px;
+      right: 20px;
       @include prefix(transform, translateY(-50%));
+      @include s(){
+        right: 10px;
+      }
     }
   }
   .text-column form#AddToCartForm .single-option-selector,
@@ -3047,6 +3068,7 @@ footer.theme-footer{
   }
   .description-row h5{
     margin-bottom: 30px;
+    text-transform: uppercase;
     @include lato-bold(0.875rem);
   }
   .related-products{
@@ -3055,7 +3077,9 @@ footer.theme-footer{
     width: 100%;
     margin: 0 auto;
     h3{
+      text-transform: uppercase;
       text-align: center;
+      @include lato-bold(1.375rem);
       @include heading-dash();
       margin-bottom: 70px;
     }
@@ -3074,6 +3098,7 @@ footer.theme-footer{
       #ProductThumbs img{
         width: 100%;
         max-height: initial;
+        margin-bottom: 0px;
       }
     }
     .text-column{
@@ -3333,7 +3358,6 @@ footer.theme-footer{
     max-width: 452px;
     margin-left: auto;
     margin-top: 50px;
-    margin-bottom: 77px;
     justify-content: space-between;
     button[type="submit"], .continue-btn{
       width: 100%;
@@ -3361,7 +3385,7 @@ footer.theme-footer{
   }
   .recommended-container{
     width: 1300px;
-    margin-top: 70px; 
+    margin-top: 77px; 
     h3{
       text-transform: uppercase;
       @include lato-bold(1.375rem);

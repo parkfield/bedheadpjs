@@ -13,11 +13,12 @@
       padding-bottom: 0px;
       .wrap{
         @include flex();
-        justify-content: center;
+        justify-content: flex-start;
         flex-flow: row wrap;
         span{
           display: block;
           width: 100%;
+          max-width: 130px;
         }
       }
     }
@@ -92,6 +93,10 @@
   .slick-slide {
     background-color: transparent;
     margin: 0 20px;
+    margin-left: 0px;
+    .nav-link{
+      margin: 0px;
+    }
     img{
       vertical-align: middle;
     }
@@ -116,7 +121,7 @@
 
 }
 .theme-nav-main .dropdown_menu{
-  width: 80%;
+  width: 78%;
   margin: 0 auto;
 }
 

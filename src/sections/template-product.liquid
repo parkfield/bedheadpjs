@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="row form-row">
-      <div class="column l7 m7 s12 images-column">
+      <div class="column l8 m8 s12 images-column">
         {% if product.images.size > 1 %}
           {% assign hasThumbs = true %}
           <div id="ProductThumbs" class="row collapse">
@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <div class="column l5 m5 s12 s-center text-column">
+      <div class="column l4 m4 s12 s-center text-column">
         <h1 itemprop="name">{{ product.title }}</h1>
         <div class="style-number">Style No.<span id="styleNumber">{{product.selected_or_first_available_variant.sku}}</span></div>
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">

@@ -24,7 +24,7 @@
     </div>
   </div>
 </header>
-<div class="container xl" data-section-type="collection">
+<div class="container l" data-section-type="collection">
   <header>
     <div class="row align-center {% if current_tags %}reduced-margin{% endif %}">
       <div class="column l3 m3 s3 breadcrumb-column">
@@ -89,8 +89,12 @@
 </div>
 
 {% if paginate.pages > 1 %}
-  <div class="container xl l-right m-right s-center">
-    {% include 'pagination' %}
+  <div class="container l l-right m-right s-center">
+    <div class="row">
+      <div class="column l12 m12 s12">
+        {% include 'pagination' %}
+      </div>
+    </div>
   </div>
 {% endif %}
 
