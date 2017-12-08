@@ -447,7 +447,9 @@ var Cart = function () {
           jQuery('input[name*=properties]').each(function property() {
             var key = jQuery(this).attr('name').split('[')[1].split(']')[0];
             var value = jQuery(this).val();
-            properties[key] = value;
+            if(value != ""){
+              properties[key] = value;
+            }
           });
         }
         this.addItem(id, quantity, properties);

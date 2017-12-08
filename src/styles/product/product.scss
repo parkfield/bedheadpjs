@@ -147,6 +147,62 @@
       max-width: 100%;
     }
   }
+  #EngravingWrapper.active{
+    max-width: 280px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: thin solid $border-color;
+  }
+  #EngravingWrapper.active #EngravingPopup{
+    display: block;
+  }
+  #EngravingWrapper.active #EngravingSelects{
+    @include flex();
+  }
+
+  #EngravingTrigger{
+    @include lato-reg(.875rem);
+    display: block;
+    margin-bottom: 10px;
+    color: $accent-color;
+    &:hover{
+      color: darken($accent-color, 10%);
+    }
+  }
+  #EngravingPopup{
+    display: none;
+    margin-bottom: 10px;
+    position: relative;
+    p{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 3rem;
+      @include prefix(transform, translate(-50%, -50%));
+    }
+  }
+  #EngravingSelects{
+    display: none;
+    max-width: 280px;
+    .option-wrap{
+      width: 33.33%;
+      &:after{
+        right: 10px;
+      }
+    }
+    select{
+      padding: 0px;
+      margin-bottom: 0px;
+      text-align: center;
+      background-color: transparent;
+      border: thin solid $border-color;
+      color: $font-color;
+      height: 50px;
+      &:not(:last-child){
+        border-right: none;
+      }
+    }
+  }
   .text-column button[type="submit"]{
     max-width: 280px;
   }

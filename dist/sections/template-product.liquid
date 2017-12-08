@@ -21,9 +21,6 @@
 {% if tag contains 'sizechart' %}
   {% assign sizechart = tag | split:'_' | last %}
 {% endif %}
-{% if tag == 'engravable' %}
-  {% assign engravable = true %}
-{% endif %}
 {% endfor %}
 
 <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
@@ -40,12 +37,17 @@
     </div>
     <div class="row form-row">
       <div class="column l8 m8 s12 images-column">
-        {% if product.images.size > 1 %}
+        {% if product.images.size > 0 %}
           {% assign hasThumbs = true %}
           <div id="ProductThumbs" class="row collapse">
             <ul>
             {% for image in product.images %}
-              <li><img src="{{ image.src | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}></li>
+              {% unless image.alt contains 'engravable' %}
+                <li><img src="{{ image.src | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}></li>
+              {% else %}
+                {% assign engravable = true %}
+                {% assign engravableImage = image %}
+              {% endunless %}
             {% endfor %}
             </ul>
             {% include 'social-sharing' %}
@@ -130,10 +132,7 @@
               </select>
             </div>
             </div>
-            {% if engravable %}
-            <label for="engraving">{{'product.engraving' | t }}</label>
-            <input type="text" id="Engraving" name="properties[Engraving]" pattern="[A-Za-z]{3}">
-            {% endif %}
+            {% include 'product-engraving' %}
             {% if sold_out %}
               <button type="submit" name="add" data-add-to-cart disabled>
                 <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
@@ -223,7 +222,7 @@
       },
       {
         "type":"paragraph",
-        "content":"Add tag 'engravable' to show engraving settings"
+        "content":"Add image with 'engravable-#hexcolor' in the alt text to show engraving settings. The hexcolor will be used as the text color."
       },
       {
         "type":"paragraph",
