@@ -62,7 +62,7 @@
   }
   .address-column{
     @include flex();
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
     justify-content: flex-end;
   }
   .state-zip{

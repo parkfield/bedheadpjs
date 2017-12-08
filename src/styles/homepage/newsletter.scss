@@ -46,7 +46,7 @@
   }
   @include s(){
     form#contact_form{
-      flex-flow: row wrap;
+      @include prefix(flex-flow, row wrap);
     }
     .contact-form input[type="email"]{
       width: 90%;

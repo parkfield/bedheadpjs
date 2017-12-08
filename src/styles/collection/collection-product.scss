@@ -85,8 +85,8 @@
   z-index: 2;
   top: -30px;
   right: 0px;
-  align-items: center;
-  justify-content: center;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
   text-transform: uppercase;
   height: 63px;
   width: 63px;

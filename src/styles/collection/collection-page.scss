@@ -70,7 +70,7 @@
 }
 .align-center{
   @include flex();
-  align-items: center;
+  @include prefix(align-items, center);
   margin-bottom: 100px;
   @include max-query(1150px){
     margin-bottom: 20px;
@@ -104,8 +104,8 @@
   @include lato-bold(1.125rem);
   border: thin solid $border-color;
   height: 50px;
-  align-items: center;
-  justify-content: center;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
 }
 @include max-query(800px){
   .showingIndex{

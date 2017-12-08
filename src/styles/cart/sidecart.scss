@@ -39,7 +39,7 @@ $cart-width: 335px;
   .item{
     @include flex();
     margin-bottom: 10px;
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
   }
   .image-container img{
     max-width: 50px;
@@ -54,15 +54,15 @@ $cart-width: 335px;
     .title, .variant{@include lato-bold(1rem);}
     .quantity-adjust{
       @include flex();
-      align-items: center;
+      @include prefix(align-items, center);
       a{color: $border-color;}
     }
     .quantity{
       width: 34px;
       height: 25px;
       @include flex();
-      align-items: center;
-      justify-content: center;
+      @include prefix(align-items, center);
+      @include prefix(justify-content, center);
       border: thin solid $border-color;
       margin: 0px 10px;
     }
@@ -72,8 +72,8 @@ $cart-width: 335px;
   }
   .total-price{
     @include flex();
-    justify-content: space-between;
-    align-items: center;
+    @include prefix(justify-content, space-between);
+    @include prefix(align-items, center);
     div:first-child{
       @include lato-reg(.875rem);
     }
@@ -84,7 +84,7 @@ $cart-width: 335px;
   .buttons{
     margin-top: 18px;
     @include flex();
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
   }
   .btn{
     height: 30px;

@@ -53,8 +53,8 @@
       opacity: 1;
     }
     .filter-options{
-      flex-flow: row wrap;
-      justify-content: center;
+      @include prefix(flex-flow, row wrap);
+      @include prefix(justify-content, center);
       li{
         width: 100%;
       }

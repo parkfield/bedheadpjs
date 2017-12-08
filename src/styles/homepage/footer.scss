@@ -45,7 +45,7 @@ footer.theme-footer{
   }
   .social-links{
     @include flex();
-    justify-content: center;
+    @include prefix(justify-content, center);
     .row{
       margin-bottom: 30px;
     }

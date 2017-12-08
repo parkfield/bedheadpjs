@@ -11,8 +11,8 @@
 }
 .homepage-promobar .text-content{
   @include flex();
-  justify-content: center;
-  align-items: center;
+  @include prefix(justify-content, center);
+  @include prefix(align-items, center);
   padding: 13px;
   p{
     text-transform: uppercase;

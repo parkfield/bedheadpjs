@@ -1,6 +1,6 @@
 .page-locator .text-image{
   @include flex();
-  flex-flow: row wrap;
+  @include prefix(flex-flow, row wrap);
   .text-column, .image-column{
     width: 50%;
     @include max-query($m){
@@ -13,9 +13,9 @@
   .text-column{
     background-color: $accent-color-2;
     @include flex();
-    align-items: center;
-    justify-content: center;
-    flex-flow: row wrap;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
+    @include prefix(flex-flow, row wrap);
     text-align: center;
     h1{
       font-size: 2.125rem;

@@ -30,8 +30,8 @@
       height: 20px;
       border-radius: 10px;
       @include flex();
-      align-items: center;
-      justify-content: center;
+      @include prefix(align-items, center);
+      @include prefix(justify-content, center);
       @include prefix(transform, translateY(-50%));
       right: 20px;
       transition: border-color .3s;

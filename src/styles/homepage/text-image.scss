@@ -1,6 +1,6 @@
 .homepage-text-image{
   @include flex();
-  flex-flow: row wrap;
+  @include prefix(flex-flow, row wrap);
   .text-container, .image-container{
     width: 50%;
     @include max-query($m){
@@ -17,8 +17,8 @@
 .homepage-text-image .text-container{
   background-color: $accent-color-2;
   @include flex();
-  align-items: center;
-  justify-content: center;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
   @include max-query($m){
     padding: 130px 15px;
   }

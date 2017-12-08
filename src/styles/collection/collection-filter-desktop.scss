@@ -26,7 +26,7 @@
     }
     .filter-values{
       @include flex();
-      justify-content: center;
+      @include prefix(justify-content, center);
       position: absolute;
       bottom: -48px;
       left: 0;

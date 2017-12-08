@@ -49,16 +49,16 @@
   }
   .quantity-adjust{
     @include flex();
-    align-items: center;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
   }
   .quantity{
     border: 1px solid $border-color;
     height: 34px;
     width: 50px;
     @include flex();
-    align-items: center;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
     border-radius: 4px;
     margin: 0px 14px;
   }
@@ -66,9 +66,9 @@
     height: 34px;
     @include lato-reg(.875rem);
     @include flex();
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
+    @include prefix(flex-flow, row wrap);
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
   }
   .units-price{
     p{
@@ -90,8 +90,8 @@
   }
   .subtotal-container{
     @include flex();
-    justify-content: space-between;
-    align-items: center;
+    @include prefix(justify-content, space-between);
+    @include prefix(align-items, center);
     width: 250px;
     max-width: 100%;
     @include s(){
@@ -110,7 +110,7 @@
     max-width: 452px;
     margin-left: auto;
     margin-top: 50px;
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
     button[type="submit"], .continue-btn{
       width: 100%;
       max-width: initial;
@@ -170,7 +170,7 @@
     }
     .buttons{
       max-width: 100%;
-      flex-flow: row wrap;
+      @include prefix(flex-flow, row wrap);
     }
     .v-top.center{
       text-align: left;

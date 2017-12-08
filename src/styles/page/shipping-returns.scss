@@ -3,11 +3,11 @@
   width: 950px;
   .row{
     @include flex();
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
   }
   .main-content{
     @include flex();
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
     justify-content: flex-end;
   }
   .rte{
@@ -90,7 +90,7 @@
     position: relative;
     .selected{
       @include flex();
-      align-items: center;
+      @include prefix(align-items, center);
       @include lato-reg(.875rem);
       height: 40px;
       width: 100%;

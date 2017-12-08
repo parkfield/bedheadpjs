@@ -189,7 +189,7 @@
       }
       &.center {
         text-align: center;
-        align-items: center;
+        @include prefix(align-items, center);
       }
     }
     @include s() {

@@ -23,16 +23,16 @@
       margin-top: 40px;
     }
     @include flex();
-    align-items: center;
-    flex-flow: row wrap;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(flex-flow, row wrap);
+    @include prefix(justify-content, center);
   }
   .images .image-container{
     width: 20%;
     padding: 0px 10px;
     @include flex();
-    align-items: center;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
     @include max-query($m){
       width: 33.333%;
     }

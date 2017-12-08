@@ -21,7 +21,7 @@
       }
       @include min-query($s){
         @include flex();
-        flex-flow: row wrap;  
+        @include prefix(flex-flow, row wrap);  
         .share-container{
           display: block;
           align-self: flex-end;
@@ -66,9 +66,9 @@
     max-width: 280px;
     margin-right: 0;
     @include flex();
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
     margin-bottom: 10px;
-    align-items: center;
+    @include prefix(align-items, center);
   }
   .text-column form#AddToCartForm label{
     display: block;
@@ -184,7 +184,7 @@
   }
   .related-products{
     @include flex();
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
     width: 100%;
     margin: 0 auto;
     h3{

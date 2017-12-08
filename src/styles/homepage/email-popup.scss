@@ -49,8 +49,8 @@
     background-color: $bg-main;
     padding: 0px 30px;
     @include flex();
-    align-items: center;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
   }
   .text-container .content{
     max-width: 410px;
@@ -116,7 +116,7 @@
     }
   }
   #newsletter-popup .popup-content .contact-form{
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
   }
 }
 

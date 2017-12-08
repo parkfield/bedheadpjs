@@ -669,8 +669,8 @@ button, .btn, a.btn{
   min-width: 200px;
   height: 50px;
   @include flex();
-  align-items: center;
-  justify-content: center;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
   max-width: 250px;
   &:hover{
     color: white;
@@ -871,7 +871,7 @@ button::-moz-focus-inner {
       }
       &.center {
         text-align: center;
-        align-items: center;
+        @include prefix(align-items, center);
       }
     }
     @include s() {
@@ -1225,8 +1225,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   width: 50px;
   height: 25px;
   @include flex();
-  align-items: center;
-  justify-content: center;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
 }
 .social-sharing{
   opacity: 0;
@@ -1341,8 +1341,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 .homepage-promobar .text-content{
   @include flex();
-  justify-content: center;
-  align-items: center;
+  @include prefix(justify-content, center);
+  @include prefix(align-items, center);
   padding: 13px;
   p{
     text-transform: uppercase;
@@ -1390,7 +1390,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 .theme-header .icons-row{
   @include flex();
-  align-items: center;
+  @include prefix(align-items, center);
   position: relative;
   margin-bottom: 48px;
   img{
@@ -1535,7 +1535,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 .theme-header .user-column{
   @include flex();
-  align-items: center;
+  @include prefix(align-items, center);
   justify-content: flex-end;
   #CartLink{
     position: relative;
@@ -1554,7 +1554,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   }
   @include s(){
     #CartLink{margin: 0px;}
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
   }
   span{
    display: none;
@@ -1566,8 +1566,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
    right: -14px;
    border-radius: 24px;
    @include flex();
-   align-items: center;
-   justify-content: center; 
+   @include prefix(align-items, center);
+   @include prefix(justify-content, center); 
    @include lato-bold(0.875rem);
   }
 }
@@ -1598,7 +1598,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     }
     .logo-column{
       @include flex();
-      align-items: center;
+      @include prefix(align-items, center);
       nav{
         width: 100%;
       }
@@ -1664,8 +1664,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       padding-bottom: 0px;
       .wrap{
         @include flex();
-        justify-content: flex-start;
-        flex-flow: row wrap;
+        @include prefix(justify-content, flex-start);
+        @include prefix(flex-flow, row wrap);
         span{
           display: block;
           width: 100%;
@@ -1705,7 +1705,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   width: 100%;
   margin: 0 auto;
   @include flex();
-  justify-content: space-between;
+  @include prefix(justify-content, space-between);
   @include m(){
     width: 98%;
   }
@@ -1738,7 +1738,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 .theme-nav-main .slider-container{
   @include flex();
-  align-items: center;
+  @include prefix(align-items, center);
   justify-content: space-around;
   position: relative;
   .slick-slide {
@@ -1915,7 +1915,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   left: 50%;
   @include prefix(transform, translateX(-50%));
   .slick-dots{
-    display: inline-flex;
+    @include inline-flex();
     li button:before {
      content:"";
     }
@@ -2042,7 +2042,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 .homepage-text-image{
   @include flex();
-  flex-flow: row wrap;
+  @include prefix(flex-flow, row wrap);
   .text-container, .image-container{
     width: 50%;
     @include max-query($m){
@@ -2059,8 +2059,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .homepage-text-image .text-container{
   background-color: $accent-color-2;
   @include flex();
-  align-items: center;
-  justify-content: center;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
   @include max-query($m){
     padding: 130px 15px;
   }
@@ -2155,16 +2155,16 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       margin-top: 40px;
     }
     @include flex();
-    align-items: center;
-    flex-flow: row wrap;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(flex-flow, row wrap);
+    @include prefix(justify-content, center);
   }
   .images .image-container{
     width: 20%;
     padding: 0px 10px;
     @include flex();
-    align-items: center;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
     @include max-query($m){
       width: 33.333%;
     }
@@ -2218,7 +2218,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   }
   @include s(){
     form#contact_form{
-      flex-flow: row wrap;
+      @include prefix(flex-flow, row wrap);
     }
     .contact-form input[type="email"]{
       width: 90%;
@@ -2279,7 +2279,7 @@ footer.theme-footer{
   }
   .social-links{
     @include flex();
-    justify-content: center;
+    @include prefix(justify-content, center);
     .row{
       margin-bottom: 30px;
     }
@@ -2357,8 +2357,8 @@ footer.theme-footer{
     background-color: $bg-main;
     padding: 0px 30px;
     @include flex();
-    align-items: center;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
   }
   .text-container .content{
     max-width: 410px;
@@ -2424,7 +2424,7 @@ footer.theme-footer{
     }
   }
   #newsletter-popup .popup-content .contact-form{
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
   }
 }
 
@@ -2525,8 +2525,8 @@ footer.theme-footer{
   z-index: 2;
   top: -30px;
   right: 0px;
-  align-items: center;
-  justify-content: center;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
   text-transform: uppercase;
   height: 63px;
   width: 63px;
@@ -2566,7 +2566,7 @@ footer.theme-footer{
     }
     .filter-values{
       @include flex();
-      justify-content: center;
+      @include prefix(justify-content, center);
       position: absolute;
       bottom: -48px;
       left: 0;
@@ -2714,8 +2714,8 @@ footer.theme-footer{
       opacity: 1;
     }
     .filter-options{
-      flex-flow: row wrap;
-      justify-content: center;
+      @include prefix(flex-flow, row wrap);
+      @include prefix(justify-content, center);
       li{
         width: 100%;
       }
@@ -2836,7 +2836,7 @@ footer.theme-footer{
 }
 .align-center{
   @include flex();
-  align-items: center;
+  @include prefix(align-items, center);
   margin-bottom: 100px;
   @include max-query(1150px){
     margin-bottom: 20px;
@@ -2870,8 +2870,8 @@ footer.theme-footer{
   @include lato-bold(1.125rem);
   border: thin solid $border-color;
   height: 50px;
-  align-items: center;
-  justify-content: center;
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
 }
 @include max-query(800px){
   .showingIndex{
@@ -2910,7 +2910,7 @@ footer.theme-footer{
       }
       @include min-query($s){
         @include flex();
-        flex-flow: row wrap;  
+        @include prefix(flex-flow, row wrap);  
         .share-container{
           display: block;
           align-self: flex-end;
@@ -2955,9 +2955,9 @@ footer.theme-footer{
     max-width: 280px;
     margin-right: 0;
     @include flex();
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
     margin-bottom: 10px;
-    align-items: center;
+    @include prefix(align-items, center);
   }
   .text-column form#AddToCartForm label{
     display: block;
@@ -3073,7 +3073,7 @@ footer.theme-footer{
   }
   .related-products{
     @include flex();
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
     width: 100%;
     margin: 0 auto;
     h3{
@@ -3297,16 +3297,16 @@ footer.theme-footer{
   }
   .quantity-adjust{
     @include flex();
-    align-items: center;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
   }
   .quantity{
     border: 1px solid $border-color;
     height: 34px;
     width: 50px;
     @include flex();
-    align-items: center;
-    justify-content: center;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
     border-radius: 4px;
     margin: 0px 14px;
   }
@@ -3314,9 +3314,9 @@ footer.theme-footer{
     height: 34px;
     @include lato-reg(.875rem);
     @include flex();
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
+    @include prefix(flex-flow, row wrap);
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
   }
   .units-price{
     p{
@@ -3338,8 +3338,8 @@ footer.theme-footer{
   }
   .subtotal-container{
     @include flex();
-    justify-content: space-between;
-    align-items: center;
+    @include prefix(justify-content, space-between);
+    @include prefix(align-items, center);
     width: 250px;
     max-width: 100%;
     @include s(){
@@ -3358,7 +3358,7 @@ footer.theme-footer{
     max-width: 452px;
     margin-left: auto;
     margin-top: 50px;
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
     button[type="submit"], .continue-btn{
       width: 100%;
       max-width: initial;
@@ -3418,7 +3418,7 @@ footer.theme-footer{
     }
     .buttons{
       max-width: 100%;
-      flex-flow: row wrap;
+      @include prefix(flex-flow, row wrap);
     }
     .v-top.center{
       text-align: left;
@@ -3472,7 +3472,7 @@ $cart-width: 335px;
   .item{
     @include flex();
     margin-bottom: 10px;
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
   }
   .image-container img{
     max-width: 50px;
@@ -3487,15 +3487,15 @@ $cart-width: 335px;
     .title, .variant{@include lato-bold(1rem);}
     .quantity-adjust{
       @include flex();
-      align-items: center;
+      @include prefix(align-items, center);
       a{color: $border-color;}
     }
     .quantity{
       width: 34px;
       height: 25px;
       @include flex();
-      align-items: center;
-      justify-content: center;
+      @include prefix(align-items, center);
+      @include prefix(justify-content, center);
       border: thin solid $border-color;
       margin: 0px 10px;
     }
@@ -3505,8 +3505,8 @@ $cart-width: 335px;
   }
   .total-price{
     @include flex();
-    justify-content: space-between;
-    align-items: center;
+    @include prefix(justify-content, space-between);
+    @include prefix(align-items, center);
     div:first-child{
       @include lato-reg(.875rem);
     }
@@ -3517,7 +3517,7 @@ $cart-width: 335px;
   .buttons{
     margin-top: 18px;
     @include flex();
-    justify-content: space-between;
+    @include prefix(justify-content, space-between);
   }
   .btn{
     height: 30px;
@@ -3587,8 +3587,8 @@ $cart-width: 335px;
       height: 20px;
       border-radius: 10px;
       @include flex();
-      align-items: center;
-      justify-content: center;
+      @include prefix(align-items, center);
+      @include prefix(justify-content, center);
       @include prefix(transform, translateY(-50%));
       right: 20px;
       transition: border-color .3s;
@@ -3690,7 +3690,7 @@ $cart-width: 335px;
   }
   .address-column{
     @include flex();
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
     justify-content: flex-end;
   }
   .state-zip{
@@ -3768,7 +3768,7 @@ $cart-width: 335px;
 }
 .page-locator .text-image{
   @include flex();
-  flex-flow: row wrap;
+  @include prefix(flex-flow, row wrap);
   .text-column, .image-column{
     width: 50%;
     @include max-query($m){
@@ -3781,9 +3781,9 @@ $cart-width: 335px;
   .text-column{
     background-color: $accent-color-2;
     @include flex();
-    align-items: center;
-    justify-content: center;
-    flex-flow: row wrap;
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
+    @include prefix(flex-flow, row wrap);
     text-align: center;
     h1{
       font-size: 2.125rem;
@@ -3812,11 +3812,11 @@ $cart-width: 335px;
   width: 950px;
   .row{
     @include flex();
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
   }
   .main-content{
     @include flex();
-    flex-flow: row wrap;
+    @include prefix(flex-flow, row wrap);
     justify-content: flex-end;
   }
   .rte{
@@ -3899,7 +3899,7 @@ $cart-width: 335px;
     position: relative;
     .selected{
       @include flex();
-      align-items: center;
+      @include prefix(align-items, center);
       @include lato-reg(.875rem);
       height: 40px;
       width: 100%;
