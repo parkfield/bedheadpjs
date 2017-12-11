@@ -1438,12 +1438,12 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
   #MobileNavToggle.active{
     .line{
-      transform: rotate(45deg);
+      @include prefix(transform, rotate(45deg));
     }
     .line::after{
       width: 100%;
       top: 0;
-      transform: rotate(90deg);
+      @include prefix(transform, rotate(90deg));
     }
     .line::before{
       opacity: 0;
@@ -2144,7 +2144,6 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .homepage-media{
   margin-top: 120px;
   .container{
-    padding: 0px;
     max-width: 1090px;
     @include max-query(1089px){
       width: 100%;
@@ -2208,7 +2207,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     text-align: center;
     margin-bottom: 33px;
   }
-  form#contact_form{
+  form{
     text-align: center;
     @include flex();
     flex-flow: nowrap;
@@ -2638,7 +2637,7 @@ footer.theme-footer{
     border: 3px solid #333;
     border-top: none;
     border-right: none;
-    transform: rotate(-45deg);
+    @include prefix(transform,rotate(-45deg));
     &:hover{
       cursor: pointer;
     }
@@ -2951,7 +2950,7 @@ footer.theme-footer{
     &:after{
       left: 0;
       margin-top: 12px;
-      transform: none;
+      @include prefix(transform,none);
       height: 1px;
       background: #979797;
     }

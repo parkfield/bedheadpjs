@@ -86,7 +86,7 @@
     border: 3px solid #333;
     border-top: none;
     border-right: none;
-    transform: rotate(-45deg);
+    @include prefix(transform,rotate(-45deg));
     &:hover{
       cursor: pointer;
     }

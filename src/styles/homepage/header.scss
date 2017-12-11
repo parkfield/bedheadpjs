@@ -74,12 +74,12 @@
 
   #MobileNavToggle.active{
     .line{
-      transform: rotate(45deg);
+      @include prefix(transform, rotate(45deg));
     }
     .line::after{
       width: 100%;
       top: 0;
-      transform: rotate(90deg);
+      @include prefix(transform, rotate(90deg));
     }
     .line::before{
       opacity: 0;

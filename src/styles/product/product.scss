@@ -50,7 +50,7 @@
     &:after{
       left: 0;
       margin-top: 12px;
-      transform: none;
+      @include prefix(transform,none);
       height: 1px;
       background: #979797;
     }

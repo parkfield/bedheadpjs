@@ -3,3 +3,4 @@ $('a[href="#forgotPassword"]').click(function(e){
   e.preventDefault();
   $('form[action="/account/recover"]').toggle();
 });
+
