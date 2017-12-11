@@ -65,7 +65,9 @@
     line-height: 1.5;
     margin-bottom: 20px;
   }
-
+  nav li{
+    margin-bottom: 15px;
+  }
   nav ul li:not(:first-child){
     margin-left: 20px;
   }

@@ -16,12 +16,14 @@
   }
   h3{
     border-top: thin solid #D8D9DB;
-    padding: 10px 0px;
+    padding: 13px 0px;
     text-transform: uppercase;
     transition: color .3s;
     position: relative;
     &:after{
-      content:'+';
+      font-size: .5rem;
+      content:'\f067';
+      font-family: FontAwesome;
       border: 1px solid black;
       display: inline-block;
       position: absolute;
@@ -51,7 +53,7 @@
     }
   }
   h3.active::after{
-    content:'-';
+    content:'\f068';
   }
   .content h3:first-of-type{
     border-top: none;

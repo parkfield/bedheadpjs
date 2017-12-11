@@ -1475,6 +1475,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .theme-header .icons-row .search-container{
   width: 100%;
   position: absolute;
+  @include flex();
+  @include prefix(align-items, center);
   bottom: -94px;
   left: 0;
   height: 0;
@@ -1496,6 +1498,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 
 .theme-header .search-container .search-content{
+  width: 100%;
   max-width: 930px;
   margin: 0 auto;
   text-align: center;
@@ -1508,6 +1511,14 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   form, input{
     width: 90%;
     position: relative;
+  }
+  label{
+    width: 81%;
+    color: $border-color;
+    margin-bottom: 10px;
+    font-size: .875rem;
+    text-align: left;
+    text-transform: uppercase;
   }
   input{
     border: none;
@@ -2133,6 +2144,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .homepage-media{
   margin-top: 120px;
   .container{
+    padding: 0px;
     max-width: 1090px;
     @include max-query(1089px){
       width: 100%;
@@ -3488,6 +3500,9 @@ footer.theme-footer{
   }
 }
 $cart-width: 335px;
+#PopupCart{
+  background-color: transparent;
+}
 #PopupCart .popup-content{
   position: fixed;
   @include prefix(transform, translateY(-50%));
@@ -3537,7 +3552,7 @@ $cart-width: 335px;
     max-width: 150px;
     margin: 0 auto;
     .product-link{
-      display: block;
+      display: inline-block;
       margin-bottom: 8px;
     }
     .title, .variant{@include lato-bold(1rem);}
@@ -3611,6 +3626,26 @@ $cart-width: 335px;
     margin-bottom: 50px;
   }
 }
+.search-page{
+  form{
+    width: 100%;
+    @include prefix(justify-content, center);
+    @include flex();
+    @include prefix(flex-flow, row wrap);
+    input{
+      height: 50px;
+    }
+    button{
+      max-width: initial;
+      background-color: transparent;
+      border: none;
+      @include max-query($s){
+        border: thin solid $border-color;
+      }
+      min-width: 100px;
+    }
+  }
+}
 .page-faq{
   width: 980px;
   margin-top: 60px;
@@ -3629,12 +3664,14 @@ $cart-width: 335px;
   }
   h3{
     border-top: thin solid #D8D9DB;
-    padding: 10px 0px;
+    padding: 13px 0px;
     text-transform: uppercase;
     transition: color .3s;
     position: relative;
     &:after{
-      content:'+';
+      font-size: .5rem;
+      content:'\f067';
+      font-family: FontAwesome;
       border: 1px solid black;
       display: inline-block;
       position: absolute;
@@ -3664,7 +3701,7 @@ $cart-width: 335px;
     }
   }
   h3.active::after{
-    content:'-';
+    content:'\f068';
   }
   .content h3:first-of-type{
     border-top: none;
@@ -3930,7 +3967,9 @@ $cart-width: 335px;
     line-height: 1.5;
     margin-bottom: 20px;
   }
-
+  nav li{
+    margin-bottom: 15px;
+  }
   nav ul li:not(:first-child){
     margin-left: 20px;
   }

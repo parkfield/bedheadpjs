@@ -1,4 +1,7 @@
 $cart-width: 335px;
+#PopupCart{
+  background-color: transparent;
+}
 #PopupCart .popup-content{
   position: fixed;
   @include prefix(transform, translateY(-50%));
@@ -48,7 +51,7 @@ $cart-width: 335px;
     max-width: 150px;
     margin: 0 auto;
     .product-link{
-      display: block;
+      display: inline-block;
       margin-bottom: 8px;
     }
     .title, .variant{@include lato-bold(1rem);}

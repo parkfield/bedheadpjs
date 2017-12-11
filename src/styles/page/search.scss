@@ -1,0 +1,20 @@
+.search-page{
+  form{
+    width: 100%;
+    @include prefix(justify-content, center);
+    @include flex();
+    @include prefix(flex-flow, row wrap);
+    input{
+      height: 50px;
+    }
+    button{
+      max-width: initial;
+      background-color: transparent;
+      border: none;
+      @include max-query($s){
+        border: thin solid $border-color;
+      }
+      min-width: 100px;
+    }
+  }
+}
