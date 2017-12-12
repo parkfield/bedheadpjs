@@ -11,14 +11,108 @@
     "name": "Colors",
     "settings": [
       {
+        "type":"header",
+        "content":"General Colors"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#A0DAE8"
+      },
+      {
+        "type": "color",
+        "id": "accent_color2",
+        "label": "Accent Color 2",
+        "default": "#F9FAEF"
+      },
+      {
+        "type": "color",
+        "id": "font_color",
+        "label": "Font Color",
+        "default": "#333E48"
+      },
+      {
+        "type": "color",
+        "id": "font_color_light",
+        "label": "Font Color Light",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "bg_main_color",
+        "label": "Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "bg_dark_color",
+        "label": "Dark Section Background Color",
+        "default": "#333E48"
+      },
+      {
+        "type": "color",
+        "id": "bg_light_color",
+        "label": "Light Section Background Color",
+        "default": "#F7F7F7"
+      },
+      {
         "type": "color",
         "id": "border_color",
         "label": "Border Color",
         "default": "#A1A4AA"
+      },  
+      {
+        "type":"header",
+        "content":"Quick Add Colors"
+      },
+      {
+        "type": "color",
+        "id": "qa_label",
+        "label": "Quick Add Label Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "qa_active",
+        "label": "Quick Add Active Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "qa_inactive",
+        "label": "Quick Add Inactive Color",
+        "default": "#B3E9F6"
+      },
+      {
+        "type":"header",
+        "content":"New Product Notification Colors"
+      },
+      {
+        "type": "color",
+        "id": "new_icon_accent",
+        "label": "'New' Icon Accent Color",
+        "default": "#A2AD00"
+      },
+      {
+        "type": "color",
+        "id": "new_icon_bg",
+        "label": "'New' Icon Accent BG Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type":"header",
+        "content":"Footer Colors"
+      },   
+      {
+        "type": "color",
+        "id": "footer_link_color",
+        "label": "Footer Link Color",
+        "default": "#A1A4AA"
       },     
       {
         "type": "header",
-        "content": "General colors"
+        "content": "Ignore These Colors"
       },
       {
         "type": "color",

@@ -6,8 +6,8 @@ html {
 
 body {
   height: 100%;
-  color: $colorForeground;
-  background-color: $colorBackground;
+  color: $font-color;
+  background-color: $bg-main;
   font: 16px/21px sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;

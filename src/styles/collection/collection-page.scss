@@ -7,6 +7,10 @@
   max-width: 1440px;
   margin: 0 auto;
   margin-bottom: 50px;
+  @include s(){
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
 }
 .banner-column{
   position: relative;

@@ -203,6 +203,10 @@
       }
     }
   }
+  .text-column .shipping-link{
+    @include lato-reg(.875rem);
+    text-decoration: underline;
+  }
   .text-column button[type="submit"]{
     max-width: 280px;
   }
@@ -243,6 +247,7 @@
     @include prefix(flex-flow, row wrap);
     width: 100%;
     margin: 0 auto;
+    margin-top: 50px;
     h3{
       text-transform: uppercase;
       text-align: center;

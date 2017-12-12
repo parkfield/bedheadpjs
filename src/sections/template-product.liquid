@@ -1,18 +1,18 @@
 
 {% assign sold_out = true %}
 {% assign on_sale = false %}
-{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign noReturns = false %}
+{% assign engravable = false %}
 
+{% assign current_variant = product.selected_or_first_available_variant %}
 {% if product.compare_at_price > product.price %}
   {% assign on_sale = true %}
+  {% assign noReturns = true %}
 {% endif %}
 
 {% if product.available %}
   {% assign sold_out = false %}
 {% endif %}
-
-{% assign noReturns = false %}
-{% assign engravable = false %}
 
 {% for tag in product.tags %}
 {% if tag == 'noReturns' %}
@@ -22,6 +22,7 @@
   {% assign sizechart = tag | split:'_' | last %}
 {% endif %}
 {% endfor %}
+
 
 <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
 <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
@@ -142,6 +143,9 @@
                 <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
               </button>
             {% endif %}
+            {% if section.settings.shipping_url != blank %}
+            <a class="shipping-link" href="{{section.settings.shipping_url}}" target="_blank" rel="nofollow">{{section.settings.shipping_text}}</a>
+            {% endif %}
           </form>
 
         </div>
@@ -158,7 +162,7 @@
       <div class="column l3 m3 s12">
         <h5>{{section.settings.column_2_heading}}</h5>
         <div class="rte" itemprop="description">
-          <p>Reverse Garment Before Washing.   Machine Wash Cold, Gentle Cycle.  Do Not Bleach.  Air Dry.</p>
+          {{section.settings.column_2_body}}
         </div>
       </div>
       {% unless noReturns %}
@@ -218,10 +222,6 @@
       },
       {
         "type":"paragraph",
-        "content":"Add tag 'noReturns' to show text that the product is not returnable"
-      },
-      {
-        "type":"paragraph",
         "content":"Add image with 'engravable-#hexcolor' in the alt text to show engraving settings. The hexcolor will be used as the text color."
       },
       {
@@ -229,8 +229,27 @@
         "content":"Add tag 'sizechart_(handle of size chart page)' to show engraving settings. Ex: 'sizechart_womens-size-chart'"
       },
       {
+        "type":"paragraph",
+        "content":"Add tag 'new' to show 'New' icon on collection pages."
+      },
+      {
         "type":"header",
-        "content":"Product Column Text"
+        "content":"Shipping & Returns"
+      },
+      {
+        "type":"text",
+        "id":"shipping_text",
+        "label":"Text",
+        "default":"Shipping & Returns"
+      },
+      {
+        "type":"url",
+        "id":"shipping_url",
+        "label":"Link"
+      },
+      {
+        "type":"header",
+        "content":"Product Columned Text"
       },
       {
         "type":"header",
@@ -257,12 +276,17 @@
         "default":"Product Care"
       },
       {
+        "type":"richtext",
+        "label":"Body",
+        "id":"column_2_body"
+      },
+      {
         "type":"header",
         "content":"Column 3"
       },
       {
         "type":"paragraph",
-        "content":"If product is tagged with 'noReturns', column 3 will use the alternate heading and body"
+        "content":"If product is on sale, column 3 will use the alternate heading and body"
       },
       {
         "type":"text",

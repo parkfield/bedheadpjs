@@ -169,6 +169,10 @@ $font-color: #333E48;
     display: none;
   } 
 }
+.anyflexbox .main{
+  @include prefix(flex-direction, row);
+  @include prefix(flex-wrap, wrap);
+}
 .mobile-banner{
   padding: 0px;
 }
