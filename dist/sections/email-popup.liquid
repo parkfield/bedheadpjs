@@ -7,8 +7,14 @@
     </div>
     <div class="text-container">
       <div class="content">
+        <div class="default">
         <span class="h1">{{section.settings.heading}}</span>
         <p>{{section.settings.body}}</p>
+        </div>
+        <div class="success">
+          <span class="h1">{{section.settings.success_heading}}</span>
+          <p>{{section.settings.success_body}}</p>          
+        </div>
         {% include 'section-subscribe-form' %}
       </div>
     </div>
@@ -20,11 +26,20 @@
 //Check whether to show newsletter or not
 {% if section.settings.enable_popup %}
 $(document).ready(function(){
+  $("#newsletter-popup #mc-embedded-subscribe-form").formchimp({
+    onMailChimpSuccess:function(){
+      $('#newsletter-popup .success').show();
+      $('#newsletter-popup .default').hide();
+      Cookies.set('newsletter-subscribed', true);
+    },
+    onMailChimpError:function(){
+      console.log('error');
+    }
+  });
+
   setTimeout(function(){
     var subscribed = Cookies.get('newsletter-subscribed');
     var temp = Cookies.get('newsletter-popup-timeout');
-    console.log(subscribed);
-    console.log(temp);
     if(subscribed == false || subscribed == undefined){
       if(temp==false || temp == undefined){
         $('#newsletter-popup, #newsletter-wrapper').addClass('active');

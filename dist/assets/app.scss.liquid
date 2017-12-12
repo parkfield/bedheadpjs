@@ -2210,7 +2210,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   form{
     text-align: center;
     @include flex();
-    flex-flow: nowrap;
+    @include prefix(flex-flow, wrap);
   }
   .contact-form input{
     display: inline-block;
@@ -2226,6 +2226,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     width: 25%;
     @include roboto-reg(0.75rem);
     color: $font-color;
+    min-width: initial;
   }
   @include s(){
     form#contact_form{
@@ -2328,7 +2329,7 @@ footer.theme-footer{
   z-index: 21;
   top: 50% !important;
   left: 50%;
-  height: 456px;
+  //height: 456px;
   width: 811px;
   @include prefix(transform, translate(-50%, -50%));
 }
@@ -2382,8 +2383,15 @@ footer.theme-footer{
     font-size: 1.125rem;
     margin-bottom: 30px;
   }
+  .text-container .success{
+    display: none;
+  }
+  .text-container .mc-response{
+    display: none !important;
+  }
   .contact-form{
     @include flex();
+    @include prefix(flex-flow, row wrap);
   }
   .contact-form input{
     height: 50px;
@@ -2678,7 +2686,7 @@ footer.theme-footer{
     background-color: $bg-main;
     border-color: $border-color; 
     margin-bottom: 13px;
-    justify-content: left;
+    @include prefix(justify-content,flex-start);
     position: relative;
     @include lato-bold(.75rem);
     &:hover{
@@ -2743,7 +2751,8 @@ footer.theme-footer{
       max-width: 100%;
       margin-bottom: 0px;
       border-bottom: none;
-      justify-content: left;
+      width: 100%;
+      @include prefix(justify-content,flex-start);
       position: relative;
       &:after{
         position: absolute;

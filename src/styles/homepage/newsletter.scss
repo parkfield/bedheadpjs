@@ -27,7 +27,7 @@
   form{
     text-align: center;
     @include flex();
-    flex-flow: nowrap;
+    @include prefix(flex-flow, wrap);
   }
   .contact-form input{
     display: inline-block;
@@ -43,6 +43,7 @@
     width: 25%;
     @include roboto-reg(0.75rem);
     color: $font-color;
+    min-width: initial;
   }
   @include s(){
     form#contact_form{

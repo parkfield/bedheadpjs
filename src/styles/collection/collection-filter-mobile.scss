@@ -6,7 +6,7 @@
     background-color: $bg-main;
     border-color: $border-color; 
     margin-bottom: 13px;
-    justify-content: left;
+    @include prefix(justify-content,flex-start);
     position: relative;
     @include lato-bold(.75rem);
     &:hover{
@@ -71,7 +71,8 @@
       max-width: 100%;
       margin-bottom: 0px;
       border-bottom: none;
-      justify-content: left;
+      width: 100%;
+      @include prefix(justify-content,flex-start);
       position: relative;
       &:after{
         position: absolute;

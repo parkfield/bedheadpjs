@@ -9,7 +9,7 @@
   z-index: 21;
   top: 50% !important;
   left: 50%;
-  height: 456px;
+  //height: 456px;
   width: 811px;
   @include prefix(transform, translate(-50%, -50%));
 }
@@ -63,8 +63,15 @@
     font-size: 1.125rem;
     margin-bottom: 30px;
   }
+  .text-container .success{
+    display: none;
+  }
+  .text-container .mc-response{
+    display: none !important;
+  }
   .contact-form{
     @include flex();
+    @include prefix(flex-flow, row wrap);
   }
   .contact-form input{
     height: 50px;
