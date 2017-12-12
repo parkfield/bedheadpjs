@@ -8,7 +8,6 @@
 {% endif %}
 {% endfor %}
 {% assign paginate_by = section.settings.paginate_by | plus: 0 %}
-{% assign paginate_by = 15 %}
 {% paginate collection.products by paginate_by %}
 {% assign column_width = 'column l3 m4 s6' %}
 
@@ -133,15 +132,19 @@
          "label":     "Number of Products Per Page",
          "options": [
            {
-             "value": "25",
-             "label": "25"
+             "value": "12",
+             "label": "12"
            },
            {
-             "value": "50",
-             "label": "50"
+             "value": "24",
+             "label": "24"
+           },
+          {
+             "value": "36",
+             "label": "36"
            }
          ],
-         "default":   "50"
+         "default":   "12"
       },
       {
         "type":"header",

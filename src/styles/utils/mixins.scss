@@ -194,7 +194,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 @font-face {
   font-family: 'Lato';
@@ -207,7 +207,7 @@
   font-family: 'Roboto', sans-serif;
   font-size: $font-size;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
 }
 @mixin lato-light($font-size){
   font-family: 'Lato', sans-serif;

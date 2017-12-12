@@ -47,6 +47,9 @@ $cart-width: 335px;
   .image-container img{
     max-width: 50px;
   }
+  .remove{
+    color: $border-color;
+  }
   .description-container{
     max-width: 150px;
     margin: 0 auto;

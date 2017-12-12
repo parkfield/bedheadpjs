@@ -20,28 +20,32 @@
     text-transform: uppercase;
     transition: color .3s;
     position: relative;
-    &:after{
-      font-size: .5rem;
-      content:'\f067';
-      font-family: FontAwesome;
-      border: 1px solid black;
-      display: inline-block;
+    span{
       position: absolute;
-      top: 50%;
-      width:20px;
       height: 20px;
-      border-radius: 10px;
-      @include flex();
-      @include prefix(align-items, center);
-      @include prefix(justify-content, center);
+      width: 20px;
+      right: 10px;
+      top: 50%;
       @include prefix(transform, translateY(-50%));
-      right: 20px;
-      transition: border-color .3s;
+      &:after{
+        font-size: .5rem;
+        content:'\f067';
+        font-family: FontAwesome;
+        border: 2px solid $font-color;
+        position: absolute;
+        width:20px;
+        height: 20px;
+        border-radius: 10px;
+        @include flex();
+        @include prefix(align-items, center);
+        @include prefix(justify-content, center);
+        transition: border-color .3s;
+      }
     }
     &:hover{
       cursor: pointer;
       color: $accent-color;
-      &:after{
+      & span:after{
         border-color: $accent-color
       }
     }
@@ -52,7 +56,7 @@
       }
     }
   }
-  h3.active::after{
+  h3.active span::after{
     content:'\f068';
   }
   .content h3:first-of-type{

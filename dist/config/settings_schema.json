@@ -64,7 +64,7 @@
       },  
       {
         "type":"header",
-        "content":"Quick Add Colors"
+        "content":"Product Listing Colors"
       },
       {
         "type": "color",
@@ -85,10 +85,6 @@
         "default": "#B3E9F6"
       },
       {
-        "type":"header",
-        "content":"New Product Notification Colors"
-      },
-      {
         "type": "color",
         "id": "new_icon_accent",
         "label": "'New' Icon Accent Color",
@@ -99,6 +95,12 @@
         "id": "new_icon_bg",
         "label": "'New' Icon Accent BG Color",
         "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "product_sale",
+        "label": "Old Price Color",
+        "default": "#fe4f4f"
       },
       {
         "type":"header",

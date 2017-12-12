@@ -52,7 +52,7 @@
     <div class="product-image {% if rollover %}hasRollover{% endif %}" style="background-image: url('{{ product.featured_image.src | img_url: 'x960' }}');"></div>
     </a>
     <div class="quick-add">
-      <div class="label">{{'product.add_to_cart' | t }}</div>
+      <div class="label">{{'product.quick_add_to_cart' | t }}</div>
       <div class="variants">
         {% for variant in product.variants %}
         {% assign quickAvailable = false %}

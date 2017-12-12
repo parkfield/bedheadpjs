@@ -67,8 +67,5 @@ footer.theme-footer{
     font-size: .875rem;
     color: $footer-link;
     margin-top: 25px;
-    @include s(){
-      font-size: 1.125rem;
-    }
   }
 }

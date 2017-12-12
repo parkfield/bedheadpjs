@@ -37,6 +37,7 @@ $bad-status: #d9534f;
 //Mobile Nav
 $mobile-alternate-bg: #F8F8F9;
 //Collection Product
+$onsale: {{settings.product_sale}};
 $quick-add-label: {{settings.qa_label}};
 $quick-add-active: {{settings.qa_active}};
 $quick-add-inactive: {{settings.qa_inactive}};
@@ -314,6 +315,12 @@ $iconLinecap: sqaure;
   font-weight: 400;
   src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/zN7GBFwfMP4uA6AR0HCoLQ.ttf) format('truetype');
 }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/d-6IYplOFocCacKzxwXSOKCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
+}
 
 
 @font-face {
@@ -327,7 +334,7 @@ $iconLinecap: sqaure;
   font-family: 'Roboto', sans-serif;
   font-size: $font-size;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
 }
 @mixin lato-light($font-size){
   font-family: 'Lato', sans-serif;
@@ -1599,6 +1606,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   z-index: 3;
   width: 100%;
   background: $bg-main;
+  border-bottom: thin solid $border-color !important;
   @include min-query(850px){
     padding: 25px 0px;
     .theme-nav-main-container{
@@ -1678,6 +1686,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
         @include prefix(justify-content, flex-start);
         @include prefix(flex-flow, row wrap);
         span{
+          margin-top: 5px;
           display: block;
           width: 100%;
           max-width: 130px;
@@ -1804,6 +1813,10 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 .theme-nav-toggled.from-left, .theme-nav-toggled.from-right{
   width: 80%;
+  @media screen and (-webkit-min-device-pixel-ratio:0)
+    and (min-resolution:.001dpcm) {
+    width: 45%;
+  }
   transition: left .3s;
   @include min-query(500px){
     width: 450px;
@@ -1812,6 +1825,10 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
 .theme-nav-toggled.active{
   left: 80%;
+  @media screen and (-webkit-min-device-pixel-ratio:0)
+    and (min-resolution:.001dpcm) {
+    left: 45%;
+  }
   box-shadow: 0px 2px 34px rgba(0, 0, 0, 0.125283);
   @include min-query(500px){
     left: 450px;
@@ -1868,6 +1885,9 @@ form#AddToCartForm, form#CartPage, form#contact_form {
         width: 20px;
       }
     }
+  }
+  .mobile-mainnav, .mobile-subnav{
+    line-height: 2;
   }
   .dropdown .dropdown-heading, .non_dropdown a{
     display: block;
@@ -2099,6 +2119,11 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   a.btn{
     margin: 0 auto;
   }
+  @include s(){
+    h2{
+      font-size: 2rem;
+    }
+  }
 }
 .homepage-image-banner .image{
   background-size: cover;
@@ -2313,9 +2338,6 @@ footer.theme-footer{
     font-size: .875rem;
     color: $footer-link;
     margin-top: 25px;
-    @include s(){
-      font-size: 1.125rem;
-    }
   }
 }
 #newsletter-popup.active, #newsletter-wrapper.active{
@@ -2491,8 +2513,11 @@ footer.theme-footer{
   font-size: 1.125rem;
   text-align: center;
   line-height: 28px;
+  s{
+    color: $onsale;
+  }
   @include max-query($s){
-    font-size: 1.375rem;
+    font-size: 1rem;
   }
 }
 .collection-product .product-image{
@@ -2522,7 +2547,7 @@ footer.theme-footer{
     background: $accent-color;
     transition: bottom .3s;
     .label{
-      font-size: 0.75rem;
+      @include lato-bold(.75rem);
       text-align: center;
       margin-top: 8px;
       text-transform: uppercase;
@@ -2969,6 +2994,9 @@ footer.theme-footer{
     #ProductPhoto{
       width: 70%;
     }
+    @include s(){
+      padding: 0px;
+    }
   }
 
   .images-column #ProductPhoto img{
@@ -2977,6 +3005,9 @@ footer.theme-footer{
   .text-column h1{
     font-size: 2rem;
     margin-bottom: 15px;
+    @include s(){
+      margin-top: 25px;
+    }
   }
   .text-column .style-number{
     @include heading-dash();
@@ -3398,6 +3429,15 @@ footer.theme-footer{
       padding-top: 100%;
     }
   }
+  .remove{
+    display: block;
+    margin-top: 5px;
+    color: $border-color;
+    text-decoration: underline;
+    &:hover{
+      color: $accent-color;
+    }
+  }
   .product_title, .variant_title{
     @include lato-reg(.875rem);
   }
@@ -3586,6 +3626,9 @@ $cart-width: 335px;
   .image-container img{
     max-width: 50px;
   }
+  .remove{
+    color: $border-color;
+  }
   .description-container{
     max-width: 150px;
     margin: 0 auto;
@@ -3706,28 +3749,32 @@ $cart-width: 335px;
     text-transform: uppercase;
     transition: color .3s;
     position: relative;
-    &:after{
-      font-size: .5rem;
-      content:'\f067';
-      font-family: FontAwesome;
-      border: 1px solid black;
-      display: inline-block;
+    span{
       position: absolute;
-      top: 50%;
-      width:20px;
       height: 20px;
-      border-radius: 10px;
-      @include flex();
-      @include prefix(align-items, center);
-      @include prefix(justify-content, center);
+      width: 20px;
+      right: 10px;
+      top: 50%;
       @include prefix(transform, translateY(-50%));
-      right: 20px;
-      transition: border-color .3s;
+      &:after{
+        font-size: .5rem;
+        content:'\f067';
+        font-family: FontAwesome;
+        border: 2px solid $font-color;
+        position: absolute;
+        width:20px;
+        height: 20px;
+        border-radius: 10px;
+        @include flex();
+        @include prefix(align-items, center);
+        @include prefix(justify-content, center);
+        transition: border-color .3s;
+      }
     }
     &:hover{
       cursor: pointer;
       color: $accent-color;
-      &:after{
+      & span:after{
         border-color: $accent-color
       }
     }
@@ -3738,7 +3785,7 @@ $cart-width: 335px;
       }
     }
   }
-  h3.active::after{
+  h3.active span::after{
     content:'\f068';
   }
   .content h3:first-of-type{

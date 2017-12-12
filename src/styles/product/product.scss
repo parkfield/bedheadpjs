@@ -35,6 +35,9 @@
     #ProductPhoto{
       width: 70%;
     }
+    @include s(){
+      padding: 0px;
+    }
   }
 
   .images-column #ProductPhoto img{
@@ -43,6 +46,9 @@
   .text-column h1{
     font-size: 2rem;
     margin-bottom: 15px;
+    @include s(){
+      margin-top: 25px;
+    }
   }
   .text-column .style-number{
     @include heading-dash();

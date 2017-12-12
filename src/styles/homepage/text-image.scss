@@ -46,4 +46,9 @@
   a.btn{
     margin: 0 auto;
   }
+  @include s(){
+    h2{
+      font-size: 2rem;
+    }
+  }
 }

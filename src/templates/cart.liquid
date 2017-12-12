@@ -56,6 +56,7 @@
                   {% endunless %}
                 {% endfor %}
               {% endif %}
+              <a class="remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>
             </p>
           </div>
           <div class="column l2 m3 s6 v-top center">
@@ -75,17 +76,14 @@
             {% else %}
               <p class="no-margin">{{ item.line_price | money }}</p>
             {% endif %}<br>
-            <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>-->
           </div>
           <div class="column l2 m2 right v-top s-hide">
             {% if item.total_discount > 0 %}
               <s>{{ item.original_line_price | money }}</s>
               <p class="units-price">{{ item.message }}</p>
-              <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>-->
             {% else %}
               <div class="units-price">
               <p>{{ item.line_price | money }}</p>
-              <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"><small>{{ 'cart.remove_item' | t }}</small></a>-->
               </div>
             {% endif %}<br>
           </div>

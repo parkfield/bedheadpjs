@@ -235,6 +235,7 @@
   z-index: 3;
   width: 100%;
   background: $bg-main;
+  border-bottom: thin solid $border-color !important;
   @include min-query(850px){
     padding: 25px 0px;
     .theme-nav-main-container{

@@ -2,7 +2,11 @@
 <span class="showingIndex">
   {% assign previousCount = paginate.current_page | minus: 1 %}
   {% unless paginate.current_page == paginate.pages %}
-    Showing {{paginate_by | times: previousCount }} - {{paginate_by | times: paginate.current_page}} of {{paginate.items}}
+    {% unless previousCount == 0 %}
+    Showing {{paginate_by | times: previousCount | plus: 1 }} - {{paginate_by | times: paginate.current_page}} of {{paginate.items}}
+    {% else %}
+    Showing 1 - {{paginate_by | times: paginate.current_page}} of {{paginate.items}}
+    {% endunless %}
   {% else %}
     Showing {{paginate.items}} of {{paginate.items}}
   {% endunless %}

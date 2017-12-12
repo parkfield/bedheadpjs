@@ -44,6 +44,15 @@
       padding-top: 100%;
     }
   }
+  .remove{
+    display: block;
+    margin-top: 5px;
+    color: $border-color;
+    text-decoration: underline;
+    &:hover{
+      color: $accent-color;
+    }
+  }
   .product_title, .variant_title{
     @include lato-reg(.875rem);
   }

@@ -5,7 +5,7 @@
     <div class="search-container">
       {% include 'form-search' %}
     </div>
-    <ul>
+    <ul class="mobile-mainnav">
       {% for link in linklists.main-menu.links %}
         {% assign child_list_handle = link.title | handleize %}
         {% if linklists[child_list_handle].links != blank %}
