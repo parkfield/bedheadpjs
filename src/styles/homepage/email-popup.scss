@@ -108,6 +108,12 @@
     font-size: 0.75rem;
   }
 }
+
+#newsletter-popup .failure{
+  display: none;
+  margin-bottom: 10px;
+  color: $bad-status
+}
 @include max-query(900px){
   #newsletter-popup{
     width: 85%;

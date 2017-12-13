@@ -5,9 +5,16 @@
   }
   .shifter.shifted, .theme-header.shifted{
     @include prefix(transform, translateX(80%));
+   
     @include min-query(500px){
       @include prefix(transform, translateX(450px));
     }
+  }
+  .theme-header.shifted.show.fixed{
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+      and (min-resolution:.001dpcm) {
+      @include prefix(transform, translateX(45%));
+    } 
   }  
 }
 

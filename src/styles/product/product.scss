@@ -211,6 +211,8 @@
   }
   .text-column .shipping-link{
     @include lato-reg(.875rem);
+    display: block;
+    text-align: left;
     text-decoration: underline;
   }
   .text-column button[type="submit"]{

@@ -124,6 +124,9 @@ $font-color: #333E48;
 .anyflexbox .main{
   @include prefix(flex-direction, row);
   @include prefix(flex-wrap, wrap);
+  .main__content{
+    max-width: 100%;
+  }
 }
 .mobile-banner{
   padding: 0px;

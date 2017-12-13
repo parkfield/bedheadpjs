@@ -4,6 +4,11 @@
 {% assign email_placeholder = 'form.email' | t %}
 {% assign button_text = 'form.subscribe.title' | t %}
 <!-- Begin MailChimp Signup Form -->
+<div class="success">
+  <span class="h1">{{section.settings.success_heading}}</span>
+  <p class="subheading">{{section.settings.success_body}}</p>          
+</div>
+<div class="failure">This email is already subscribed.</div>
 <div id="newsletter-mc_embed_signup">
   <form action="https://bedheadpjs.us17.list-manage.com/subscribe/post?u=f4c50aa7f29f6199b97e3a3ef&amp;id=42abd58081" id="newsletter-mc-embedded-subscribe-form" class="validate contact-form">
     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
@@ -18,11 +23,12 @@
 <script>
   $("#newsletter-mc-embedded-subscribe-form").formchimp({
     onMailChimpSuccess:function(){
-      console.log('subbed');
+      $('.homepage-newsletter .success').show();
+      $('.homepage-newsletter .default-content, #newsletter-mc_embed_signup, .homepage-newsletter .failure').hide();
       Cookies.set('newsletter-subscribed', true);
     },
     onMailChimpError:function(){
-      console.log('error');
+      $('.homepage-newsletter .failure').show();
     }
   });
 </script>

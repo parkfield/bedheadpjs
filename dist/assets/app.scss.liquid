@@ -1804,9 +1804,16 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   }
   .shifter.shifted, .theme-header.shifted{
     @include prefix(transform, translateX(80%));
+   
     @include min-query(500px){
       @include prefix(transform, translateX(450px));
     }
+  }
+  .theme-header.shifted.show.fixed{
+    @media screen and (-webkit-min-device-pixel-ratio:0)
+      and (min-resolution:.001dpcm) {
+      @include prefix(transform, translateX(45%));
+    } 
   }  
 }
 
@@ -2214,7 +2221,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   .content{
     display: inline-block;
   }
-  h3{
+  h3, .h1{
     text-transform: uppercase;
     text-align: center;
     @include lato-bold(1.375rem);
@@ -2231,6 +2238,19 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     font-size: 1.125rem;
     text-align: center;
     margin-bottom: 33px;
+  }
+  .success{
+    display: none;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .failure{
+    display: none;
+    color: $bad-status;
+    margin-bottom: 10px;
+  }
+  .mc-response{
+    display: none;
   }
   form{
     text-align: center;
@@ -2449,6 +2469,12 @@ footer.theme-footer{
     min-width: initial;
     font-size: 0.75rem;
   }
+}
+
+#newsletter-popup .failure{
+  display: none;
+  margin-bottom: 10px;
+  color: $bad-status
 }
 @include max-query(900px){
   #newsletter-popup{
@@ -3170,6 +3196,8 @@ footer.theme-footer{
   }
   .text-column .shipping-link{
     @include lato-reg(.875rem);
+    display: block;
+    text-align: left;
     text-decoration: underline;
   }
   .text-column button[type="submit"]{
@@ -4038,9 +4066,16 @@ $cart-width: 335px;
     line-height: 2.8;
   }
   a.anchor {
-      position: relative;
-      top: -120px;
-      visibility: hidden;
+    position: relative;
+    visibility: hidden;
+    top: -85px;
+    width: 2px;
+    height: 2px;
+    background-color: blue;
+    display: inline-block;
+    @include s(){
+      top: -190px;
+    }
   }
 
   nav{

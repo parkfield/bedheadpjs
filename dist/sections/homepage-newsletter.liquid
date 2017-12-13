@@ -2,12 +2,14 @@
   <div class="row">
     <div class="column l12 m12 s12">
       <div class="content">
+      <div class="default-content">
       {% unless section.settings.heading == blank %}
       <h3>{{section.settings.heading}}</h3>
       {% endunless %}
       {% unless section.settings.sub_heading == blank %}
       <p class="subheading">{{section.settings.sub_heading}}</p>
       {% endunless %}
+      </div>
       {% assign show_button = true %}
       {% include 'newsletter-subscribe-form' %}
       </div>
@@ -41,6 +43,22 @@
         "type":"text",
         "label":"Sub Heading",
         "default":"Sign up to get updates and offers on our products. First time buyers get 15% off."
+      },
+      {
+        "type":"header",
+        "content":"Successful Sign Up"
+      },
+      {
+        "id": "success_heading",
+        "type": "text",
+        "label": "Heading",
+        "default":"Thank you"
+      },
+      {
+        "id":"success_body",
+        "type":"textarea",
+        "label":"Body",
+        "default":"You are now a part of the BedHead family. Use code ASDFGH at checkout to receive your 15% off. Code expires in 2 weeks."
       }
     ]
   }
