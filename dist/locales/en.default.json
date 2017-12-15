@@ -18,6 +18,7 @@
     "simple_usa": "%m\/%d\/%y"
   },
   "account": {
+    "activate_title":"Activate Account",
     "title": "Account",
     "login": "Login",
     "logout": "Logout",
@@ -109,7 +110,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "contact": {
-      "success": "Form posted successfully"
+      "success": "Form posted successfully",
+      "thanks":"Thank you, your inquiry has been submitted"
     },
     "subscribe": {
       "title": "Subscribe",

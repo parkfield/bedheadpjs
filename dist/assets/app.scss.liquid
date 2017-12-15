@@ -2239,10 +2239,17 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     text-align: center;
     margin-bottom: 33px;
   }
+
+  strong{
+    @include lato-bold(1rem);
+  }
   .success{
     display: none;
     max-width: 500px;
     margin: 0 auto;
+    .sub-heading{
+      line-height: 1.75;
+    }
   }
   .failure{
     display: none;
@@ -3015,6 +3022,7 @@ footer.theme-footer{
     }
     #ProductThumbs img{
       max-height: 115px;
+      max-width: 90%;
       margin-bottom: 25px;
     }
     #ProductPhoto{
@@ -3655,7 +3663,14 @@ $cart-width: 335px;
     max-width: 50px;
   }
   .remove{
+    padding: 0px;
+  }
+  .remove a{
     color: $border-color;
+    font-size: .75rem;
+    &:hover{
+      color: $bad-status;
+    }
   }
   .description-container{
     max-width: 150px;
@@ -3833,6 +3848,12 @@ $cart-width: 335px;
 }
 
 .page-wholesale{
+  .hidden{
+    display: none !important;
+  }
+  .form-success{
+    font-size: 1.8rem;
+  }
   h1{
     margin-top: 70px;
     @include s(){
@@ -3982,7 +4003,10 @@ $cart-width: 335px;
     }
   }
   .image-column{
-    img{vertical-align: middle;}
+    img{
+      vertical-align: middle;
+      width: 100%;
+    }
   }
   .text-column{
     background-color: $accent-color-2;
@@ -4003,14 +4027,155 @@ $cart-width: 335px;
       font-size: 1.25rem;
       text-transform: uppercase;
     }
+    .btn{
+      margin: 0 auto;
+      margin-top: 20px;
+    }
   }
 }
-@include s(){
+@include max-query(850px){
   .banner-container{
     padding: 0px;
   }
   .text-container{
     padding: 50px 20px;
+  }
+}
+
+#col-main{
+  #store-locator-title{
+    display: none;
+  }
+  max-width: 100%;
+  width: $xl;
+  margin: 0 auto;
+  .container.xl{
+    padding: 0px;
+  }
+  .search_bar{
+    background-color: transparent;
+    border: none;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    @include flex();
+    @include prefix(flex-flow, row wrap);
+    @include prefix(align-items, flex-end);
+    @include prefix(justify-content, center);
+  }
+  .main_search_bar{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .main_search_label{
+    width: 100%;
+    @include lato-bold(1.375rem);
+    text-transform: uppercase;
+    &:after{
+      content:'';
+      display: block;
+      width: 100%;
+      height: 2px;
+      max-width: 75px;
+      margin: 0 auto;
+      margin-top: 17px;
+      margin-bottom: 40px;
+      background-color: $border-color;
+    }
+  }
+  .search_within_distance, .search_limit{
+    width: 50%;
+    max-width: 300px;
+    text-align: left;
+    @include s(){
+      width: 100%;
+      margin-right: 0px;
+    }
+  }
+  .search_within_distance .distance_label{
+    display: block;
+    width: 100%;
+    @include lato-reg(.75rem);
+  }
+  .search_limit .search_limit_label{
+    display: block;
+    width: 100%;
+    @include lato-reg(.75rem);
+    text-align: left;
+  }
+
+  input,select{
+    @include lato-reg(.875rem);
+    height: 50px;
+    max-width: 250px !important;
+    width: 100% !important;
+    max-width: initial;
+    background-color: transparent;
+    color: $font-color;
+    border-color: $border-color;
+    text-transform: capitalize;
+    @include s(){
+      max-width: 300px !important;
+    }
+  }
+  select{
+    -webkit-appearance: menulist-button;
+    -moz-appearance: menulist-button;
+    appearance: menulist-button;
+  }
+  .search_bar button{
+    margin-left: 0px;
+    margin-right: 0px;
+    @include roboto-reg(0.75rem);
+    text-transform: uppercase;
+    display: inline-block;
+    text-decoration: none;
+    background: $accent-color;
+    text-decoration: none;
+    color: $font-color;
+    min-width: 200px;
+    height: 50px;
+    @include flex();
+    @include prefix(align-items, center);
+    @include prefix(justify-content, center);
+    max-width: 250px;
+    border-radius: 0px;
+    border: none;
+    text-shadow: none;
+    border: 2px solid $accent-color;
+    box-shadow: none;
+    width: 100%;
+    @include s(){
+      max-width: 300px;
+    }
+    &:hover{
+      color: white;
+    }
+  }
+  @include max-query(1000px){
+    .search_within_distance, .search_limit{
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+    }
+    .search_limit .search_limit_label{
+      text-align: center;
+    }
+    select{
+      margin-bottom: 20px;
+    }
+    button{margin-top: 20px;}
+  }
+  @include s(){
+    .search_within_distance, .search_limit{
+      text-align: left;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .search_limit .search_limit_label{
+      text-align: left;
+    }
   }
 }
 .shipping-returns-page{
@@ -4314,7 +4479,12 @@ $cart-width: 335px;
 
 }
 /* Account */
-.login-register-page{
+.account-page{
+  h1{
+    font-size: 2rem;
+  }
+}
+.login-register-page, .activate-account-page, .address-page, .account-page{
   margin-top: 60px;
   @include s(){
     margin-top: 30px;
@@ -4338,10 +4508,14 @@ $cart-width: 335px;
   label{
     display: none;
   }
+  label.dont-hide{
+    display: inline-block;
+  }
   form{
     width: 100%;
   }
-  input{
+  input, select{
+    width: 100%;
     max-width: 360px;
     height: 50px;
     color: $font-color;
@@ -4351,11 +4525,47 @@ $cart-width: 335px;
       color: $font-color;
     }
   }
+  input.btn{
+    @include lato-bold(.875rem);
+  }
   input[type="submit"]{
-    font-size: 0.75rem;
+    @include lato-bold(.75rem);
+    width: 100%;
+  }
+  input[type="checkbox"]{
+    width: auto;
+  }
+  .select-wrap{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    width: 100%;
+    select{
+      margin-bottom: 0px !important;
+    }
+    &:after{
+      position: absolute;
+      content:'\f107';
+      font-family: FontAwesome;
+      display: inline-block;
+      top: 50%;
+      @include prefix(transform, translateY(-50%));
+      right: 10px;
+    }
+  }
+  select{
+    max-width: initial;
+    background-color: transparent;
+    color: $font-color;
+    border-color: $border-color;
+    text-transform: capitalize;
   }
   form[action="/account/recover"]{
     display: none;
+  }
+  .popup .popup-content{
+    max-width: 320px;
   }
   @include s(){
     .column.l6:last-child{
@@ -4365,6 +4575,18 @@ $cart-width: 335px;
       width: 100%;
       max-width: 100%;
     }
+  }
+}
+#ActivateAccountForm{
+  input{
+    width: 100%;
+  }
+  .btn{
+    max-width: 360px;
+  }
+  input[type="submit"].cancel{
+    background-color: $border-color;
+    border-color: $border-color;
   }
 }
 /* Helpers ===================================================================*/
@@ -4437,7 +4659,7 @@ $cart-width: 335px;
 // Colour helpers
 
 .highlight {
-  color: $colorHighlight;
+  color: $accent-color;
 }
 .alternate {
   color: $colorAlternate;

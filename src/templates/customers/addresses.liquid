@@ -3,7 +3,7 @@
 {% assign pagination = 6 %}
 {% paginate customer.addresses by pagination %}
 
-<header class="container l">
+<header class="container l address-page">
 
   {% include 'theme-breadcrumbs' %}
 
@@ -19,7 +19,7 @@
 
 </header>
 
-<div class="container l">
+<div class="container l address-page">
   <div class="row no-margin">
 
     <div class="column l8 m12 s12">
@@ -66,7 +66,7 @@
         <p class="margin-bottom">{{ 'account.address.none' | t }}</p>
       {% endfor %}
 
-      <a href="#PopupAddress" data-target="#PopupAddress" data-trigger="popup" class="button margin-bottom">{{ 'account.address.add' | t }}</a>
+      <a href="#PopupAddress" data-target="#PopupAddress" data-trigger="popup" class="btn button margin-bottom">{{ 'account.address.add' | t }}</a>
 
     </div>
 

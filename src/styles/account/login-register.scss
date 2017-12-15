@@ -1,4 +1,4 @@
-.login-register-page{
+.login-register-page, .activate-account-page, .address-page, .account-page{
   margin-top: 60px;
   @include s(){
     margin-top: 30px;
@@ -22,10 +22,14 @@
   label{
     display: none;
   }
+  label.dont-hide{
+    display: inline-block;
+  }
   form{
     width: 100%;
   }
-  input{
+  input, select{
+    width: 100%;
     max-width: 360px;
     height: 50px;
     color: $font-color;
@@ -35,11 +39,47 @@
       color: $font-color;
     }
   }
+  input.btn{
+    @include lato-bold(.875rem);
+  }
   input[type="submit"]{
-    font-size: 0.75rem;
+    @include lato-bold(.75rem);
+    width: 100%;
+  }
+  input[type="checkbox"]{
+    width: auto;
+  }
+  .select-wrap{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    width: 100%;
+    select{
+      margin-bottom: 0px !important;
+    }
+    &:after{
+      position: absolute;
+      content:'\f107';
+      font-family: FontAwesome;
+      display: inline-block;
+      top: 50%;
+      @include prefix(transform, translateY(-50%));
+      right: 10px;
+    }
+  }
+  select{
+    max-width: initial;
+    background-color: transparent;
+    color: $font-color;
+    border-color: $border-color;
+    text-transform: capitalize;
   }
   form[action="/account/recover"]{
     display: none;
+  }
+  .popup .popup-content{
+    max-width: 320px;
   }
   @include s(){
     .column.l6:last-child{

@@ -48,7 +48,14 @@ $cart-width: 335px;
     max-width: 50px;
   }
   .remove{
+    padding: 0px;
+  }
+  .remove a{
     color: $border-color;
+    font-size: .75rem;
+    &:hover{
+      color: $bad-status;
+    }
   }
   .description-container{
     max-width: 150px;

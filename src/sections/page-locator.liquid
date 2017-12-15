@@ -12,6 +12,9 @@
           {{section.settings.heading}}
         </h1>
         <p>{{section.settings.body}}</p>
+        {% if section.settings.button_url != blank %}
+        <a class="btn" href="{{section.settings.button_url}}">{{section.settings.button_text}}</a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -45,6 +48,16 @@
         "type":"richtext",
         "id":"body",
         "label":"Banner Body"
+      },
+      {
+        "type":"text",
+        "id":"button_text",
+        "label":"Button Text"
+      },
+      {
+        "type":"url",
+        "id":"button_url",
+        "label":"Button Url"
       }
     ]
   }

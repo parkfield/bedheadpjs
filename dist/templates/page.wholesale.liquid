@@ -1,15 +1,20 @@
 <div class="container page-wholesale m">
   <div class="content">
     <h1>{{ page.title }}</h1>
-    {{page.content}}
+    <div class="page-content">{{page.content}}</div>
     <div class="row">
       {% form 'contact' %}
-      <div class="column l6 m6 s12">
-          {% if form.posted_successfully? %}
-            <p class="note form-success">
-              {{ 'form.contact.success' | t }}
-            </p>
-          {% endif %}
+      {% if form.posted_successfully? %}
+        <p class="note form-success">
+          {{ 'form.contact.thanks' | t }}
+        </p>
+        <script>
+          $('.page-wholesale .page-content').hide();
+        </script>
+      {% endif %}
+
+      <div class="{% if form.posted_successfully? %}hidden {% endif %}column l6 m6 s12">
+
 
           {{ form.errors | default_errors }}
           <label for="ContactFormStoreName" class="clearfix">Store Name</label>
@@ -25,7 +30,7 @@
           <label for="ContactFormPhone" class="clearfix">{{ 'form.phone' | t }}</label>
           <input type="tel" id="ContactFormPhone" name="contact[{{ name_attr }}]" placeholder="{{ 'form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
       </div>
-      <div class="column l6 m6 s12 address-column">
+      <div class="{% if form.posted_successfully? %}hidden {% endif %}column l6 m6 s12 address-column">
         <label for="ContactFormAddress" class="clearfix">Contact Address</label>
         <input type="text" id="ContactFormAddress" name="contact[Address]" placeholder="Address" autocapitalize="words" value="">
 

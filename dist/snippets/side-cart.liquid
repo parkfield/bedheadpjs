@@ -50,9 +50,7 @@
                       <a class="adjust plusOne" data-plus-one>&#43;</a>
                     </div>
                   </div>
-                  {% comment %}
-                  <div class="column l6 m6 s6 right remove"><a onclick="checkRemove()" href="#" data-remove-item data-item-id="{{ item.id }}">Remove</a></div>
-                  {% endcomment %}
+                  <div class="column l6 m6 s6 left remove"><a onclick="checkRemove()" href="#" data-remove-item data-item-id="{{ item.id }}">Remove</a></div>
                 </div>
               </div>
               <div class="price-container">
@@ -125,7 +123,7 @@
             </div>
           </div>
         </div>
-          <!--<div class="column l6 m6 s6 right remove"><a href="#" data-remove-item data-item-id="{{lineItem.id}}" onclick="checkRemove()">Remove</a></div>-->
+        <div class="column l6 m6 s6 left remove"><a href="#" data-remove-item data-item-id="{{lineItem.id}}" onclick="checkRemove()">Remove</a></div>
       </div>
       <div class="price-container">
         {{#if lineItem.total_discount}}

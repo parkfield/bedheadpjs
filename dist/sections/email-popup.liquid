@@ -29,6 +29,7 @@
 $(document).ready(function(){
   $("#newsletter-popup #mc-embedded-subscribe-form").formchimp({
     onMailChimpSuccess:function(){
+      console.log('success');
       $('#newsletter-popup .success').show();
       $('#newsletter-popup .failure').hide();
       $('#newsletter-popup .default').hide();
@@ -36,6 +37,7 @@ $(document).ready(function(){
       Cookies.set('newsletter-subscribed', true);
     },
     onMailChimpError:function(){
+      console.log('error');
       $('#newsletter-popup .failure').show();
     }
   });

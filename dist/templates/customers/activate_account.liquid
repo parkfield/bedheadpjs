@@ -1,8 +1,8 @@
 <!-- /templates/customers/activate_account.liquid -->
 
-<div class="container s">
+<div class="container s activate-account-page">
 
-  <h1>{{ 'account.activate.title' | t }}</h1>
+  <h1>{{ 'account.activate_title' | t }}</h1>
 
   {% comment %}
     This form must use 'activate_customer_password'
@@ -19,11 +19,11 @@
       <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" placeholder="{{ 'account.password_confirmation' | t }}">
 
       <div class="row no-margin">
-        <div class="column l6">
-          <input type="submit" name="decline" value="{{ 'form.cancel' | t }}">
+        <div class="column l12">
+          <input class="btn" type="submit" value="{{ 'form.submit' | t }}">
         </div>
-        <div class="column l6">
-          <input type="submit" value="{{ 'form.submit' | t }}">
+        <div class="column l12">
+          <input class="btn cancel" type="submit" name="decline" value="{{ 'form.cancel' | t }}">
         </div>
       </div>
     {% endform %}
