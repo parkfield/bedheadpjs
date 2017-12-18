@@ -40,6 +40,12 @@
         top: 50%;
         left: 50%;
         @include prefix(transform, translate(-50%,-50%));
+        @include s(){
+          font-family: 'Lato';
+          font-weight: bold;
+          font-size: 1rem;
+          content:'+';
+        }
       }
     }
     &:hover{
@@ -58,6 +64,9 @@
   }
   h3.active span::after{
     content:'\f068';
+    @include s(){
+      content:'-';
+    }
   }
   .content h3:first-of-type{
     border-top: none;

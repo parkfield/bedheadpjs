@@ -1745,6 +1745,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 .theme-nav-main .dropdown .container{
   background-color: rgba($bg-main, .95);
   padding-bottom: 20px;
+  border-bottom: thin solid $border-color;
   @include m(){
     padding-top: 20px;
     padding-bottom: 10px;
@@ -3814,6 +3815,12 @@ $cart-width: 335px;
         top: 50%;
         left: 50%;
         @include prefix(transform, translate(-50%,-50%));
+        @include s(){
+          font-family: 'Lato';
+          font-weight: bold;
+          font-size: 1rem;
+          content:'+';
+        }
       }
     }
     &:hover{
@@ -3832,6 +3839,9 @@ $cart-width: 335px;
   }
   h3.active span::after{
     content:'\f068';
+    @include s(){
+      content:'-';
+    }
   }
   .content h3:first-of-type{
     border-top: none;
