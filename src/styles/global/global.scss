@@ -197,15 +197,17 @@ button, .btn, a.btn{
   color: $font-color;
   min-width: 200px;
   height: 50px;
-  @include flex();
-  @include prefix(align-items, center);
-  @include prefix(justify-content, center);
+
   max-width: 250px;
   &:hover{
     color: white;
   }
 }
-
+a.btn{
+  @include flex();
+  @include prefix(align-items, center);
+  @include prefix(justify-content, center);
+}
 button::-moz-focus-inner {
   border: 0;
 }
