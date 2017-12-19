@@ -1,7 +1,7 @@
 {% assign newTitle = '' %}
 
 <!-- XS Size -->
-{% assign extraSmall = 'XS 2/4, XS 2/6' %}
+{% assign extraSmall = 'XS 2/4,XS 2/6,XS: MENS 28-30' %}
 {% assign extraSmall = extraSmall | split: ',' %}
 
 {% if newTitle == blank %}
@@ -13,7 +13,7 @@
 {% endif %}
 
 <!-- S Size -->
-{% assign small = 'Small 4/6,' %}
+{% assign small = 'Small 4/6,S: MENS 30-33' %}
 {% assign small = small | split: ',' %}
 
 {% if newTitle == blank %}
@@ -25,7 +25,7 @@
 {% endif %}
 
 <!-- M Size -->
-{% assign medium = 'Medium 8/10,' %}
+{% assign medium = 'Medium 8/10,M: MENS 33-35' %}
 {% assign medium = medium | split: ',' %}
 
 {% if newTitle == blank %}
@@ -49,7 +49,7 @@
 {% endif %}
 
 <!-- XL Size -->
-{% assign extraLarge = 'XL 16,' %}
+{% assign extraLarge = 'XL 16,XL: MENS 40-43' %}
 {% assign extraLarge = extraLarge | split: ',' %}
 
 {% if newTitle == blank %}
@@ -60,9 +60,116 @@
 {% endfor %}
 {% endif %}
 
+<!-- Kids 6 -->
+{% assign six = '6 Kids' %}
+{% assign six = six | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in six %}
+{% if title == variant.title %}
+{% assign newTitle = '6' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Kids 6 -->
+{% assign eight = '8 Kids' %}
+{% assign eight = eight | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in eight %}
+{% if title == variant.title %}
+{% assign newTitle = '8' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Tweens 10 -->
+{% assign ten = 'Tweens 10' %}
+{% assign ten = ten | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in ten %}
+{% if title == variant.title %}
+{% assign newTitle = '10' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Tweens 12 -->
+{% assign twelve = 'Tweens 12' %}
+{% assign twelve = twelve | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in twelve %}
+{% if title == variant.title %}
+{% assign newTitle = '12' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Tweens 14 -->
+{% assign fourteen = 'Tweens 14' %}
+{% assign fourteen = fourteen | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in fourteen %}
+{% if title == variant.title %}
+{% assign newTitle = '14' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Infant: 3-6 Months -->
+{% assign threeMonths = '3-6 Months' %}
+{% assign threeMonths = threeMonths | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in threeMonths %}
+{% if title == variant.title %}
+{% assign newTitle = '3-6 Mos' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Infant: 6-12 Months -->
+{% assign sixMonths = '6-12 Months' %}
+{% assign sixMonths = sixMonths | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in sixMonths %}
+{% if title == variant.title %}
+{% assign newTitle = '6-12 Mos' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Infant: 12-18 Months -->
+{% assign twelveMonths = '12-18 Months' %}
+{% assign twelveMonths = twelveMonths | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in twelveMonths %}
+{% if title == variant.title %}
+{% assign newTitle = '12-18 Mos' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<!-- Infant: 12-18 Months -->
+{% assign eightteenMonths = '18-24 Months' %}
+{% assign eightteenMonths = eightteenMonths | split: ',' %}
+
+{% if newTitle == blank %}
+{% for title in eightteenMonths %}
+{% if title == variant.title %}
+{% assign newTitle = '18-24 Mos' %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
 {% if newTitle == blank %}
   {{variant.title}}
 {% else %}
   {{newTitle}}
 {% endif %}
-

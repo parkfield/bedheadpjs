@@ -79,10 +79,10 @@ $(document).ready(function(){
         });
         $('#NavToggled .inner').fadeIn();
       });
-      $('.shifter, .theme-header').removeClass('shifted');      
+      $('.shifter, .theme-header, body, html').removeClass('shifted');      
     }else{
       $('#NavToggled').addClass('active');
-      $('.shifter, .theme-header').addClass('shifted');  
+      $('.shifter, .theme-header, body, html').addClass('shifted');  
       $(this).addClass('active');   
     }
   });
