@@ -31,9 +31,15 @@
                 {{ item.product.title }}
               </a>
               <span>
+                {% if item.product.options.first != 'Title' %}
                 <a class="variant_title h5" href="{{ item.url }}">
-                  Size: {{ item.variant.title }}
+                  {{item.product.options.first}}: {{ item.variant.title }}
                 </a>
+                {% else %}
+                <a class="variant_title h5" href="{{ item.url }}">
+                  {{ item.variant.title }}
+                </a>
+                {% endif %}
               </span>
               {% comment %}
                 Optional, loop through custom product line items if available
