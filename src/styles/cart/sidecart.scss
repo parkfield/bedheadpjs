@@ -58,6 +58,7 @@ $cart-width: 335px;
     }
   }
   .description-container{
+    @include prefix(flex-grow, 1);
     max-width: 150px;
     margin: 0 auto;
     .product-link{
