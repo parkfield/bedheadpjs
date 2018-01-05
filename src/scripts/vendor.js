@@ -28,6 +28,7 @@
  */
 // =require vendor/Cartfox.js
 
+// =require vendor/jquery.elevateZoom-3.0.8.min.js
 // =require vendor/slick.min.js
 // =require vendor/aos.js
 // =require vendor/rellax.min.js

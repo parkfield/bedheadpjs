@@ -44,7 +44,16 @@
             <ul>
             {% for image in product.images %}
               {% unless image.alt contains 'engravable' %}
-                <li><img src="{{ image.src | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}></li>
+                <li>
+                  <a 
+                  href="{{ image.src | img_url: '2048x2048' }}" 
+                  class="thumbnail"
+                  data-image="{{ image.src | img_url: '1024x1024' }}"
+                  data-zoom-image="{{ image.src | img_url: '1024x1024' }}" 
+                  >
+                  <img src="{{ image.src | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+                  </a>
+                </li>
               {% else %}
                 {% assign engravable = true %}
                 {% assign engravableImage = image %}
@@ -56,7 +65,7 @@
         {% endif %}
 
         <div id="ProductPhoto" {% if hasThumbs %}class="hasThumbs"{% endif %}>
-          <img src="{{ product.featured_image | img_url: 'master' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+          <img id="ProductFeaturedImage" data-zoom-image="{{ product.featured_image | img_url: '2048x2048' }}" src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
         </div>
       </div>
 

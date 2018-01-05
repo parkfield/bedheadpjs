@@ -191,6 +191,25 @@ $('.unit-controls .unit-control').click(function(){
   }
 });
 
+$.fn.myElevateZoom = function () {
+  console.log('ran');
+  $(this).removeData('elevateZoom');
+  $(this).removeData('zoomImage');
+  $('.zoomContainer').remove();
+
+  $(this).elevateZoom({
+    gallery : "ProductThumbs",
+    galleryActiveClass: "active",
+    zoomType:'inner',
+    scrollZoom: true,
+    responsive: true, 
+    zoomWindowFadeIn: 500,
+    zoomWindowFadeOut: 750
+  });
+};
+
+$("#ProductFeaturedImage").myElevateZoom();
+
 </script>
 
 <script type="application/json" id="ProductJson">

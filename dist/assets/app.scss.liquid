@@ -2909,15 +2909,27 @@ footer.theme-footer{
   }
 }
 
-.select-wrapper::after{
-  display: inline-block;
-  content: "\f107";
-  color: $font-color;
-  position: absolute;
-  font-family: FontAwesome;
-  top: 50%;
-  right: 10px;
-  @include prefix(transform, translateY(-50%));
+.select-wrapper{
+  position: relative;
+    select{
+      position: relative;
+      z-index: 2;
+      background-color: transparent;
+    }
+    &:after{
+      z-index: 1;
+      display: inline-block;
+      content: "\f107";
+      color: $font-color;
+      position: absolute;
+      font-family: FontAwesome;
+      top: 50%;
+      right: 20px;
+      @include prefix(transform, translateY(-50%));
+      @include s(){
+        right: 10px;
+      }
+    }
 }
 #sort-by{
   text-transform: uppercase;
