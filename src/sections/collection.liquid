@@ -1,13 +1,18 @@
 <!-- /templates/collection.liquid -->
 
 {% for block in section.blocks %}
-{% if block.type == 'banner' %}
-{% if block.settings.collection == collection.handle %}
-{% assign banner = block.settings.banner %}
-{% endif %}
-{% endif %}
+  {% if block.type == 'banner' %}
+    {% if block.settings.collection == collection.handle %}
+      {% unless block.settings.banner == blank %}
+        {% assign banner = block.settings.banner %}
+      {% endunless %}
+      {% assign paginate_by = block.settings.paginate_by %}
+    {% endif %}
+  {% endif %}
 {% endfor %}
-{% assign paginate_by = section.settings.paginate_by | plus: 0 %}
+{% unless paginate_by %}
+  {% assign paginate_by = section.settings.paginate_by | plus: 0 %}
+{% endunless %}
 {% paginate collection.products by paginate_by %}
 {% assign column_width = 'column l3 m4 s6' %}
 
@@ -158,7 +163,7 @@
     "blocks":[
       {
         "type":"banner",
-        "name":"Collection Banner",
+        "name":"Collection Settings",
         "settings":[
           {
             "type":"collection",
@@ -169,6 +174,35 @@
             "type":"image_picker",
             "id":"banner",
             "label":"Banner Image"
+          },
+          {
+             "type":      "select",
+             "id":        "paginate_by",
+             "label":     "Number of Products Per Page",
+             "info":"Will override default of general pagination",
+             "options": [
+               {
+                 "value": "12",
+                 "label": "12"
+               },
+               {
+                 "value": "24",
+                 "label": "24"
+               },
+               {
+                 "value": "36",
+                 "label": "36"
+               },
+               {
+                 "value": "48",
+                 "label": "48"
+               },
+               {
+                 "value": "1000",
+                 "label": "All"
+               }
+             ],
+             "default":   "12"
           }
         ]
       }
