@@ -9,7 +9,11 @@
         <li class="dropdown dropdown-{{dropdownCount}}" aria-haspopup="true" data-id="{{ child_list_handle}}" onclick="">
           {% assign dropdownCount = dropdownCount | plus: 1 %}
           <a href="{{ link.url }}" class="nav-link {% if link.active %} active{% endif %}">
+            {% if link.title contains 'dog' %}
+            <img class="lounge-dog-image" src="{{settings.lounge_dog | img_url:'master'}}" alt="{{settings.lounge_dog.alt}}">
+            {% else %}
             {{ link.title }}
+            {% endif %}
           </a>
           <div class="dropdown_menu_container">
           <div class="container">
@@ -46,7 +50,13 @@
         </li>
       {% else %}
         <li>
-          <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}">{{ link.title }}</a>
+          <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}">
+            {% if link.handle contains 'dog' %}
+              <img class="lounge-dog-image" src="{{settings.lounge_dog | img_url:'master'}}" alt="{{settings.lounge_dog.alt}}">
+            {% else %}
+              {{ link.title }}
+            {% endif %}
+          </a>
         </li>
       {% endif %}
     {% endfor %}

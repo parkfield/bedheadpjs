@@ -1382,6 +1382,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   opacity: 1;
   transition: opacity .3s, top .5s;
   padding: 42px 0px 20px 0px;
+  padding-bottom: 0px;
   border-bottom: 1px solid #D8D9DB;
   @include max-query($m){
     padding: 20px 10px;
@@ -1679,6 +1680,10 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     padding-bottom: 40px;
     text-transform: uppercase;
   }
+  .lounge-dog-image{
+    position: relative;
+    z-index: 5;
+  }
   .dropdown {
     position: relative;
     .nav-link{
@@ -1728,6 +1733,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   margin: 0 auto;
   @include flex();
   @include prefix(justify-content, space-between);
+  @include prefix(align-items, center);
   @include m(){
     width: 98%;
   }
@@ -3216,14 +3222,17 @@ footer.theme-footer{
   }
   .description-row{
     position: relative;
+    overflow: hidden;
+    transition: max-height .3s;
   }
+
   .description-row .show-more-container{
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
     height: 135px;
     background: rgba($bg-main, .8);
-    display: none;
+    display: block;
     button{
       background: $bg-main;
       position: absolute;
@@ -3238,8 +3247,15 @@ footer.theme-footer{
       }
     }
   }
+    .description-row.active{
+    overflow: visible;
+    .show-more-container{
+      bottom: -130px;
+    }
+  }
   .description-row h5{
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 5px;
     text-transform: uppercase;
     @include lato-bold(0.875rem);
   }
@@ -3272,6 +3288,7 @@ footer.theme-footer{
         width: 100%;
         max-height: initial;
         margin-bottom: 0px;
+        max-width: 100%;
       }
     }
     .text-column{
@@ -3292,13 +3309,12 @@ footer.theme-footer{
     .description-row{
       overflow: hidden;
       transition: max-height .3s;
-      .column:first-child h5{
-        margin-top: 0px;
-      }
+      text-align: left;
       h5{
         margin: 30px 0px 15px 0px;        
       }
       .show-more-container{
+        bottom: 0;
         display: block;
       }
     }

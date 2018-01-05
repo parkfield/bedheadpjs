@@ -9,6 +9,7 @@
   opacity: 1;
   transition: opacity .3s, top .5s;
   padding: 42px 0px 20px 0px;
+  padding-bottom: 0px;
   border-bottom: 1px solid #D8D9DB;
   @include max-query($m){
     padding: 20px 10px;

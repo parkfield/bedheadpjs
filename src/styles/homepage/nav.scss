@@ -7,6 +7,10 @@
     padding-bottom: 40px;
     text-transform: uppercase;
   }
+  .lounge-dog-image{
+    position: relative;
+    z-index: 5;
+  }
   .dropdown {
     position: relative;
     .nav-link{
@@ -56,6 +60,7 @@
   margin: 0 auto;
   @include flex();
   @include prefix(justify-content, space-between);
+  @include prefix(align-items, center);
   @include m(){
     width: 98%;
   }
