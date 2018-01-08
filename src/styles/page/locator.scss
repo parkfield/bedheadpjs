@@ -158,6 +158,13 @@
       color: white;
     }
   }
+  #store_map{
+    margin-right: 20px;
+  }
+  #addresses_list{
+    padding-left: 20px;
+  }
+
   @include max-query(1000px){
     .search_within_distance, .search_limit{
       width: 100%;
@@ -173,6 +180,12 @@
     button{margin-top: 20px;}
   }
   @include s(){
+    #store_map{
+      margin-right: 0px;
+    }
+    #addresses_list{
+      padding-left: 0px;
+    }
     .search_within_distance, .search_limit{
       text-align: left;
       max-width: 300px;

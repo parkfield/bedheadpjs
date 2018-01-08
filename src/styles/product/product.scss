@@ -240,7 +240,7 @@
     width: 100%;
     height: 135px;
     background: rgba($bg-main, .8);
-    display: block;
+    display: none;
     button{
       background: $bg-main;
       position: absolute;
@@ -262,8 +262,7 @@
     }
   }
   .description-row h5{
-    margin-top: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     text-transform: uppercase;
     @include lato-bold(0.875rem);
   }
@@ -318,6 +317,10 @@
       overflow: hidden;
       transition: max-height .3s;
       text-align: left;
+      .column:first-child h5{
+        text-align: left;
+        margin-top: 0px;
+      }
       h5{
         margin: 30px 0px 15px 0px;        
       }
@@ -330,7 +333,7 @@
       overflow: visible;
       margin-bottom: 130px;
       .show-more-container{
-        bottom: -140px;
+        bottom: -136px;
       }
     }
   }
