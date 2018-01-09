@@ -1703,7 +1703,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     .dropdown_menu_container {
       display: block;
       position: absolute;
-      z-index: 2;
+      z-index: 3;
       left: 0;
       width: 100%;
       transition: height .3s;
@@ -4396,6 +4396,36 @@ $cart-width: 335px;
       display: block;
     }
   }
+}
+#mc_embed_signup {
+	form {
+		width: 280px;
+		input {
+		width: 100%;
+		padding: 5px;
+		margin: 10px 0;
+	}
+	input[type="submit"] {
+		padding-bottom: 22px;
+	}
+	select {
+		width: 100%;
+		padding: 5px;
+	}
+	.selectButton {
+		height: 35px;
+	}
+	.submitButton {
+		padding-bottom: 22px;
+	}
+	.indicates-required {
+		padding-top: 10px;
+	}
+	label {
+		display: none;
+	}
+	}
+	
 }
 /* Blog */
 .blog-media{

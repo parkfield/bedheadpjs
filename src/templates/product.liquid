@@ -13,12 +13,18 @@ $(document).on('variantImageChange', function(event) {
   var newImage = concrete.Images.getImageUrl(event.variant.featured_image.src, oldSize)
   // Change to the new variants image
   $('#ProductPhoto img').attr('src', newImage);
+  console.log('Imaged Changed');
 });
 
-// But this is a bit long winded so heres an example just using concrete imageSwitch function
-$(document).on('click', '#ProductThumbs img', function(event) {
-  concrete.Images.switchImage($('#ProductPhoto img')[0], $(this, event.target)[0]);
-})
+$(document).ready(function(){
+  $('#ProductThumbs img').click(function(e){
+    concrete.Images.switchImage($('#ProductPhoto img')[0], $(this, e.target)[0]);
+    {% unless product.type == 'Gift Card' %}
+      $('#ProductFeaturedImage').attr('data-zoom-image', $(this).attr('src'));
+      $("#ProductFeaturedImage").myElevateZoom();
+    {% endunless %}
+  });
+});
 
 if($(window).width() < 601){
   $('#ProductThumbs ul').slick({
@@ -176,7 +182,6 @@ $('.unit-controls .unit-control').click(function(){
 });
 
 $.fn.myElevateZoom = function () {
-  console.log('ran');
   $(this).removeData('elevateZoom');
   $(this).removeData('zoomImage');
   $('.zoomContainer').remove();
@@ -190,9 +195,11 @@ $.fn.myElevateZoom = function () {
     zoomWindowFadeIn: 500,
     zoomWindowFadeOut: 750
   });
-};
 
-$("#ProductFeaturedImage").myElevateZoom();
+};
+{% unless product.type == 'Gift Card' %}
+  $("#ProductFeaturedImage").myElevateZoom();
+{% endunless %}
 
 </script>
 

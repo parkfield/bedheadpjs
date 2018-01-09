@@ -47,6 +47,7 @@ concrete.Images = (function() {
   }
 
   function switchImage(element, image, callback) {
+    console.log('switched');
     var oldSize = imageSize(element.src)
     var newSize = imageSize(image.src);
     var newImage = image.src;
