@@ -4424,8 +4424,23 @@ $cart-width: 335px;
 	label {
 		display: none;
 	}
+	}	
+}
+
+.container .rte .downloadBtn {
+	display: block;
+	max-width: 280px;
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	background-color: #a0dae8;
+	text-align: center;
+	font-size: 1.125rem;
+	margin: 8px 0;
+	@include prefix(transition, all 0.3s ease-out);
+	&:hover {
+		background-color: #8bd2e3;
 	}
-	
 }
 /* Blog */
 .blog-media{
