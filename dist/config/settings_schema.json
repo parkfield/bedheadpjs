@@ -245,6 +245,17 @@
     ]
   },
   {
+    "name": "Collection Size Filter",
+    "settings": [
+      {
+        "id":"size_filter",
+        "type":"textarea",
+        "label":"Size Filter Order",
+        "info":"Place sizes in the order you want in lowercase and seperate by a comma. Ex: xs,s,m,l"
+      }
+    ]
+  },
+  {
     "name": "Cart",
     "settings": [
       {

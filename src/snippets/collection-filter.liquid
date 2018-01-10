@@ -78,42 +78,32 @@ categories = [color, brand, voltage]
         {% endfor %}
       </ul>
       {% else %}
+      {% assign sizes = settings.size_filter | split: ',' %}
+      {% assign sizeTags = '' %}
+      {% for size in sizes %}
+        {% if sizeTags == '' %}
+          {% assign sizeTags = sizeTags | append: 'size_' | append: size %}
+        {% else %}
+          {% assign sizeTags = sizeTags | append: ',' |append: 'size_' | append: size %}
+        {% endif %}
+      {% endfor %}
+      {% assign sizeTags = sizeTags | split: ',' %}
+
       <ul class="filter-values">
+      {% for sizeTag in sizeTags %}
+        {% if collection.tags contains sizeTag %}
+
+        {% assign size = sizeTag | split: '_' | last %}
         <li class="filter-value">
           <div class="wrapper">
-          <input name="xs" type="checkbox" data-group="size" value ='size_xs'>
+          <input name="{{size}}" type="checkbox" data-group="size" value ='size_{{size}}'>
           <div class="checkbox"></div>
           </div>
-          <label for="xs">XS</label>
+          <label for="{{size}}">{{size | upcase}}</label>
         </li>   
-        <li class="filter-value">
-          <div class="wrapper">
-          <input name="s" type="checkbox" data-group="size" value ='size_s'>
-          <div class="checkbox"></div>
-          </div>
-          <label for="s">S</label>
-        </li> 
-        <li class="filter-value">
-          <div class="wrapper">
-          <input name="m" type="checkbox" data-group="size" value ='size_m'>
-          <div class="checkbox"></div>
-          </div>
-          <label for="m">M</label>
-        </li> 
-        <li class="filter-value">
-          <div class="wrapper">
-          <input name="l" type="checkbox" data-group="size" value ='size_l'>
-          <div class="checkbox"></div>
-          </div>
-          <label for="l">L</label>
-        </li> 
-        <li class="filter-value">
-          <div class="wrapper">
-          <input name="xl" type="checkbox" data-group="size" value ='size_xl'>
-          <div class="checkbox"></div>
-          </div>
-          <label for="xl">XL</label>
-        </li>      
+        {% endif %}
+      {% endfor %}
+
       </ul>
       {% endunless %}
       </li>
