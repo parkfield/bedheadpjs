@@ -44,7 +44,7 @@ categories = [color, brand, voltage]
         {% endfor %}
       {% endcapture %}
       <li class="filter-value-container">
-      <button type="button" class="filter-cat-heading">{{labelCap}}</button> 
+      <button type="button" class="filter-cat-heading" data-category="{{cat}}">{{labelCap}}</button> 
       {% unless cat =='size' %}
       <ul class="filter-values">
         {% for tag in collection.all_tags %}
@@ -117,69 +117,81 @@ categories = [color, brand, voltage]
 
 <script>
 $(document).ready(function(){
+  function currentFilterState(){
+    //Sets filter checkbox state depending on url
+    var urlSegment = document.URL.substring(document.URL.lastIndexOf('/')+1);
+    if(urlSegment){
+      var activeFilters = urlSegment.split('+');
+      for(var i = 0; i < activeFilters.length; i++){
+        $("input[value='"+activeFilters[i]+"']").prop("checked", true);
+      }
+    }
+  }
+
+  function urlRedirect(filters){
+    //Handles redirect on pressing filter submit
+    var urlSegment = '';
+    for (var i = 0; i < filters.length; i++) {
+      if(urlSegment == ''){
+        urlSegment+='/'+filters[i];
+      }else{
+        urlSegment+='+'+filters[i];
+      }
+    }
+
+    var rootUrl = '{{shop.url}}'+'{{collection.url}}';
+
+    if('{{collection.url}}' == ''){
+      rootUrl = '{{shop.url}}'+'/collections/all'
+    }
+    window.location = rootUrl+urlSegment;
+  }
+
+  //Redirect when button is clicked
+  function submitFilter(){
+    var selected = [];
+    $('input:checked').each(function(){
+      selected.push($(this).attr('value'));
+    });
+    urlRedirect(selected);
+  }
+
+  //Redirects when checkbox changes
+  $('#filter-menu .filter-value input[type="checkbox"]').click(function(){
+    var category = $(this).attr('data-group');
+    //Deselect all but the one clicked
+    $('#filter-menu input[data-group="'+category+'"]').not($(this)).prop("checked",false);
+    var selected = [];
+    var trigValue = $(this).attr('value');
+    $('#filter-menu input:checked').each(function(){
+      selected.push($(this).attr('value'));
+    });
+
+    var uniqueSelected = [];
+    $.each(selected, function(i, el){
+        if($.inArray(el, uniqueSelected) === -1) uniqueSelected.push(el);
+    });
+
+    urlRedirect(uniqueSelected);
+  });
+
+  $('.mobile-filter-trigger').click(function(){
+    $(this).toggleClass('active');
+    $('#filter-menu').toggleClass('active');
+  });
+
+  $('#filter-menu .filter-cat-heading').click(function(){
+    $('.filter-options li').not($(this).parent()).removeClass('active');
+    var category = $(this).attr('data-category');
+    $('.filter-values').removeClass('active');
+    $(this).parent().toggleClass('active');
+    if($(this).parent().hasClass('active')){
+      $('.filter-values[data-category="'+category+'"]').addClass('active');
+    }
+  });
+
   currentFilterState();
+
 });
-
-function currentFilterState(){
-  //Sets filter checkbox state depending on url
-  var urlSegment = document.URL.substring(document.URL.lastIndexOf('/')+1);
-  if(urlSegment){
-    var activeFilters = urlSegment.split('+');
-    for(var i = 0; i < activeFilters.length; i++){
-      $("input[value='"+activeFilters[i]+"']").prop("checked", true);
-    }
-  }
-}
-
-function urlRedirect(filters){
-  //Handles redirect on pressing filter submit
-  var urlSegment = '';
-  for (var i = 0; i < filters.length; i++) {
-    if(urlSegment == ''){
-      urlSegment+='/'+filters[i];
-    }else{
-      urlSegment+='+'+filters[i];
-    }
-  }
-
-  var rootUrl = '{{shop.url}}'+'{{collection.url}}';
-
-  if('{{collection.url}}' == ''){
-    rootUrl = '{{shop.url}}'+'/collections/all'
-  }
-  window.location = rootUrl+urlSegment;
-}
-
-//Redirect when button is clicked
-function submitFilter(){
-  var selected = [];
-  $('input:checked').each(function(){
-    selected.push($(this).attr('value'));
-  });
-  urlRedirect(selected);
-}
-
-//Redirects when checkbox changes
-$('#filter-menu .filter-value input[type="checkbox"]').click(function(){
-  var category = $(this).attr('data-group');
-  //Deselect all but the one clicked
-  $('#filter-menu input[data-group="'+category+'"]').not($(this)).prop("checked",false);
-  var selected = [];
-  var trigValue = $(this).attr('value');
-  $('#filter-menu input:checked').each(function(){
-    selected.push($(this).attr('value'));
-  });
-
-  urlRedirect(selected);
-});
-$('.mobile-filter-trigger').click(function(){
-  $(this).toggleClass('active');
-  $('#filter-menu').toggleClass('active');
-});
-$('#filter-menu .filter-cat-heading').click(function(){
-  $('.filter-options li').not($(this).parent()).removeClass('active');
-  $(this).parent().toggleClass('active');
-});
-
 </script>
 

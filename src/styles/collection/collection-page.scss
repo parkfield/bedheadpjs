@@ -90,6 +90,8 @@
 .align-center{
   @include flex();
   @include prefix(align-items, center);
+}
+.filter-margin{
   margin-bottom: 100px;
   @include max-query(1150px){
     margin-bottom: 20px;

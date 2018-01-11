@@ -1,0 +1,14 @@
+<!-- /templates/page.catalog.liquid -->
+<div class="container xl contact-page">
+  <div class="row">
+    <div class="column l12 m12 s12">
+      <h1>{{ page.title }}</h1>
+      <div class="rte">
+        {{ page.content }}
+      </div>
+      {% for product in collections['catalog'].products %}
+        {% include 'collection-product' %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

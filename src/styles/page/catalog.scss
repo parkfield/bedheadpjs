@@ -1,0 +1,45 @@
+#mc_embed_signup {
+  form {
+    width: 280px;
+    input {
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0;
+  }
+  input[type="submit"] {
+    padding-bottom: 22px;
+  }
+  select {
+    width: 100%;
+    padding: 5px;
+  }
+  .selectButton {
+    height: 35px;
+  }
+  .submitButton {
+    padding-bottom: 22px;
+  }
+  .indicates-required {
+    padding-top: 10px;
+  }
+  label {
+    display: none;
+  }
+  } 
+}
+
+.container .rte .downloadBtn {
+  display: block;
+  max-width: 280px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  background-color: #a0dae8;
+  text-align: center;
+  font-size: 1.125rem;
+  margin: 8px 0;
+  @include prefix(transition, all 0.3s ease-out);
+  &:hover {
+    background-color: #8bd2e3;
+  }
+}

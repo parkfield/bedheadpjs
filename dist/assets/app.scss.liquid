@@ -1,4 +1,4 @@
-@charset "UTF-8";
+
 /*==============================================================================
   ___  _   _    _
  /   || | | |  | |
@@ -2672,9 +2672,12 @@ footer.theme-footer{
       bottom: -48px;
       left: 0;
       width: 100%;
+      display: none;
     }
   }
-
+  .filter-values{
+    display: none;
+  }
   .filter-cat-heading{
     min-width: 120px;
     height: 50px;
@@ -2687,12 +2690,21 @@ footer.theme-footer{
       color: $accent-color;
     }
   }
-
-  .filter-values{
-    display: none;
+  .filter-values.active{
+    @include flex();
+    @include prefix(flex-flow, row wrap);
+    @include prefix(justify-content, center);
   }
 }
-
+.filter-menu-container-desktop{
+  width: 100%;
+  .filter-options{
+    @include prefix(justify-content, center);
+  }
+  .filter-value{
+    margin-bottom: 10px;
+  }
+}
 .filter-menu-container .filter-value {
   @include flex();
   margin-right: 25px;
@@ -2811,7 +2823,7 @@ footer.theme-footer{
       box-shadow: 0px 3px 21px rgba(0, 0, 0, 0.089221);
     }
     #filter-menu.active{
-      z-index: 2;
+      z-index: 3;
       opacity: 1;
     }
     .filter-options{
@@ -2958,6 +2970,8 @@ footer.theme-footer{
 .align-center{
   @include flex();
   @include prefix(align-items, center);
+}
+.filter-margin{
   margin-bottom: 100px;
   @include max-query(1150px){
     margin-bottom: 20px;
@@ -4398,49 +4412,49 @@ $cart-width: 335px;
   }
 }
 #mc_embed_signup {
-	form {
-		width: 280px;
-		input {
-		width: 100%;
-		padding: 5px;
-		margin: 10px 0;
-	}
-	input[type="submit"] {
-		padding-bottom: 22px;
-	}
-	select {
-		width: 100%;
-		padding: 5px;
-	}
-	.selectButton {
-		height: 35px;
-	}
-	.submitButton {
-		padding-bottom: 22px;
-	}
-	.indicates-required {
-		padding-top: 10px;
-	}
-	label {
-		display: none;
-	}
-	}	
+  form {
+    width: 280px;
+    input {
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0;
+  }
+  input[type="submit"] {
+    padding-bottom: 22px;
+  }
+  select {
+    width: 100%;
+    padding: 5px;
+  }
+  .selectButton {
+    height: 35px;
+  }
+  .submitButton {
+    padding-bottom: 22px;
+  }
+  .indicates-required {
+    padding-top: 10px;
+  }
+  label {
+    display: none;
+  }
+  } 
 }
 
 .container .rte .downloadBtn {
-	display: block;
-	max-width: 280px;
-	height: 30px;
-	line-height: 30px;
-	color: #fff;
-	background-color: #a0dae8;
-	text-align: center;
-	font-size: 1.125rem;
-	margin: 8px 0;
-	@include prefix(transition, all 0.3s ease-out);
-	&:hover {
-		background-color: #8bd2e3;
-	}
+  display: block;
+  max-width: 280px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  background-color: #a0dae8;
+  text-align: center;
+  font-size: 1.125rem;
+  margin: 8px 0;
+  @include prefix(transition, all 0.3s ease-out);
+  &:hover {
+    background-color: #8bd2e3;
+  }
 }
 /* Blog */
 .blog-media{

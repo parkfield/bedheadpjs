@@ -31,9 +31,12 @@
       bottom: -48px;
       left: 0;
       width: 100%;
+      display: none;
     }
   }
-
+  .filter-values{
+    display: none;
+  }
   .filter-cat-heading{
     min-width: 120px;
     height: 50px;
@@ -46,12 +49,21 @@
       color: $accent-color;
     }
   }
-
-  .filter-values{
-    display: none;
+  .filter-values.active{
+    @include flex();
+    @include prefix(flex-flow, row wrap);
+    @include prefix(justify-content, center);
   }
 }
-
+.filter-menu-container-desktop{
+  width: 100%;
+  .filter-options{
+    @include prefix(justify-content, center);
+  }
+  .filter-value{
+    margin-bottom: 10px;
+  }
+}
 .filter-menu-container .filter-value {
   @include flex();
   margin-right: 25px;
