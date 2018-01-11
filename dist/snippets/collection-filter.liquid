@@ -123,7 +123,13 @@ $(document).ready(function(){
     if(urlSegment){
       var activeFilters = urlSegment.split('+');
       for(var i = 0; i < activeFilters.length; i++){
-        $("input[value='"+activeFilters[i]+"']").prop("checked", true);
+        var checkHandleized = activeFilters[i].split('-');
+        if(checkHandleized.length>1){
+          var deHandleized = checkHandleized.join('-').replace(/-(?=[^-]*$)/, ' ')
+          $("input[value='"+deHandleized+"']").prop("checked", true);
+        }else{
+          $("input[value='"+activeFilters[i]+"']").prop("checked", true);
+        }
       }
     }
   }
@@ -164,7 +170,8 @@ $(document).ready(function(){
     var selected = [];
     var trigValue = $(this).attr('value');
     $('#filter-menu input:checked').each(function(){
-      selected.push($(this).attr('value'));
+      var tag = $(this).attr('value').replace(' ','-');
+      selected.push(tag);
     });
 
     var uniqueSelected = [];

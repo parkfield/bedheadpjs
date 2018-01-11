@@ -1,4 +1,4 @@
 development:
   password: 056a009bb9e303a55828d571ba5496ee
-  theme_id: "live"
+  theme_id: 'live'
   store: bedheadpjs.myshopify.com
