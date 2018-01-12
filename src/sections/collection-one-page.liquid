@@ -1,0 +1,184 @@
+<!-- /templates/collection.liquid -->
+
+{% for block in section.blocks %}
+  {% if block.type == 'banner' %}
+    {% if block.settings.collection == collection.handle %}
+      {% unless block.settings.banner == blank %}
+        {% assign banner = block.settings.banner %}
+      {% endunless %}
+      {% assign paginate_by = block.settings.paginate_by %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% unless paginate_by %}
+  {% assign paginate_by = section.settings.paginate_by | plus: 0 %}
+{% endunless %}
+{% paginate collection.products by paginate_by %}
+{% assign column_width = 'column l3 m4 s6' %}
+
+<header>
+  <div class="banner-row">
+    <div class="banner-column">
+      {% unless banner == blank %}
+      <img src="{{banner | img_url:'master'}}" alt="{{banner.alt}}">
+      <h1>{{ collection.title }}</h1>
+      {% else %}
+      <h1 style="color: {{settings.color_body}}; position: static; transform: none; text-align: center;">{{ collection.title }}</h1>
+      {% endunless %}
+    </div>
+  </div>
+</header>
+<div class="container l" data-section-type="collection">
+  <header>
+    <div class="row align-center {% unless current_tags %}filter-margin{% endunless %}">
+      {% include 'collection-filter-desktop' %}
+    </div>
+    {% if current_tags %}
+    <div class="row active-filters">
+      <div class="column l12 m12 s12 l-center m-center s-center">
+        {% include 'current-tags' %}
+      </div>
+    </div>
+    {% endif %}
+    {% if collection.description != blank %}
+      <div class="rte">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+  </header>
+  {% comment %}
+  <p>
+    <span>{{ 'collection.view.title' | t }}</span>
+    <a title="View by 12 products" class="change-view" data-view="12">12</a>
+    <a title="View by 24 products" class="change-view" data-view="24">24</a>
+  </p>
+  {% endcomment %}
+</div>
+
+<div class="container l">
+  <div class="row">
+    {% for product in collection.products %}
+      {% include 'collection-product' %}
+    {% else %}
+      {% if collection.handle == 'all' and current_tags == '' %}
+        {% unless emptyState %}
+          {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
+          {% assign emptyState = true %}
+        {% endunless %}
+        {% include 'onboarding-empty-collection' %}
+      {% else %}
+        <div class="column l12">
+          <p>{{ 'collection.no_matches' | t }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% endpaginate %}
+
+<script>
+  Shopify.queryParams = {};
+  if (location.search.length) {
+    for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+      aKeyValue = aCouples[i].split('=');
+      if (aKeyValue.length > 1) {
+        Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+      }
+    }
+  }
+  jQuery('#sort-by')
+/*    .val('{{ collection.sort_by | default: collection.default_sort_by | escape }}')*/
+    .bind('change', function() {
+      Shopify.queryParams.sort_by = jQuery(this).val();
+      location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
+    });
+</script>
+<style>
+  .theme-header{
+    border: none;
+  }
+</style>
+{% schema %}
+  {
+    "name": "Collection Page",
+    "class": "collection-page collection-one-page",
+    "settings": [
+      {
+         "type":      "select",
+         "id":        "paginate_by",
+         "label":     "Number of Products Per Page",
+         "options": [
+           {
+             "value": "12",
+             "label": "12"
+           },
+           {
+             "value": "24",
+             "label": "24"
+           },
+          {
+             "value": "36",
+             "label": "36"
+           }
+         ],
+         "default":   "12"
+      },
+      {
+        "type":"header",
+        "content":"Collection Banners"
+      },
+      {
+        "type": "paragraph",
+        "content":"To add a banner to the collection. Add a banner block with an image and the collection you want to assign that image to"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"banner",
+        "name":"Collection Settings",
+        "settings":[
+          {
+            "type":"collection",
+            "id":"collection",
+            "label":"Collection"
+          },
+          {
+            "type":"image_picker",
+            "id":"banner",
+            "label":"Banner Image"
+          },
+          {
+             "type":      "select",
+             "id":        "paginate_by",
+             "label":     "Number of Products Per Page",
+             "info":"Will override default of general pagination",
+             "options": [
+               {
+                 "value": "12",
+                 "label": "12"
+               },
+               {
+                 "value": "24",
+                 "label": "24"
+               },
+               {
+                 "value": "36",
+                 "label": "36"
+               },
+               {
+                 "value": "48",
+                 "label": "48"
+               },
+               {
+                 "value": "1000",
+                 "label": "All"
+               }
+             ],
+             "default":   "12"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
